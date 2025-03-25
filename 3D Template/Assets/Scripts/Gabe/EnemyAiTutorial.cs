@@ -1,4 +1,6 @@
 using System.IO;
+using System.Runtime.InteropServices;
+using UnityEditor.ShortcutManagement;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -7,6 +9,8 @@ public class EnemyAiTutorial : MonoBehaviour
 public NavMeshAgent Agent;
 public  Transform Player;
     public LayerMask WhatIsGround, WhatIsPlayer;
+    public GameObject Projectile;
+    public float health;
 
     //patrol
     public Vector3 walkpoint;
@@ -73,12 +77,48 @@ public  Transform Player;
     }
     private void ChasePlayer()
     {
-
+        Agent.SetDestination(Player.position);
     }
     
     private void AttackPlayer()
     {
+        Agent.SetDestination(transform.position);
+        transform.LookAt(Player);
 
+        if (!alreadyAttacked) {
+            Rigidbody rb = Instantiate(Projectile, transform.position, Quaternion.identity).GetComponent<Rigidbody>();
+            rb.AddForce(transform.forward * 32f, ForceMode.Impulse);
+            rb.AddForce(transform.up * 8f, ForceMode.Impulse);
+
+            alreadyAttacked = true;
+            Invoke(nameof(ResetAttack), timeBetweenAttacks);
+        
+        }
     }
+    private void ResetAttack()
+    {
+       alreadyAttacked = false;
+    }
+    
+    public void TakeDamage(int damage)
+    {
+        health -= damage;
+        if (health <= 0)
+        {
+            Invoke(nameof(DestroyEnemy), 0.5f);
+        }
+    }
+    public void DestroyEnemy()
+    {
+        Destroy(gameObject);
+    }
+    private void OndrawGizmosSelected()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(transform.position, attackRange);
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawWireSphere(transform.position, sightRange);
+    }
+
     //video : 3:18
 }
