@@ -1,7 +1,7 @@
 using UnityEngine;
 using System.Collections;
 
-public class EnemySpawnManager : MonoBehaviour
+public class EnemyRenderer : MonoBehaviour
 {
     public GameObject[] DayEnemies; // Enemies that spawn during the day
     public GameObject[] NightEnemies; // Enemies that spawn at night

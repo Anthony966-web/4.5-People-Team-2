@@ -1,9 +1,10 @@
 using System.Collections.Generic;
 using System.Diagnostics;
+using UnityEditor;
 using UnityEngine;
 using Debug = UnityEngine.Debug;
 
-public class RandomPlacer : MonoBehaviour
+public class RandomPlacer : MonoBehaviour 
 {
     public int MaxBuilds;
 
@@ -15,13 +16,25 @@ public class RandomPlacer : MonoBehaviour
     public List<SavableObjects> savableObjects = new List<SavableObjects>();
 
     public GameObject Parent;
+    public GameObject BuildGhosts;
 
     SaveLoad saveLoad;
 
     Transform parent;
 
+    Camera cam;
+    public float BuildRangeMin;
+    public float BuildRangeMax;
+
+
+    public void Awake()
+    {
+        Vector3 mousePosition = Input.mousePosition;
+    }
+
     public void Start()
     {
+        cam = Camera.main;
         saveLoad = FindObjectOfType<SaveLoad>(); // Ensure SaveLoad is assigned
 
         if (saveLoad == null)
@@ -68,23 +81,23 @@ public class RandomPlacer : MonoBehaviour
             Debug.Log($"Total Memory Used: {System.GC.GetTotalMemory(false) / 1024} KB");
         }
 
-        if (Input.GetKey(KeyCode.D))
-        {
-            if (savableObjects.Count < MaxBuilds)
-            {
-                int rand = Random.Range(0, placeableObjects.Length);
-                Vector3 randomPos = new Vector3(Random.Range(-50f, 50), 1, Random.Range(-50f, 50));
+        //if (Input.GetKey(KeyCode.D))
+        //{
+        //    if (savableObjects.Count < MaxBuilds)
+        //    {
+        //        int rand = Random.Range(0, placeableObjects.Length);
+        //        Vector3 randomPos = new Vector3(Random.Range(-50f, 50), 1, Random.Range(-50f, 50));
 
-                GameObject obj = Instantiate(CurrentBuild); // Instantiate the selected prefab
-                obj.transform.position = randomPos;
-                obj.name = CurrentBuild.name;
-                obj.transform.parent = Parent.transform;
+        //        GameObject obj = Instantiate(CurrentBuild); // Instantiate the selected prefab
+        //        obj.transform.position = randomPos;
+        //        obj.name = CurrentBuild.name;
+        //        obj.transform.parent = Parent.transform;
 
-                savableObjects.Add(new SavableObjects(obj.name, obj.transform.position, obj.transform.rotation));
+        //        savableObjects.Add(new SavableObjects(obj.name, obj.transform.position, obj.transform.rotation));
 
-                saveLoad.Save();
-            }
-        }
+        //        saveLoad.Save();
+        //    }
+        //}
 
         if (Input.GetKey(KeyCode.F))
         {
@@ -94,7 +107,61 @@ public class RandomPlacer : MonoBehaviour
             RemoveBuild(CurrentRemoveBuild);
             CurrentRemoveBuild = null;
         }
+
+        if (CurrentBuild != null)
+        {
+            Vector3 mousePosition = Input.mousePosition;
+            mousePosition.z = 100f;
+            mousePosition = cam.ScreenToWorldPoint(mousePosition);
+            Debug.DrawRay(transform.position, mousePosition - transform.position, Color.blue);
+
+            Ray ray = cam.ScreenPointToRay(Input.mousePosition);
+            RaycastHit hit;
+            
+            if(Physics.Raycast(ray, out hit, 100))
+            {
+                Debug.Log(hit.transform.name);
+                Debug.Log(hit.transform.position);
+
+                CurrentBuild.transform.position = (mousePosition * BuildRangeMax);
+            }
+
+            //CurrentBuild.transform.position = mousePosition;
+        }
+
     }
+
+    //Building
+    #region
+    public void SelectBuild(GameObject BuildGameObject)
+    {
+        
+        Material material = BuildGameObject.GetComponent<Material>();
+        CurrentBuild = BuildGameObject;
+        int rand = Random.Range(0, placeableObjects.Length);
+        GameObject obj = Instantiate(CurrentBuild); // Instantiate the selected prefab
+        obj.name = CurrentBuild.name;
+        obj.transform.parent = BuildGhosts.transform;
+
+        obj.GetComponents<Material>().GetValue(rand);
+
+        savableObjects.Add(new SavableObjects(obj.name, obj.transform.position, obj.transform.rotation));
+
+        saveLoad.Save();
+
+        if (Input.GetMouseButtonDown(0))
+        {
+            print(CurrentBuild.name + "Placed");
+
+            savableObjects.Add(new SavableObjects(obj.name, obj.transform.position, obj.transform.rotation));
+
+            saveLoad.Save();
+        }
+    }
+
+
+
+    #endregion
 
     public void RemoveBuild(GameObject build)
     {
@@ -132,6 +199,7 @@ public class RandomPlacer : MonoBehaviour
                     obj.transform.rotation = savableObjects[i].RetuernRotation();
                     obj.name = placeableObjects[z].prefab.name;
                     obj.transform.parent = Parent.transform;
+                    print(obj.name);
                 }
             }
         }
@@ -146,6 +214,8 @@ public class RandomPlacer : MonoBehaviour
                 Destroy(child.gameObject);
             }
         }
+        else
+            Debug.LogError("Nope");
     }
 }
 
