@@ -25,6 +25,7 @@ public class RandomPlacer : MonoBehaviour
     Camera cam;
     public float BuildRangeMin;
     public float BuildRangeMax;
+    private Vector3 currentPos;
 
 
     public void Awake()
@@ -139,7 +140,7 @@ public class RandomPlacer : MonoBehaviour
         Material material = BuildGameObject.GetComponent<Material>();
         CurrentBuild = BuildGameObject;
         int rand = Random.Range(0, placeableObjects.Length);
-        GameObject obj = Instantiate(CurrentBuild); // Instantiate the selected prefab
+        GameObject obj = Instantiate(CurrentBuild, currentPos, Quaternion.identity); // Instantiate the selected prefab
         obj.name = CurrentBuild.name;
         obj.transform.parent = BuildGhosts.transform;
 
