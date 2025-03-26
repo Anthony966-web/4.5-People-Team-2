@@ -16,16 +16,25 @@ public class RandomPlacer : MonoBehaviour
     public List<SavableObjects> savableObjects = new List<SavableObjects>();
 
     public GameObject Parent;
-    public GameObject BuildGhosts;
+
+    public Building buildingsScript;
+
+    //public GameObject BuildGhosts;
 
     SaveLoad saveLoad;
 
     Transform parent;
 
-    Camera cam;
-    public float BuildRangeMin;
-    public float BuildRangeMax;
-    private Vector3 currentPos;
+    //public Transform cam;
+    //public float BuildRangeMin;
+    //public float BuildRangeMax;
+    //private Vector3 currentPos;
+    //public Transform currentBuildTransform;
+    //public RaycastHit hit;
+    //public LayerMask layer;
+    //public float offset = 1.0f;
+    //public float gridSize = 1.0f;
+    //public bool IsBuilding;
 
 
     public void Awake()
@@ -35,7 +44,9 @@ public class RandomPlacer : MonoBehaviour
 
     public void Start()
     {
-        cam = Camera.main;
+        //Cursor.visible = false;
+        //Cursor.lockState = CursorLockMode.Locked;
+
         saveLoad = FindObjectOfType<SaveLoad>(); // Ensure SaveLoad is assigned
 
         if (saveLoad == null)
@@ -52,11 +63,11 @@ public class RandomPlacer : MonoBehaviour
         }
     }
 
-    public void SelectPrefab(GameObject prefab)
-    {
-        CurrentBuild = prefab;
-        Debug.Log($"CurrentBuild set to: {CurrentBuild.name}");
-    }
+    //public void SelectPrefab(GameObject prefab)
+    //{
+    //    CurrentBuild = prefab;
+    //    Debug.Log($"CurrentBuild set to: {CurrentBuild.name}");
+    //}
 
 
     private void Update()
@@ -109,55 +120,47 @@ public class RandomPlacer : MonoBehaviour
             CurrentRemoveBuild = null;
         }
 
-        if (CurrentBuild != null)
-        {
-            Vector3 mousePosition = Input.mousePosition;
-            mousePosition.z = 100f;
-            mousePosition = cam.ScreenToWorldPoint(mousePosition);
-            Debug.DrawRay(transform.position, mousePosition - transform.position, Color.blue);
-
-            Ray ray = cam.ScreenPointToRay(Input.mousePosition);
-            RaycastHit hit;
-            
-            if(Physics.Raycast(ray, out hit, 100))
-            {
-                Debug.Log(hit.transform.name);
-                Debug.Log(hit.transform.position);
-
-                CurrentBuild.transform.position = (mousePosition * BuildRangeMax);
-            }
-
-            //CurrentBuild.transform.position = mousePosition;
-        }
-
     }
+
+    //public void ShowBuild(RaycastHit hit2)
+    //{
+    //    currentPos = hit2.point;
+    //    currentPos -= Vector3.one * offset;
+    //    currentPos /= gridSize;
+    //    currentPos = new Vector3(Mathf.Round(currentPos.x),Mathf.Round(currentPos.y),Mathf.Round(currentPos.z));
+    //    currentPos *= gridSize;
+    //    currentPos += Vector3.one * offset;
+    //    CurrentBuild.transform.position = currentPos;
+    //}
 
     //Building
     #region
     public void SelectBuild(GameObject BuildGameObject)
     {
-        
-        Material material = BuildGameObject.GetComponent<Material>();
+
+        //Material material = BuildGameObject.GetComponent<Material>();
         CurrentBuild = BuildGameObject;
-        int rand = Random.Range(0, placeableObjects.Length);
-        GameObject obj = Instantiate(CurrentBuild, currentPos, Quaternion.identity); // Instantiate the selected prefab
-        obj.name = CurrentBuild.name;
-        obj.transform.parent = BuildGhosts.transform;
+        buildingsScript.ChangeCurrentBuilding();
+        //int rand = Random.Range(0, placeableObjects.Length);
+        //GameObject obj = Instantiate(CurrentBuild, currentPos, Quaternion.identity); // Instantiate the selected prefab
+        //obj.name = CurrentBuild.name;
+        //obj.transform.parent = BuildGhosts.transform;
+        //currentBuildTransform = obj.transform;
 
-        obj.GetComponents<Material>().GetValue(rand);
 
-        savableObjects.Add(new SavableObjects(obj.name, obj.transform.position, obj.transform.rotation));
 
-        saveLoad.Save();
+        //savableObjects.Add(new SavableObjects(obj.name, obj.transform.position, obj.transform.rotation));
 
-        if (Input.GetMouseButtonDown(0))
-        {
-            print(CurrentBuild.name + "Placed");
+        //saveLoad.Save();
 
-            savableObjects.Add(new SavableObjects(obj.name, obj.transform.position, obj.transform.rotation));
+        //if (Input.GetMouseButtonDown(0))
+        //{
+        //    print(CurrentBuild.name + "Placed");
 
-            saveLoad.Save();
-        }
+        //    savableObjects.Add(new SavableObjects(obj.name, obj.transform.position, obj.transform.rotation));
+
+        //    saveLoad.Save();
+        //}
     }
 
 

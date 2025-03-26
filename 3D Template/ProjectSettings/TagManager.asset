@@ -12,9 +12,9 @@ TagManager:
   - 
   - Water
   - UI
-  - 
-  - 
-  - 
+  - BuildGhost
+  - Player
+  - Buildable
   - WhatIsPlayer
   - Ground
   - 
