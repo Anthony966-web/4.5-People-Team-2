@@ -247,7 +247,7 @@ public class CharacterMovement : MonoBehaviour
         {
             originalFOV = playerCamera.fieldOfView;
         }
-        //Cursor.lockState = CursorLockMode.Locked;
+        Cursor.lockState = CursorLockMode.Locked;
     }
 
     void Update()
