@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 6364104717770849793}
   - component: {fileID: 8670289330735373278}
   - component: {fileID: -4665489515351478633}
+  - component: {fileID: 8835106548078377001}
   m_Layer: 6
   m_Name: Roof
   m_TagString: Ground
@@ -129,10 +130,27 @@ Rigidbody:
   m_ExcludeLayers:
     serializedVersion: 2
     m_Bits: 0
-  m_ImplicitCom: 0
-  m_ImplicitTensor: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 126
   m_CollisionDetection: 0
+--- !u!114 &8835106548078377001
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2916362434546626117}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 39d3ffbec9ec67847bf79786c7b6634b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  foundation: 0
+  col: []
+  Green: {fileID: 2100000, guid: 7b4ec9f3218e46d4ab6caa8f569f4ff0, type: 2}
+  Red: {fileID: 2100000, guid: fa258efbc2e872e4a92dff006342b40c, type: 2}
+  IsBuildable: 0

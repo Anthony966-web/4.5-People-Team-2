@@ -38,6 +38,7 @@ public class BuildObject : MonoBehaviour
             IsBuildable = true;
         else
             IsBuildable = false;
+
         if(IsBuildable)
         {
             foreach(Transform child in this.transform)

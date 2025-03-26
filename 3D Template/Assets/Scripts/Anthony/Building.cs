@@ -18,6 +18,11 @@ public class Building : MonoBehaviour
         if(IsBuilding && currentBuildTransform != null)
         {
             StartBuild();
+
+            if (Input.GetMouseButtonDown(0))
+            {
+                Build();
+            }
         }
     }
 
@@ -48,9 +53,14 @@ public class Building : MonoBehaviour
         currentPos *= gridSize;
         currentPos += Vector3.one * offset;
         currentBuildTransform.position = currentPos;
+    }
 
-        if (Input.GetMouseButtonDown(0))
+    public void Build()
+    {
+        BuildObject BO = currentBuildTransform.GetComponent<BuildObject>();
+        if (BO.IsBuildable)
         {
+            //Build the object
             currentBuildTransform = null;
         }
     }
