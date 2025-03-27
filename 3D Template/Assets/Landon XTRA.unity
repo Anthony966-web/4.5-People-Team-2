@@ -1295,7 +1295,6 @@ MonoBehaviour:
   fovChangeSpeed: 5
   leanAngle: 2.5
   leanSpeed: 0.0000001
-  Ymeasure: 1
 --- !u!4 &1215846546
 Transform:
   m_ObjectHideFlags: 0
