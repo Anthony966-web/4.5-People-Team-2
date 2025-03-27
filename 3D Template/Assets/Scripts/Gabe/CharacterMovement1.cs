@@ -313,7 +313,7 @@ public class CharacterMovement : MonoBehaviour
         {
             isCrouching = false;
             transform.localScale = originalScale;
-            transform.localPosition = new Vector3(curentPosition.x, curentPosition.y - Ymeasure, curentPosition.z);
+          //  transform.localPosition = new Vector3(curentPosition.x, curentPosition.y - Ymeasure, curentPosition.z);
         }
     }
 
