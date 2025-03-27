@@ -76,7 +76,7 @@ public class Building : MonoBehaviour
             currentBuildTransform.transform.parent = BuildParent.transform;
             currentBuildTransform.name = currentBuildTransform.name.Replace("(Clone)", "").Trim();
 
-            randomPlacer.savableObjects.Add(new SavableObjects(currentBuildTransform.name, currentBuildTransform.transform.position, currentBuildTransform.transform.rotation, currentBuildTransform.GetComponent<BuildObject>().enabled = false));
+            randomPlacer.savableObjects.Add(new SavableObjects(currentBuildTransform.name, currentBuildTransform.transform.position, currentBuildTransform.transform.rotation, currentBuildTransform.GetComponent<BuildObject>().enabled = false, currentBuildTransform.GetComponent<Material>().mainTexture));
 
             //obj.transform.position = randomPos;
             //obj.name = CurrentBuild.name;
