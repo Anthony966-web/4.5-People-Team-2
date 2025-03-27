@@ -228,6 +228,7 @@ public class CharacterMovement : MonoBehaviour
     private bool isCrouching;
     private bool canTeleport = true;
     private Vector3 originalScale;
+    private Vector3 curentPosition;
     private float stamina;
     private bool isSprinting;
     private float rotationX = 0f;
@@ -235,6 +236,7 @@ public class CharacterMovement : MonoBehaviour
     private float originalFOV;
     private bool sprintOnCooldown = false;
     private float targetLean = 0f;
+    public float Ymeasure = 1;
 
     void Start()
     {
@@ -260,6 +262,15 @@ public class CharacterMovement : MonoBehaviour
         CameraControl();
         HandleCameraFOV();
         HandleAutoLean();
+        curentPosition = transform.localPosition;
+        if (Input.GetKeyDown(KeyCode.M))
+        {
+            Cursor.lockState = CursorLockMode.None;
+        }
+        if (Input.GetKeyDown(KeyCode.N))
+        {
+            Cursor.lockState = CursorLockMode.Locked;
+        }
     }
 
     void Move()
@@ -296,11 +307,13 @@ public class CharacterMovement : MonoBehaviour
         {
             isCrouching = true;
             transform.localScale = new Vector3(originalScale.x, originalScale.y / 2, originalScale.z);
+            transform.localPosition = new Vector3(curentPosition.x, curentPosition.y + Ymeasure, curentPosition.z);
         }
         else if (Input.GetKeyUp(KeyCode.LeftControl))
         {
             isCrouching = false;
             transform.localScale = originalScale;
+          //  transform.localPosition = new Vector3(curentPosition.x, curentPosition.y - Ymeasure, curentPosition.z);
         }
     }
 
