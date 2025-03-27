@@ -31,13 +31,14 @@ public  Transform Player;
         PlayerInSightRange = Physics.CheckSphere(transform.position, sightRange, WhatIsPlayer);
         PlayerInAttackRange = Physics.CheckSphere(transform.position, attackRange, WhatIsPlayer);
 
-        //if (!PlayerInSightRange && !PlayerInAttackRange) {
-        //    Patroling();
-        //}
-        //if (PlayerInSightRange && !PlayerInAttackRange)
-        //{
+        if (!PlayerInSightRange && !PlayerInAttackRange)
+        {
+            Patroling();
+        }
+        if (PlayerInSightRange)/* && !PlayerInAttackRange)*/
+        {
             ChasePlayer();
-        //}
+        }
         //if (PlayerInSightRange && PlayerInAttackRange)
         //{
         //    AttackPlayer();
@@ -49,37 +50,38 @@ public  Transform Player;
         Agent = GetComponent<NavMeshAgent>();
     }
 
-    //private void Patroling()
-    //{
-    //    if (!walkPointset)
-    //    { SearchWalkPoint(); }
-    //    if (walkPointset)
-    //    {
-    //        Agent.SetDestination(walkpoint);
+    private void Patroling()
+    {
+        if (!walkPointset)
+        { SearchWalkPoint(); }
+        if (walkPointset)
+        {
+            Agent.SetDestination(walkpoint);
 
-    //        Vector3 distanceToWalkPoint = transform.position - walkpoint;
+            Vector3 distanceToWalkPoint = transform.position - walkpoint;
 
-    //        if (distanceToWalkPoint.magnitude < 1f)
-    //        {
-    //            walkPointset = false;
-    //        }
-    //    }
-    //}
-    //private void SearchWalkPoint()
-    //{
-    //    float randomZ = Random.Range(-walkpointRange, walkpointRange);
-    //    float randomX = Random.Range(-walkpointRange, walkpointRange);
+            if (distanceToWalkPoint.magnitude < 1f)
+            {
+                walkPointset = false;
+            }
+        }
+    }
+    private void SearchWalkPoint()
+    {
+        float randomZ = Random.Range(-walkpointRange, walkpointRange);
+        float randomX = Random.Range(-walkpointRange, walkpointRange);
 
-    //    walkpoint = new Vector3(transform.position.x + randomX, transform.position.y, transform.position.z + randomZ);
-    //    if (Physics.Raycast(walkpoint, -transform.up, 2f, WhatIsGround)) {
-    //        walkPointset = true;
-    //    }
-    //}
+        walkpoint = new Vector3(transform.position.x + randomX, transform.position.y, transform.position.z + randomZ);
+        if (Physics.Raycast(walkpoint, -transform.up, 2f, WhatIsGround))
+        {
+            walkPointset = true;
+        }
+    }
     private void ChasePlayer()
     {
         Agent.SetDestination(Player.position);
     }
-    
+
     //private void AttackPlayer()
     //{
     //    Agent.SetDestination(transform.position);
@@ -92,33 +94,33 @@ public  Transform Player;
 
     //        alreadyAttacked = true;
     //        Invoke(nameof(ResetAttack), timeBetweenAttacks);
-        
+
     //    }
     //}
     //private void ResetAttack()
     //{
     //   alreadyAttacked = false;
     //}
-    
-    //public void TakeDamage(int damage)
-    //{
-    //    health -= damage;
-    //    if (health <= 0)
-    //    {
-    //        Invoke(nameof(DestroyEnemy), 0.5f);
-    //    }
-    //}
-    //public void DestroyEnemy()
-    //{
-    //    Destroy(gameObject);
-    //}
-    //private void OnDrawGizmosSelected()
-    //{
-    //    Gizmos.color = Color.red;
-    //    Gizmos.DrawWireSphere(transform.position, attackRange);
-    //    Gizmos.color = Color.yellow;
-    //    Gizmos.DrawWireSphere(transform.position, sightRange);
-    //}
+
+    public void TakeDamage(int damage)
+    {
+        health -= damage;
+        if (health <= 0)
+        {
+            Invoke(nameof(DestroyEnemy), 0.5f);
+        }
+    }
+    public void DestroyEnemy()
+    {
+        Destroy(gameObject);
+    }
+    private void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(transform.position, attackRange);
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawWireSphere(transform.position, sightRange);
+    }
 
     //video : 3:18
 }

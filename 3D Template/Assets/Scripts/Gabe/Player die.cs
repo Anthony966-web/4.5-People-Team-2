@@ -1,17 +1,20 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Playerdie : MonoBehaviour
 {
     public GameObject player;
 
-    private void OnTriggerEnter(Collider collision)
+    private void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.tag == "Destoryer")
         {
- 
-            Destroy(player.gameObject);
-        }
-    }
 
+            this.gameObject.SetActive(false);
+
+            SceneManager.LoadScene("GameOver");
+        }
+
+    }
 }
 
