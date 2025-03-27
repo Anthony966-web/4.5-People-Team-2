@@ -951,10 +951,12 @@ MonoBehaviour:
   layer:
     serializedVersion: 2
     m_Bits: 1591
-  offset: 1
-  gridSize: 1
+  offset: 0.75
+  gridSize: 0.75
   IsBuilding: 1
   randomPlacer: {fileID: 506466080}
+  saveLoad: {fileID: 506466082}
+  BuildParent: {fileID: 1644873599}
 --- !u!1 &1337953113
 GameObject:
   m_ObjectHideFlags: 0

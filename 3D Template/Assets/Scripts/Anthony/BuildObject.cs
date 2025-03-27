@@ -9,20 +9,25 @@ public class BuildObject : MonoBehaviour
     public List<Collider> col = new List<Collider>();
     public Material Green;
     public Material Red;
+    public Material MainMaterial;
     public bool IsBuildable;
 
-    private void OnTriggerEnter(Collider other)
+    void OnTriggerEnter(Collider other)
     {
+        print("Work1");
         if (other.gameObject.layer == 8 && foundation)
         {
+            print("Work2");
             col.Add(other);
         }
     }
 
-    private void OnTriggerExit(Collider other)
+    void OnTriggerExit(Collider other)
     {
+        print("Work3");
         if (other.gameObject.layer == 8 && foundation)
         {
+            print("Work4");
             col.Remove(other);
         }
     }
@@ -41,17 +46,21 @@ public class BuildObject : MonoBehaviour
 
         if(IsBuildable)
         {
-            foreach(Transform child in this.transform)
-            {
-                child.GetComponent<Renderer>().material = Green;
-            }
+            //foreach(Transform child in this.transform)
+            //{
+                //child.GetComponent<Renderer>().material = Green;
+                this.GetComponent<Renderer>().material = Green;
+                print("Green");
+            //}
         }
         else
         {
-            foreach (Transform child in this.transform)
-            {
-                child.GetComponent<Renderer>().material = Red;
-            }
+            //foreach (Transform child in this.transform)
+            //{
+            this.GetComponent<Renderer>().material = Red;
+            //child.GetComponent<Renderer>().material = Red;
+            print("Red");
+            //}
         }
     }
 }
