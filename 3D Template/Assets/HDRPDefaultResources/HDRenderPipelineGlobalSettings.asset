@@ -242,8 +242,7 @@ MonoBehaviour:
         asm: Unity.RenderPipelines.HighDefinition.Runtime}
       data:
         m_Version: 0
-        m_VolumeProfile: {fileID: 11400000, guid: c3cf6e77688f49f4c934168493e042d7,
-          type: 2}
+        m_VolumeProfile: {fileID: 0}
     - rid: 1043138093327581441
       type: {class: WaterSystemRuntimeResources, ns: UnityEngine.Rendering.HighDefinition,
         asm: Unity.RenderPipelines.HighDefinition.Runtime}
@@ -587,8 +586,7 @@ MonoBehaviour:
         asm: Unity.RenderPipelines.HighDefinition.Runtime}
       data:
         m_Version: 0
-        m_VolumeProfile: {fileID: 11400000, guid: 5c8c7c74f5553534290496f004a16706,
-          type: 2}
+        m_VolumeProfile: {fileID: 0}
     - rid: 1043138093327581456
       type: {class: HDRPRayTracingResources, ns: UnityEngine.Rendering.HighDefinition,
         asm: Unity.RenderPipelines.HighDefinition.Runtime}
