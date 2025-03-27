@@ -12,6 +12,8 @@ GameObject:
   - component: {fileID: 2379849279415503014}
   - component: {fileID: 3231040298823075577}
   - component: {fileID: 3899205698144943791}
+  - component: {fileID: 4170151969069379436}
+  - component: {fileID: 2608595415926288842}
   m_Layer: 0
   m_Name: Sigma gooner
   m_TagString: Untagged
@@ -115,3 +117,48 @@ LODGroup:
     renderers:
     - renderer: {fileID: 3231040298823075577}
   m_Enabled: 1
+--- !u!64 &4170151969069379436
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4643672513104084687}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 1
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: -2432090755550338912, guid: 84204548c40c71a49839b4618c0d2d9d, type: 3}
+--- !u!136 &2608595415926288842
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4643672513104084687}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 1
+  m_Height: 37.30675
+  m_Direction: 1
+  m_Center: {x: -0.1580286, y: 18.653376, z: 0.41073418}
