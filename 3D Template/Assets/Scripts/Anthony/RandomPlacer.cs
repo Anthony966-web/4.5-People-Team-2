@@ -140,6 +140,7 @@ public class RandomPlacer : MonoBehaviour
 
         //Material material = BuildGameObject.GetComponent<Material>();
         CurrentBuild = BuildGameObject;
+        //CurrentBuild.gameObject.transform.parent = Parent.transform;
         buildingsScript.ChangeCurrentBuilding();
         //int rand = Random.Range(0, placeableObjects.Length);
         //GameObject obj = Instantiate(CurrentBuild, currentPos, Quaternion.identity); // Instantiate the selected prefab
@@ -203,6 +204,9 @@ public class RandomPlacer : MonoBehaviour
                     obj.transform.rotation = savableObjects[i].RetuernRotation();
                     obj.name = placeableObjects[z].prefab.name;
                     obj.transform.parent = Parent.transform;
+                    obj.GetComponent<BuildObject>().enabled = savableObjects[i].IsBuildObjectTrigger;
+                    obj.GetComponent<Material>().mainTexture = savableObjects[i].Material;
+
                     print(obj.name);
                 }
             }
@@ -229,13 +233,17 @@ public class SavableObjects
     public string id;
     public float px, py, pz;
     public float rx, ry, rz, rw;
+    public bool IsBuildObjectTrigger;
+    public Texture Material;
 
-    public SavableObjects(string id, Vector3 position, Quaternion rotation)
+    public SavableObjects(string id, Vector3 position, Quaternion rotation, bool isBuildObjectTrigger, Texture material)
     {
         this.id = id;
 
         px = position.x; py = position.y; pz = position.z;
         rx = rotation.x; ry = rotation.y; rz = rotation.z; rw = rotation.w;
+        this.IsBuildObjectTrigger = isBuildObjectTrigger;
+        this.Material = material;
     }
 
     public Vector3 RetuernPosition()
@@ -259,10 +267,10 @@ public class Identification
 
     private void OnValidate()
     {
-        //if (string.IsNullOrEmpty(id) || id != prefab.name)
-        //{
-        id = prefab.name; // Automatically set ID to match object namef
-        //}
+        if (string.IsNullOrEmpty(id) || id != prefab.name)
+        {
+            id = prefab.name; // Automatically set ID to match object namef
+        }
     }
 }
 
