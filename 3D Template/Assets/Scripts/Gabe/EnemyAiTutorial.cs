@@ -3,6 +3,7 @@ using System.Runtime.InteropServices;
 using UnityEditor.ShortcutManagement;
 using UnityEngine;
 using UnityEngine.AI;
+using System.Collections;
 
 public class EnemyAiTutorial : MonoBehaviour
 {
@@ -53,7 +54,7 @@ public  Transform Player;
     private void Patroling()
     {
         if (!walkPointset)
-        { SearchWalkPoint(); }
+        { StartCoroutine(SearchWalkPoint()); }
         if (walkPointset)
         {
             Agent.SetDestination(walkpoint);
@@ -64,17 +65,6 @@ public  Transform Player;
             {
                 walkPointset = false;
             }
-        }
-    }
-    private void SearchWalkPoint()
-    {
-        float randomZ = Random.Range(-walkpointRange, walkpointRange);
-        float randomX = Random.Range(-walkpointRange, walkpointRange);
-
-        walkpoint = new Vector3(transform.position.x + randomX, transform.position.y, transform.position.z + randomZ);
-        if (Physics.Raycast(walkpoint, -transform.up, 2f, WhatIsGround))
-        {
-            walkPointset = true;
         }
     }
     private void ChasePlayer()
@@ -120,6 +110,18 @@ public  Transform Player;
         Gizmos.DrawWireSphere(transform.position, attackRange);
         Gizmos.color = Color.yellow;
         Gizmos.DrawWireSphere(transform.position, sightRange);
+    }
+    private IEnumerator SearchWalkPoint()
+    {
+       
+        float randomZ = Random.Range(-walkpointRange, walkpointRange);
+        float randomX = Random.Range(-walkpointRange, walkpointRange);
+        yield return new WaitForSeconds(5);
+        walkpoint = new Vector3(transform.position.x + randomX, transform.position.y, transform.position.z + randomZ);
+        if (Physics.Raycast(walkpoint, -transform.up, 2f, WhatIsGround))
+        {
+            walkPointset = true;
+        }
     }
 
     //video : 3:18
