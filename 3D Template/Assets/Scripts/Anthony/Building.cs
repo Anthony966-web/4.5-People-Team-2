@@ -32,7 +32,7 @@ public class Building : MonoBehaviour
 
     public void ChangeCurrentBuilding()
     {
-        if(randomPlacer.CurrentBuild.gameObject != null)
+        if(randomPlacer.CurrentBuild.gameObject != null && currentBuildTransform == null)
         {
             GameObject build = Instantiate(randomPlacer.CurrentBuild.gameObject, currentPos, Quaternion.Euler(currentRot));
             currentBuildTransform = build.transform;
@@ -86,6 +86,12 @@ public class Building : MonoBehaviour
 
             saveLoad.Save();
 
+            currentBuildTransform = null;
+        }
+        else
+        {
+            Destroy(currentBuildTransform.gameObject);
+            saveLoad.Save();
             currentBuildTransform = null;
         }
     }
