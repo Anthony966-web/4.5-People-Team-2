@@ -2008,36 +2008,7 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
-  - {fileID: 6057422471846807832}
-  - {fileID: 8924750947976234016}
-  - {fileID: -7789859535826378210}
-  - {fileID: 1104963057647778546}
-  - {fileID: -7959358151553738897}
-  - {fileID: 6307087324366933665}
-  - {fileID: 8164385746630365492}
-  - {fileID: 3163409349487592904}
-  - {fileID: 3355168826317571214}
-  - {fileID: -7342885248652814730}
-  - {fileID: 4027176537203092258}
-  - {fileID: 928342594891634771}
-  - {fileID: 6089656855960461537}
-  - {fileID: -6456276242168809859}
-  - {fileID: 758426342998291627}
-  - {fileID: -7496256707625480404}
-  - {fileID: -540199847166866098}
-  - {fileID: 8540845272480411720}
-  - {fileID: -6042264125291204842}
-  - {fileID: -3096330395882489207}
-  - {fileID: -2280509210631491051}
-  - {fileID: 8635612323709623905}
-  - {fileID: 8957388532009601560}
-  - {fileID: -6802352254013986810}
-  - {fileID: 1165865581468452807}
-  - {fileID: 627202744252684582}
-  - {fileID: 1312068040566000891}
-  - {fileID: 4417750032023751248}
-  - {fileID: 4356918692143492742}
-  - {fileID: 1341787578269420675}
+  - {fileID: 6691356948643149572}
 --- !u!114 &313920553889030311
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -3756,6 +3727,24 @@ MonoBehaviour:
   texture:
     m_OverrideState: 1
     m_Value: {fileID: 0}
+--- !u!114 &6691356948643149572
+MonoBehaviour:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a7ff42a8c5be6646ad3975f3a54c1eb, type: 3}
+  m_Name: DiffusionProfileList
+  m_EditorClassIdentifier: 
+  active: 1
+  diffusionProfiles:
+    m_OverrideState: 1
+    m_Value:
+    - {fileID: 11400000, guid: 404820c4cf36ad944862fa59c56064f0, type: 2}
+    - {fileID: 11400000, guid: 2384dbf2c1c420f45a792fbc315fbfb1, type: 2}
 --- !u!114 &6845173009878939874
 MonoBehaviour:
   m_ObjectHideFlags: 3
