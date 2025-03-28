@@ -8,7 +8,7 @@ TerrainLayer:
   m_PrefabAsset: {fileID: 0}
   m_Name: Rock DARKER Texture
   m_DiffuseTexture: {fileID: 2800000, guid: 746be46b441bec348ab21dfba0f9656d, type: 3}
-  m_NormalMapTexture: {fileID: 2800000, guid: 746be46b441bec348ab21dfba0f9656d, type: 3}
+  m_NormalMapTexture: {fileID: 0}
   m_MaskMapTexture: {fileID: 2800000, guid: 746be46b441bec348ab21dfba0f9656d, type: 3}
   m_TileSize: {x: 2, y: 2}
   m_TileOffset: {x: 0, y: 0}
