@@ -208,7 +208,7 @@ MonoBehaviour:
         m_MethodName: SelectBuild
         m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 1529630093041605133, guid: 0d6c0e2b623833547b421254ab1e4b62,
+          m_ObjectArgument: {fileID: 2916362434546626117, guid: 438f849a07aab2843adc853075ee3158,
             type: 3}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
           m_IntArgument: 0
@@ -1578,6 +1578,37 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1337953113}
   m_CullTransparentMesh: 1
+--- !u!1 &1482212166
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1482212167}
+  m_Layer: 0
+  m_Name: GameObject
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1482212167
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1482212166}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -102.308624, y: -81.3028, z: 307.72894}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1559617275
 GameObject:
   m_ObjectHideFlags: 0
@@ -2137,3 +2168,4 @@ SceneRoots:
   - {fileID: 1559617278}
   - {fileID: 506466081}
   - {fileID: 1001609303}
+  - {fileID: 1482212167}
