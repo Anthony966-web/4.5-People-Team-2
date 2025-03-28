@@ -167,5 +167,5 @@ MonoBehaviour:
   col: []
   Green: {fileID: 2100000, guid: 7b4ec9f3218e46d4ab6caa8f569f4ff0, type: 2}
   Red: {fileID: 2100000, guid: fa258efbc2e872e4a92dff006342b40c, type: 2}
-  MainMaterial: {fileID: 2100000, guid: 7714ad2cebc9bb949b7621ac643cefa8, type: 2}
+  MainMaterial: {fileID: 2100000, guid: d96def2d196066d46b0b60c0bb640312, type: 2}
   IsBuildable: 0
