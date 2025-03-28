@@ -113,10 +113,10 @@ public  Transform Player;
     }
     private IEnumerator SearchWalkPoint()
     {
-       
+       yield return new WaitForSeconds(5);
         float randomZ = Random.Range(-walkpointRange, walkpointRange);
         float randomX = Random.Range(-walkpointRange, walkpointRange);
-        yield return new WaitForSeconds(5);
+        
         walkpoint = new Vector3(transform.position.x + randomX, transform.position.y, transform.position.z + randomZ);
         if (Physics.Raycast(walkpoint, -transform.up, 2f, WhatIsGround))
         {
