@@ -205,7 +205,15 @@ public class RandomPlacer : MonoBehaviour
                     obj.name = placeableObjects[z].prefab.name;
                     obj.transform.parent = Parent.transform;
                     obj.GetComponent<BuildObject>().enabled = savableObjects[i].IsBuildObjectTrigger;
-                    //obj.GetComponent<Material>().mainTexture = savableObjects[i].Material;
+
+                    //Renderer renderer = obj.GetComponent<Renderer>();
+                    //if (renderer != null)
+                    //{
+                    //    Material newMat = new Material(Shader.Find("Standard")); // Default material
+                    //    newMat.name = savableObjects[i].materialName;
+                    //    newMat.color = savableObjects[i].color;
+                    //    renderer.material = newMat;
+                    //}
 
                     print(obj.name);
                 }
@@ -234,7 +242,8 @@ public class SavableObjects
     public float px, py, pz;
     public float rx, ry, rz, rw;
     public bool IsBuildObjectTrigger;
-    //public Texture Material;
+    //public string materialName;
+    //public Color color;
 
     public SavableObjects(string id, Vector3 position, Quaternion rotation, bool isBuildObjectTrigger)
     {
@@ -243,7 +252,12 @@ public class SavableObjects
         px = position.x; py = position.y; pz = position.z;
         rx = rotation.x; ry = rotation.y; rz = rotation.z; rw = rotation.w;
         this.IsBuildObjectTrigger = isBuildObjectTrigger;
-        //this.Material = material;
+
+        //if (material != null)
+        //{
+        //    this.materialName = material.name;
+        //    this.color = material.color;
+        //}
     }
 
     public Vector3 RetuernPosition()
