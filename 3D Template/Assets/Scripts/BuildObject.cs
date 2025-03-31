@@ -56,13 +56,13 @@ public class BuildObject : MonoBehaviour
             //    IsBuildable = true;
             //else
             //    IsBuildable = false;
-            if(sort == objectsorts.normal)
-            {
-                if (col.Contains(gameObject.GetComponent<BuildObject>().sort) == objectsorts.foundation)
-                    IsBuildable = true;
-                else
-                    IsBuildable = false;
-            }
+            //if(sort == objectsorts.normal)
+            //{
+            //    if (col.Contains(gameObject.GetComponent<BuildObject>().sort) == objectsorts.foundation)
+            //        IsBuildable = true;
+            //    else
+            //        IsBuildable = false;
+            //}
         }
 
         if (IsBuildable)
