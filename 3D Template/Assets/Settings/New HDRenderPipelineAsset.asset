@@ -28,7 +28,7 @@ MonoBehaviour:
       m_SchemaId:
         m_Id: With3Levels
     supportVolumetrics: 1
-    supportVolumetricClouds: 0
+    supportVolumetricClouds: 1
     supportLightLayers: 0
     renderingLayerMaskBuffer: 0
     supportWater: 1
@@ -64,7 +64,7 @@ MonoBehaviour:
     supportDecalLayers: 0
     supportSurfaceGradient: 1
     decalNormalBufferHP: 0
-    supportHighQualityLineRendering: 0
+    supportHighQualityLineRendering: 1
     highQualityLineRenderingMemoryBudget: 128
     msaaSampleCount: 1
     supportMotionVectors: 1
@@ -72,7 +72,7 @@ MonoBehaviour:
     supportDataDrivenLensFlare: 1
     supportDitheringCrossFade: 0
     supportRuntimeAOVAPI: 0
-    supportTerrainHole: 0
+    supportTerrainHole: 1
     lightProbeSystem: 1
     oldLightProbeSystem: 0
     probeVolumeMemoryBudget: 1024
@@ -199,7 +199,7 @@ MonoBehaviour:
       singlePass: 1
       occlusionMesh: 1
       cameraJitter: 0
-      allowMotionBlur: 0
+      allowMotionBlur: 1
     postProcessQualitySettings:
       NearBlurSampleCount: 030000000500000008000000
       NearBlurMaxRadius:
