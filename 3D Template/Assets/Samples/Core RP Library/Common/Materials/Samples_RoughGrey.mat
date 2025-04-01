@@ -304,7 +304,11 @@ Material:
     - _UV_Tiling: {r: 1, g: 1, b: 0, a: 0}
   m_BuildTextureStacks: []
   m_AllowLocking: 1
+<<<<<<< HEAD
+--- !u!114 &4486256024747492789
+=======
 --- !u!114 &845416004441887429
+>>>>>>> b380bd0004b8951304c98b10a181d37c6f370e3e
 MonoBehaviour:
   m_ObjectHideFlags: 11
   m_CorrespondingSourceObject: {fileID: 0}
