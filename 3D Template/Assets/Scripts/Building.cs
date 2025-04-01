@@ -71,12 +71,12 @@ public class Building : MonoBehaviour
         {
             //Build the object
             BO.GetComponent<Renderer>().material = BO.GetComponent<BuildObject>().MainMaterial;
-            //BO.GetComponent<Collider>().isTrigger = false;
+            BO.GetComponent<Collider>().isTrigger = false;
             BO.GetComponent<BuildObject>().enabled = false;
             currentBuildTransform.transform.parent = BuildParent.transform;
             currentBuildTransform.name = currentBuildTransform.name.Replace("(Clone)", "").Trim();
 
-            randomPlacer.savableObjects.Add(new SavableObjects(currentBuildTransform.name, currentBuildTransform.transform.position, currentBuildTransform.transform.rotation, currentBuildTransform.GetComponent<BuildObject>().enabled = false));
+            randomPlacer.savableObjects.Add(new SavableObjects(currentBuildTransform.name, currentBuildTransform.transform.position, currentBuildTransform.transform.rotation, currentBuildTransform.GetComponent<Collider>().isTrigger = false, currentBuildTransform.GetComponent<BuildObject>().enabled = false));
 
             //obj.transform.position = randomPos;
             //obj.name = CurrentBuild.name;
