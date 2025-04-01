@@ -4,6 +4,7 @@ using UnityEditor.ShortcutManagement;
 using UnityEngine;
 using UnityEngine.AI;
 using System.Collections;
+using Unity.VisualScripting;
 
 public class EnemyAiTutorial : MonoBehaviour
 {
@@ -113,7 +114,7 @@ public  Transform Player;
     }
     private IEnumerator SearchWalkPoint()
     {
-       yield return new WaitForSeconds(5);
+
         float randomZ = Random.Range(-walkpointRange, walkpointRange);
         float randomX = Random.Range(-walkpointRange, walkpointRange);
         
@@ -121,7 +122,8 @@ public  Transform Player;
         if (Physics.Raycast(walkpoint, -transform.up, 2f, WhatIsGround))
         {
             walkPointset = true;
-        }
+            yield return new WaitForSeconds(2);
+        }       
     }
 
     //video : 3:18

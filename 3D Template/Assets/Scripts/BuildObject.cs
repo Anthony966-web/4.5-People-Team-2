@@ -57,6 +57,7 @@ public class BuildObject : MonoBehaviour
             //    IsBuildable = true;
             //else
             //    IsBuildable = false;
+<<<<<<< HEAD
             if(sort == objectsorts.normal)
             {
                 float maxAllowedDistance = 2f;
@@ -71,6 +72,15 @@ public class BuildObject : MonoBehaviour
                 return false;
             });
           }
+=======
+            //if(sort == objectsorts.normal)
+            //{
+            //    if (col.Contains(gameObject.GetComponent<BuildObject>().sort) == objectsorts.foundation)
+            //        IsBuildable = true;
+            //    else
+            //        IsBuildable = false;
+            //}
+>>>>>>> 1d79ea5b7bdd066d519679c2813a2c83d64e2e3b
         }
 
         if (IsBuildable)
