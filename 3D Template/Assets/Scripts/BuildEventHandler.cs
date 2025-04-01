@@ -3,7 +3,7 @@ using UnityEngine.Events; // For Unity events (optional)
 using System;
 using System.Linq;
 
-public class EventExample : MonoBehaviour
+public class BuildEventHandler : MonoBehaviour
 {
     // Declare the event
 

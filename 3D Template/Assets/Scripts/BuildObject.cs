@@ -1,6 +1,7 @@
 using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 
 public class BuildObject : MonoBehaviour
 {
@@ -56,6 +57,22 @@ public class BuildObject : MonoBehaviour
             //    IsBuildable = true;
             //else
             //    IsBuildable = false;
+<<<<<<< HEAD
+            if(sort == objectsorts.normal)
+            {
+                float maxAllowedDistance = 2f;
+                IsBuildable = col.Any(collider =>
+                {
+                BuildObject otherBuildObject = collider.GetComponent<BuildObject>();
+                if (otherBuildObject != null && otherBuildObject.sort == objectsorts.foundation)
+                {
+                    float distance = Vector3.Distance(transform.position, otherBuildObject.transform.position);
+                    return distance <= maxAllowedDistance;
+                }
+                return false;
+            });
+          }
+=======
             //if(sort == objectsorts.normal)
             //{
             //    if (col.Contains(gameObject.GetComponent<BuildObject>().sort) == objectsorts.foundation)
@@ -63,6 +80,7 @@ public class BuildObject : MonoBehaviour
             //    else
             //        IsBuildable = false;
             //}
+>>>>>>> 1d79ea5b7bdd066d519679c2813a2c83d64e2e3b
         }
 
         if (IsBuildable)
