@@ -204,7 +204,8 @@ public class RandomPlacer : MonoBehaviour
                     obj.transform.rotation = savableObjects[i].RetuernRotation();
                     obj.name = placeableObjects[z].prefab.name;
                     obj.transform.parent = Parent.transform;
-                    obj.GetComponent<BuildObject>().enabled = savableObjects[i].IsBuildObjectTrigger;
+                    obj.GetComponent<BuildObject>().enabled = savableObjects[i].IsBuildObjectScript;
+                    obj.GetComponent<Collider>().isTrigger = savableObjects[i].IsBuildObjectTrigger;
 
                     //Renderer renderer = obj.GetComponent<Renderer>();
                     //if (renderer != null)
@@ -242,16 +243,18 @@ public class SavableObjects
     public float px, py, pz;
     public float rx, ry, rz, rw;
     public bool IsBuildObjectTrigger;
+    public bool IsBuildObjectScript;
     //public string materialName;
     //public Color color;
 
-    public SavableObjects(string id, Vector3 position, Quaternion rotation, bool isBuildObjectTrigger)
+    public SavableObjects(string id, Vector3 position, Quaternion rotation, bool isBuildObjectTrigger, bool isBuildObjectScript)
     {
         this.id = id;
 
         px = position.x; py = position.y; pz = position.z;
         rx = rotation.x; ry = rotation.y; rz = rotation.z; rw = rotation.w;
         this.IsBuildObjectTrigger = isBuildObjectTrigger;
+        this.IsBuildObjectScript = isBuildObjectScript;
 
         //if (material != null)
         //{
