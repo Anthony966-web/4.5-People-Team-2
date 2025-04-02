@@ -592,9 +592,10 @@ GameObject:
   m_Component:
   - component: {fileID: 325043741}
   - component: {fileID: 325043740}
+  - component: {fileID: 325043742}
   m_Layer: 0
   m_Name: Ocean
-  m_TagString: Untagged
+  m_TagString: Water
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -772,6 +773,27 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &325043742
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 325043739}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 1
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 2749.2712, y: 1235.728, z: 3988.4321}
+  m_Center: {x: 759.4774, y: -616.8584, z: -182.85815}
 --- !u!1 &423504001
 GameObject:
   m_ObjectHideFlags: 0
@@ -920,6 +942,7 @@ GameObject:
   - component: {fileID: 532182837}
   - component: {fileID: 532182836}
   - component: {fileID: 532182835}
+  - component: {fileID: 532182839}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -1019,6 +1042,19 @@ Transform:
   - {fileID: 801504693}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: -90.128, z: 0}
+--- !u!114 &532182839
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 532182834}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 38930ac55128f8946a2dc60c0dd6263f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  jumpForce: 7
 --- !u!1 &554828146
 GameObject:
   m_ObjectHideFlags: 0
@@ -2039,7 +2075,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sun: {fileID: 910886296}
-  dayDuration: 60
+  dayDuration: 300
   skyColor:
     serializedVersion: 2
     key0: {r: 1, g: 1, b: 1, a: 1}
@@ -2510,7 +2546,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sun: {fileID: 1079812251}
-  dayDuration: 60
+  dayDuration: 300
   skyColor:
     serializedVersion: 2
     key0: {r: 0.13260946, g: 0.1367143, b: 0.18867922, a: 1}
