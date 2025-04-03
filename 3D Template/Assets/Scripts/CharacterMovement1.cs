@@ -202,9 +202,12 @@
 //    }
 //}
 using UnityEngine;
+using System.Collections;
+
 
 public class CharacterMovement : MonoBehaviour
 {
+
     public float moveSpeed = 5f;
     public float sprintSpeed = 8f;
     public float crouchSpeed = 2.5f;
@@ -303,6 +306,7 @@ public class CharacterMovement : MonoBehaviour
 
     void HandleCrouch()
     {
+        bool isMoving = Input.GetAxis("Horizontal") != 0 || Input.GetAxis("Vertical") != 0;
         if (Input.GetKeyDown(KeyCode.LeftControl))
         {
             isCrouching = true;

@@ -12,7 +12,10 @@ public class InventoryUI : MonoBehaviour
         inventory.inventoryChangedCallback += UpdateUI;
         UpdateUI();
     }
+    private void Update()
+    {
 
+    }
     void UpdateUI()
     {
         foreach (Transform child in itemParent)
@@ -26,6 +29,9 @@ public class InventoryUI : MonoBehaviour
             slot.transform.Find("ItemName").GetComponent<Text>().text = item.itemName;
             slot.transform.Find("ItemQuantity").GetComponent<Text>().text = "x" + item.quantity;
             slot.transform.Find("ItemIcon").GetComponent<Image>().sprite = item.icon;
+
+            print(item.itemName);
+            print(item.quantity);
         }
     }
 }

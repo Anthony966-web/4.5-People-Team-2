@@ -39,4 +39,11 @@ public class Inventory : MonoBehaviour
             inventoryChangedCallback?.Invoke();
         }
     }
+    private void Update()
+    {
+        foreach (var item in items)
+        {
+            print(item.itemName);
+        }
+    }
 }
