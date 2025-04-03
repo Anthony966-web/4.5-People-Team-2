@@ -12,10 +12,6 @@ public class InventoryUI : MonoBehaviour
         inventory.inventoryChangedCallback += UpdateUI;
         UpdateUI();
     }
-    private void Update()
-    {
-
-    }
     void UpdateUI()
     {
         foreach (Transform child in itemParent)
