@@ -7,8 +7,8 @@ using Unity.VisualScripting;
 
 public class EnemyAiTutorial : MonoBehaviour
 {
-public NavMeshAgent Agent;
-public  Transform Player;
+    public NavMeshAgent Agent;
+    public Transform Player;
     public LayerMask WhatIsGround, WhatIsPlayer;
     public GameObject Projectile;
     public float health;
@@ -116,14 +116,24 @@ public  Transform Player;
 
         float randomZ = Random.Range(-walkpointRange, walkpointRange);
         float randomX = Random.Range(-walkpointRange, walkpointRange);
-        
+
         walkpoint = new Vector3(transform.position.x + randomX, transform.position.y, transform.position.z + randomZ);
         if (Physics.Raycast(walkpoint, -transform.up, 2f, WhatIsGround))
         {
             walkPointset = true;
             yield return new WaitForSeconds(2);
-        }       
+        }
     }
+    private void OnCollisionEnter(Collision collision)
+    {
+        float randomZ = Random.Range(-walkpointRange, walkpointRange);
+        float randomX = Random.Range(-walkpointRange, walkpointRange);
+        if (collision.gameObject.tag == "wall")
+        {
+            walkpoint = new Vector3(transform.position.x + randomX, transform.position.y, transform.position.z + randomZ); ;
+            print("works");
+        }
 
-    //video : 3:18
+        //video : 3:18
+    }
 }
