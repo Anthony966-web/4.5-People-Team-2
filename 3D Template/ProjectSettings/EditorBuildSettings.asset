@@ -4,6 +4,15 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Scenes/Main Menu.unity
+    guid: 36f291bfd16e9c84ab08bcb255665b46
+  - enabled: 1
+    path: Assets/Scenes/Landon.unity
+    guid: 86107a60cdf4cbd46a6802d9c0ae196c
+  - enabled: 1
+    path: Assets/Scenes/Anthony.unity
+    guid: 479609042d5d8fc46b3070d355f86494
   m_configObjects: {}
   m_UseUCBPForAssetBundles: 0

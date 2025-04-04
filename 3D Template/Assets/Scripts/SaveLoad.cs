@@ -9,7 +9,7 @@ public class SaveLoad : MonoBehaviour
     public List<SavableObjects> savableObjects;
     RandomPlacer randomPlacer;
 
-    public static string SlotKey = "None";
+    [SerializeField] public static string SlotKey = "None";
     public string FileType = ".txt";
 
     private void Get()
@@ -38,7 +38,7 @@ public class SaveLoad : MonoBehaviour
 
         savableObjects = randomPlacer.savableObjects;
 
-        FileStream fs = File.Create(Application.persistentDataPath + "/Game.Data.bat");
+        FileStream fs = File.Create(Application.persistentDataPath + "/Game.Data." + SlotKey + FileType);
         BinaryFormatter bf = new BinaryFormatter();
         bf.Serialize(fs, savableObjects);
         fs.Close();
@@ -58,7 +58,7 @@ public class SaveLoad : MonoBehaviour
             return false;
         }
 
-        string path = Application.persistentDataPath + "/Game.Data.bat";
+        string path = Application.persistentDataPath + "/Game.Data." + SlotKey + FileType;
         if (File.Exists(path))
         {
             long fileSize = new FileInfo(path).Length;
@@ -76,7 +76,7 @@ public class SaveLoad : MonoBehaviour
                 return true;
             }
         }
-        return false;
+          return false;
     }
 
     //public void Save()
