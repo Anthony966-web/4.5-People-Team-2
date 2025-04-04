@@ -15,7 +15,11 @@ public void Title()
     {
         if (Input.GetKeyDown(KeyCode.J))
         {
-
+            SceneManager.LoadScene("Gabriel");
+        }
+        if (Input.GetKeyDown(KeyCode.J))
+        {
+            SceneManager.LoadScene("Landon");
         }
     }
 }
