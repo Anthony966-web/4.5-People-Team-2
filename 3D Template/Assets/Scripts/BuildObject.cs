@@ -59,7 +59,7 @@ public class BuildObject : MonoBehaviour
             //    IsBuildable = false;
             if(sort == objectsorts.normal)
             {
-                float maxAllowedDistance = 2f;
+                float maxAllowedDistance = 1.2f;
                 IsBuildable = col.Any(collider =>
                 {
                 BuildObject otherBuildObject = collider.GetComponent<BuildObject>();
