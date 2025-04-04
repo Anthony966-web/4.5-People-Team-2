@@ -60,16 +60,36 @@ public class BuildObject : MonoBehaviour
             if(sort == objectsorts.normal)
             {
                 float maxAllowedDistance = 1.2f;
-                IsBuildable = col.Any(collider =>
+                float minAllowedSeperation = 0.2f;
+
+                bool nearFoundation = col.Any(collider =>
                 {
-                BuildObject otherBuildObject = collider.GetComponent<BuildObject>();
-                if (otherBuildObject != null && otherBuildObject.sort == objectsorts.foundation)
+                    BuildObject otherBuildObject = collider.GetComponent<BuildObject>();
+
+                    if (otherBuildObject != null && otherBuildObject.sort == objectsorts.foundation)
+                    {
+                        float distance = Vector3.Distance(transform.position, otherBuildObject.transform.position);
+
+                        return distance <= maxAllowedDistance;
+                    }
+                    return false;
+                });
+
+
+                bool overlapping = col.Any(collider =>
                 {
-                    float distance = Vector3.Distance(transform.position, otherBuildObject.transform.position);
-                    return distance <= maxAllowedDistance;
-                }
-                return false;
-            });
+                    BuildObject otherBuildObject = collider.GetComponent<BuildObject>();
+
+                    if (otherBuildObject != null && otherBuildObject.sort != objectsorts.foundation)
+                    {
+                        float distance = Vector3.Distance(transform.position, otherBuildObject.transform.position);
+                        return distance < minAllowedSeperation;
+                    }
+
+                    return false;
+                });
+
+                IsBuildable = nearFoundation && !overlapping;
           }
         }
 
