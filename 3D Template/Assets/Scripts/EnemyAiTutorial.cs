@@ -126,13 +126,8 @@ public class EnemyAiTutorial : MonoBehaviour
     }
     private void OnCollisionEnter(Collision collision)
     {
-        float randomZ = Random.Range(-walkpointRange, walkpointRange);
-        float randomX = Random.Range(-walkpointRange, walkpointRange);
-        if (collision.gameObject.tag == "wall")
-        {
-            walkpoint = new Vector3(transform.position.x + randomX, transform.position.y, transform.position.z + randomZ); ;
-            print("works");
-        }
+        SearchWalkPoint();
+
 
         //video : 3:18
     }
