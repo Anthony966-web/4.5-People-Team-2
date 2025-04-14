@@ -150,7 +150,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   col: []
-  sort: 0
+  sort: 2
   Green: {fileID: 2100000, guid: 89b5212d1a963e543be30d18bafe69c9, type: 2}
   Red: {fileID: 2100000, guid: d4e108e1a2e7eb247958a82cc0b1715b, type: 2}
   MainMaterial: {fileID: 0}

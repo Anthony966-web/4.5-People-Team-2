@@ -53,6 +53,11 @@ public class BuildObject : MonoBehaviour
         }
         else
         {
+            if(sort == objectsorts.roof)
+            {
+                IsBuildable = true;
+            }
+
             //if (col.Count == 0 && childcol.col.Count > 0)
             //    IsBuildable = true;
             //else
@@ -156,5 +161,5 @@ public enum objectsorts
 {
     normal,
     foundation,
-    floor
+    roof
 }
