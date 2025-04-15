@@ -5,7 +5,7 @@ public class Sceneloading : MonoBehaviour
 {
 public void Title()
     {
-        SceneManager.LoadScene("Title");
+        SceneManager.LoadScene("Main Menu");
     }
     public void Maze()
     {
