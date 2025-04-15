@@ -41,7 +41,7 @@ public class Building : MonoBehaviour
 
     public void StartBuild()
     {
-        if(Physics.Raycast(cam.position, cam.forward, out hit, 10, layer))
+        if(Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out hit, 10, layer))
         {
             if (hit.transform != this.transform)
                 ShowBuild(hit);
@@ -56,7 +56,8 @@ public class Building : MonoBehaviour
         currentPos = new Vector3(Mathf.Round(currentPos.x), Mathf.Round(currentPos.y), Mathf.Round(currentPos.z));
         currentPos *= gridSize;
         currentPos += Vector3.one * offset;
-        currentBuildTransform.position = currentPos;
+        currentBuildTransform.transform.position = currentPos;
+        currentBuildTransform.gameObject.layer = 6;
         if(Input.GetKeyDown(KeyCode.R))
         {
             currentRot += new Vector3(0, 45, 0);
@@ -83,6 +84,8 @@ public class Building : MonoBehaviour
             BO.GetComponent<Collider>().isTrigger = false;
             BO.GetComponent<BuildObject>().enabled = false;
             currentBuildTransform.transform.parent = BuildParent.transform;
+
+            currentBuildTransform.gameObject.layer = 8;
             
 
             randomPlacer.savableObjects.Add(new SavableObjects(currentBuildTransform.name, currentBuildTransform.transform.position, currentBuildTransform.transform.rotation, currentBuildTransform.GetComponent<Collider>().isTrigger = false, currentBuildTransform.GetComponent<BuildObject>().enabled = false));
