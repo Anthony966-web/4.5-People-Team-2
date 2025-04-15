@@ -9,16 +9,7 @@ EditorBuildSettings:
     path: Assets/Scenes/Main Menu.unity
     guid: 36f291bfd16e9c84ab08bcb255665b46
   - enabled: 1
-    path: Assets/Scenes/Landon.unity
-    guid: 86107a60cdf4cbd46a6802d9c0ae196c
-  - enabled: 1
-    path: Assets/Scenes/Anthony.unity
-    guid: 479609042d5d8fc46b3070d355f86494
-  - enabled: 1
-    path: Assets/People folders/Gabriel/Gabe/GameOver.unity
-    guid: 92c0adfc949e3cc458930de54c10bfb0
-  - enabled: 1
-    path: Assets/Scenes/Gabriel.unity
-    guid: 08946a510c7a0f747ad35291c8cba7c7
+    path: Assets/Scenes/Game1.unity
+    guid: 8591f81a0b588d643bbc72eb3e4019f7
   m_configObjects: {}
   m_UseUCBPForAssetBundles: 0

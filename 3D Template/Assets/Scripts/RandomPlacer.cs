@@ -142,6 +142,9 @@ public class RandomPlacer : MonoBehaviour
         CurrentBuild = BuildGameObject;
         //CurrentBuild.gameObject.transform.parent = Parent.transform;
         buildingsScript.ChangeCurrentBuilding();
+
+        Cursor.lockState = CursorLockMode.Locked;
+
         //int rand = Random.Range(0, placeableObjects.Length);
         //GameObject obj = Instantiate(CurrentBuild, currentPos, Quaternion.identity); // Instantiate the selected prefab
         //obj.name = CurrentBuild.name;

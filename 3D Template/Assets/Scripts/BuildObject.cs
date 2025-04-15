@@ -53,23 +53,86 @@ public class BuildObject : MonoBehaviour
         }
         else
         {
+            if(sort == objectsorts.roof)
+            {
+                IsBuildable = true;
+            }
+
             //if (col.Count == 0 && childcol.col.Count > 0)
             //    IsBuildable = true;
             //else
             //    IsBuildable = false;
             if(sort == objectsorts.normal)
             {
+
                 float maxAllowedDistance = 1.2f;
-                IsBuildable = col.Any(collider =>
+                float minGap = 0.1f;
+
+                bool nearFoundation = col.Any(collider =>
                 {
-                BuildObject otherBuildObject = collider.GetComponent<BuildObject>();
-                if (otherBuildObject != null && otherBuildObject.sort == objectsorts.foundation)
+                    BuildObject otherBuildObject = collider.GetComponent<BuildObject>();
+
+                    if (otherBuildObject != null && otherBuildObject.sort == objectsorts.foundation)
+                    {
+                        float distance = Vector3.Distance(transform.position, otherBuildObject.transform.position);
+                        return distance <= maxAllowedDistance;
+                    }
+                    return false;
+                });
+
+                bool overlapping = col.Any(collider =>
                 {
-                    float distance = Vector3.Distance(transform.position, otherBuildObject.transform.position);
-                    return distance <= maxAllowedDistance;
-                }
-                return false;
-            });
+                    if (collider == null) return false;
+
+                    BuildObject otherBuildObject = collider.GetComponent<BuildObject>();
+
+                    if (otherBuildObject != null && otherBuildObject.sort != objectsorts.foundation)
+                    {
+                        Bounds thisBounds = GetComponent<Collider>().bounds;
+                        Bounds otherBounds = collider.bounds;
+
+                        thisBounds.Expand(-minGap);
+                        return thisBounds.Intersects(otherBounds);
+                    }
+                    return false;
+                });
+
+                IsBuildable = nearFoundation && !overlapping;
+
+
+
+
+                //float maxAllowedDistance = 1.2f;
+                //float minAllowedSeperation = 0.1f;
+
+                //bool nearFoundation = col.Any(collider =>
+                //{
+                //    BuildObject otherBuildObject = collider.GetComponent<BuildObject>();
+
+                //    if (otherBuildObject != null && otherBuildObject.sort == objectsorts.foundation)
+                //    {
+                //        float distance = Vector3.Distance(transform.position, otherBuildObject.transform.position);
+
+                //        return distance <= maxAllowedDistance;
+                //    }
+                //    return false;
+                //});
+
+
+                //bool overlapping = col.Any(collider =>
+                //{
+                //    BuildObject otherBuildObject = collider.GetComponent<BuildObject>();
+
+                //    if (otherBuildObject != null && otherBuildObject.sort != objectsorts.foundation)
+                //    {
+                //        float distance = Vector3.Distance(transform.position, otherBuildObject.transform.position);
+                //        return distance < minAllowedSeperation;
+                //    }
+
+                //    return false;
+                //});
+
+                //IsBuildable = nearFoundation && !overlapping;
           }
         }
 
@@ -98,5 +161,5 @@ public enum objectsorts
 {
     normal,
     foundation,
-    floor
+    roof
 }

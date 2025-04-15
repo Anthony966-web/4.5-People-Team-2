@@ -16,7 +16,7 @@ public class DayNightCycle : MonoBehaviour
 
         // Rotate the sun for day-night effect
         float sunRotation = Mathf.Lerp(0, 360, timePercentage);
-        sun.transform.rotation = Quaternion.Euler(sunRotation - 90f, 170f, 0f);
+        sun.transform.rotation = Quaternion.Euler(sunRotation + 90f, 170f, 0f);
 
         // Change sky color based on time
         if (RenderSettings.ambientLight != null)
