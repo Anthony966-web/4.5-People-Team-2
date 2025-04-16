@@ -61,7 +61,7 @@ public class EnemyAiTutorial : MonoBehaviour
 
             Vector3 distanceToWalkPoint = transform.position - walkpoint;
 
-            if (distanceToWalkPoint.magnitude < 1f)
+            if (distanceToWalkPoint.magnitude < 2f)
             {
                 walkPointset = false;
             }
@@ -113,22 +113,21 @@ public class EnemyAiTutorial : MonoBehaviour
     }
     private IEnumerator SearchWalkPoint()
     {
-
+        
         float randomZ = Random.Range(-walkpointRange, walkpointRange);
         float randomX = Random.Range(-walkpointRange, walkpointRange);
-
+        
         walkpoint = new Vector3(transform.position.x + randomX, transform.position.y, transform.position.z + randomZ);
         if (Physics.Raycast(walkpoint, -transform.up, 2f, WhatIsGround))
         {
             walkPointset = true;
-            yield return new WaitForSeconds(2);
+
         }
+        yield return new WaitForSeconds(2);
     }
     private void OnCollisionEnter(Collision collision)
     {
         SearchWalkPoint();
 
-
-        //video : 3:18
     }
 }
