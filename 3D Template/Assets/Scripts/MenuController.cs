@@ -12,6 +12,15 @@ public class MenuController : MonoBehaviour
     [SerializeField] private Slider volumeSlider = null;
     [SerializeField] private float defaultVolume = 1.0f;
 
+    [Header("Gameplay Settings")]
+    [SerializeField] private TMP_Text SensitvityTextValue = null;
+    [SerializeField] private Slider SensitvitySlider = null;
+    [SerializeField] private int defaultSensitvity = 4;
+    public int mainSensitivity = 4;
+
+    [Header("Toggle settings")]
+    [SerializeField] private Toggle invertYToggle = null;
+
     [Header("Confirmation")]
     [SerializeField] private GameObject comfirmationPrompt = null;
 
@@ -56,6 +65,29 @@ public class MenuController : MonoBehaviour
         StartCoroutine(ConfirmationBox());
     }
 
+    public void SetSensitvity(float sensitvity)
+    {
+        mainSensitivity = Mathf.RoundToInt(sensitvity);
+        SensitvityTextValue.text = sensitvity.ToString("0");
+    }
+
+    public void GameplayApply()
+    {
+        if (invertYToggle.isOn)
+        {
+            PlayerPrefs.SetInt("masterInvertY", 1);
+            //invertY
+        }
+        else
+        {
+            PlayerPrefs.SetInt("masterInvertY", 0);
+            //Not invert
+        }
+
+        PlayerPrefs.SetFloat("masterSensitvity",mainSensitivity);
+        StartCoroutine (ConfirmationBox());
+    }
+
     public void ResetButton(string MenuType)
     {
         if (MenuType == "Audio")
@@ -64,6 +96,15 @@ public class MenuController : MonoBehaviour
             volumeSlider.value = defaultVolume;
             volumeTextValue.text = defaultVolume.ToString("0.0");
             VolumeApply();
+        }
+
+        if (MenuType == "Gameplay")
+        {
+            SensitvityTextValue.text = defaultSensitvity.ToString("0");
+            SensitvitySlider.value = defaultSensitvity;
+            mainSensitivity = defaultSensitvity;
+            invertYToggle.isOn = false;
+            GameplayApply();
         }
     }
 
