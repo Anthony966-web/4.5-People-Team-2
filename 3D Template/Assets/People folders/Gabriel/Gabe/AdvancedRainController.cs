@@ -21,11 +21,11 @@ public class AdvancedRainController : MonoBehaviour
         if (rainSound != null) rainSound.loop = true;
 
         StartCoroutine(ThunderRoutine());
+        StartCoroutine(ToggleRain());
     }
 
     void Update()
     {
-           StartCoroutine(ToggleRain());
 
         if (isRaining)
         {
@@ -39,10 +39,12 @@ public class AdvancedRainController : MonoBehaviour
 
     IEnumerator ToggleRain()
     {
-            if ( Random.value < RainChance)
+        while (true)
+        {
+            if (Random.value < RainChance)
             {
                 isRaining = !isRaining;
-                
+
             }
 
             if (isRaining)
@@ -57,8 +59,8 @@ public class AdvancedRainController : MonoBehaviour
                 if (rainSound != null) rainSound.Stop();
                 if (directionalLight != null) directionalLight.intensity = 1.0f; // Restore light
             }
-            yield return new WaitForSeconds(Random.Range(1f, 1f));
-    
+            yield return new WaitForSeconds(Random.Range(1f, 5f));
+        }
         
     }
 

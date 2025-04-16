@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Inventory : MonoBehaviour
@@ -9,7 +10,8 @@ public class Inventory : MonoBehaviour
     public delegate void OnInventoryChanged();
     public event OnInventoryChanged inventoryChangedCallback;
 
-    public bool AddItem(InventoryItem item)
+
+    public bool AddItem(InventoryItem item, GameObject Object)
     {
         if (items.Count >= maxSlots)
         {
@@ -18,9 +20,9 @@ public class Inventory : MonoBehaviour
         }
 
         InventoryItem existingItem = items.Find(i => i.itemName == item.itemName);
-        if (existingItem != null)
+        if (!existingItem.Equals(default(InventoryItem)))
         {
-            existingItem.quantity += item.quantity;
+            items[items.IndexOf(existingItem)] = new(existingItem.itemName, existingItem.icon, existingItem.quantity + item.quantity);
         }
         else
         {
@@ -28,6 +30,7 @@ public class Inventory : MonoBehaviour
         }
 
         inventoryChangedCallback?.Invoke();
+        Destroy(Object);
         return true;
     }
 
@@ -43,7 +46,7 @@ public class Inventory : MonoBehaviour
     {
         foreach (var item in items)
         {
-            print(item.itemName);
+            Debug.LogWarning(item.itemName + " " + item.quantity);
         }
     }
 }

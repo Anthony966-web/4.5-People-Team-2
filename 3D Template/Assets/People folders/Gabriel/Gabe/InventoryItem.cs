@@ -1,11 +1,11 @@
 using UnityEngine;
 
 [System.Serializable]
-public class InventoryItem
+public struct InventoryItem
 {
-    public string itemName;
+    [HideInInspector] public string itemName;
     public Sprite icon;
-    public int quantity;
+    [HideInInspector] public int quantity;
 
     public InventoryItem(string name, Sprite icon, int quantity = 1)
     {
