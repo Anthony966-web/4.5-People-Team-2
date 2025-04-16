@@ -1046,7 +1046,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   savableObjects: []
-  FileType: .bat
+  FileType: .bat(Test)
 --- !u!1 &667819557
 GameObject:
   m_ObjectHideFlags: 0
