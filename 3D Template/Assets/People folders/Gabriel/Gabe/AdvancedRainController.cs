@@ -13,6 +13,7 @@ public class AdvancedRainController : MonoBehaviour
     public float thunderChance = 0.2f; // 20% chance per thunder check
     private bool isRaining = true;
     private float wetnessLevel = 0f;
+    public float RainChance = 0.9f;
 
     void Start()
     {
@@ -24,10 +25,7 @@ public class AdvancedRainController : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.R))
-        {
-            ToggleRain();
-        }
+           StartCoroutine(ToggleRain());
 
         if (isRaining)
         {
@@ -39,22 +37,29 @@ public class AdvancedRainController : MonoBehaviour
         }
     }
 
-    public void ToggleRain()
+    IEnumerator ToggleRain()
     {
-        isRaining = !isRaining;
+            if ( Random.value < RainChance)
+            {
+                isRaining = !isRaining;
+                
+            }
 
-        if (isRaining)
-        {
-            rainParticle.Play();
-            if (rainSound != null) rainSound.Play();
-            if (directionalLight != null) directionalLight.intensity = 0.5f; // Darken environment
-        }
-        else
-        {
-            rainParticle.Stop();
-            if (rainSound != null) rainSound.Stop();
-            if (directionalLight != null) directionalLight.intensity = 1.0f; // Restore light
-        }
+            if (isRaining)
+            {
+                rainParticle.Play();
+                if (rainSound != null) rainSound.Play();
+                if (directionalLight != null) directionalLight.intensity = 0.5f; // Darken environment
+            }
+            else
+            {
+                rainParticle.Stop();
+                if (rainSound != null) rainSound.Stop();
+                if (directionalLight != null) directionalLight.intensity = 1.0f; // Restore light
+            }
+            yield return new WaitForSeconds(Random.Range(1f, 1f));
+    
+        
     }
 
     void IncreaseWetness()
