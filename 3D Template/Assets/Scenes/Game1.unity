@@ -939,7 +939,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 0}
+  - {fileID: 2100000, guid: 1620dfd824016f14d8283a2f55be284b, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -3499,6 +3499,74 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1323773121}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1001 &1346264837
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: -8679921383154817045, guid: 2445e697f196a4741b7582e979155420,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 1195.0471
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 2445e697f196a4741b7582e979155420,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 210.71048
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 2445e697f196a4741b7582e979155420,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -958.99817
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 2445e697f196a4741b7582e979155420,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 2445e697f196a4741b7582e979155420,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 2445e697f196a4741b7582e979155420,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 2445e697f196a4741b7582e979155420,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 2445e697f196a4741b7582e979155420,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 2445e697f196a4741b7582e979155420,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 2445e697f196a4741b7582e979155420,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 2445e697f196a4741b7582e979155420,
+        type: 3}
+      propertyPath: m_Name
+      value: uploads_files_2787791_Mercedes+Benz+GLS+580
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 2445e697f196a4741b7582e979155420, type: 3}
 --- !u!1 &1405834391
 GameObject:
   m_ObjectHideFlags: 0
@@ -3890,3 +3958,4 @@ SceneRoots:
   - {fileID: 657810994}
   - {fileID: 338978006}
   - {fileID: 950680246}
+  - {fileID: 1346264837}
