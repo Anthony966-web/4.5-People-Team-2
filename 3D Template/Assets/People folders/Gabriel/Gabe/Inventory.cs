@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Inventory : MonoBehaviour
 {
@@ -10,6 +11,7 @@ public class Inventory : MonoBehaviour
     public delegate void OnInventoryChanged();
     public event OnInventoryChanged inventoryChangedCallback;
 
+    public GridLayoutGroup inventory;
 
     public bool AddItem(InventoryItem item, GameObject Object)
     {

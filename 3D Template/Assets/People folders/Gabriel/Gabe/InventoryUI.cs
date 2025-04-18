@@ -8,7 +8,7 @@ public class InventoryUI : MonoBehaviour
     public Transform itemParent;
     public GameObject itemSlotPrefab;
 
-    //public GameObject iventoryFrame;
+    public GameObject iventoryFrame;
     private bool InventoryOpen;
 
     private void Start()
@@ -20,7 +20,8 @@ public class InventoryUI : MonoBehaviour
     {
         foreach (Transform child in itemParent)
         {
-            Destroy(child.gameObject);
+            if (child.childCount > 0)
+                Destroy(child.GetChild(0).gameObject);
         }
 
         foreach (var item in inventory.items)
@@ -41,14 +42,14 @@ public class InventoryUI : MonoBehaviour
         {
             if (InventoryOpen)
             {
-                itemParent.gameObject.SetActive(false);
+                iventoryFrame.SetActive(false);
                 InventoryOpen = false;
                 print(InventoryOpen);
                 return;
             }
             else
             {
-                itemParent.gameObject.SetActive(true);
+                iventoryFrame.SetActive(true);
                 InventoryOpen = true;
                 print(InventoryOpen);
                 return;
