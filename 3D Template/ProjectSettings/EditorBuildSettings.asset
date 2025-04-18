@@ -11,5 +11,8 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Game1.unity
     guid: 8591f81a0b588d643bbc72eb3e4019f7
+  - enabled: 1
+    path: Assets/People folders/Gabriel/Gabe/GameOver.unity
+    guid: 92c0adfc949e3cc458930de54c10bfb0
   m_configObjects: {}
   m_UseUCBPForAssetBundles: 0

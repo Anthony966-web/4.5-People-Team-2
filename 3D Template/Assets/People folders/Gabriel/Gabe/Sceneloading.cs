@@ -9,7 +9,7 @@ public void Title()
     }
     public void Maze()
     {
-        SceneManager.LoadScene("Landon");
+        SceneManager.LoadScene("Gabriel");
     }
     public void Update()
     {
@@ -17,7 +17,7 @@ public void Title()
         {
             SceneManager.LoadScene("Gabriel");
         }
-        if (Input.GetKeyDown(KeyCode.J))
+        if (Input.GetKeyDown(KeyCode.L))
         {
             SceneManager.LoadScene("Landon");
         }
