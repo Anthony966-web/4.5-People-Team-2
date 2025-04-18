@@ -11,6 +11,8 @@ public class InventoryUI : MonoBehaviour
     public GameObject iventoryFrame;
     private bool InventoryOpen;
 
+    public Transform[] Items;
+
     private void Start()
     {
         inventory.inventoryChangedCallback += UpdateUI;
@@ -24,15 +26,24 @@ public class InventoryUI : MonoBehaviour
                 Destroy(child.GetChild(0).gameObject);
         }
 
-        foreach (var item in inventory.items)
+        for (int i = 0; i < inventory.items.Count; i++)
         {
-            GameObject slot = Instantiate(itemSlotPrefab, itemParent);
-            slot.transform.Find("Name").GetComponent<TMP_Text>().text = item.itemName;
-            slot.transform.Find("Quantity").GetComponent<TMP_Text>().text = "x" + item.quantity;
-            slot.transform.Find("Icon").GetComponent<Image>().sprite = item.icon;
+            GameObject slot = Instantiate(itemSlotPrefab, Items[i]);
 
-            print(item.itemName);
-            print(item.quantity);
+            if (inventory.items[i].quantity <= 1)
+            {
+                slot.transform.Find("Quantity").GetComponent<TMP_Text>().text = "";
+            }
+            else
+            {
+                slot.transform.Find("Quantity").GetComponent<TMP_Text>().text = "x" + inventory.items[i].quantity;
+            }
+
+            slot.transform.Find("Name").GetComponent<TMP_Text>().text = inventory.items[i].itemName;
+            slot.transform.Find("Icon").GetComponent<Image>().sprite = inventory.items[i].icon;
+
+            print(inventory.items[i].itemName);
+            print(inventory.items[i].quantity);
         }
     }
 

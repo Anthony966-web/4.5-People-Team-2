@@ -3,15 +3,20 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
+using System.Text.RegularExpressions;
 
 public class DragableSlot : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
 {
     public Image image;
+    CanvasGroup group;
     public Transform parentAfterDrag;
 
-    public void OnValidate()
+    public Transform parentBeforeDrag;
+
+    public void Start()
     {
-        //image = GetComponent<Image>();
+        image = GetComponent<Image>();
+        group = GetComponent<CanvasGroup>();
     }
 
     public void OnBeginDrag(PointerEventData eventData)
@@ -19,6 +24,8 @@ public class DragableSlot : MonoBehaviour, IBeginDragHandler, IDragHandler, IEnd
         parentAfterDrag = transform.parent;
         transform.SetParent(transform.root);
         transform.SetAsLastSibling();
+        
+        group.alpha = 0.5f;
         image.raycastTarget = false;
     }
 
@@ -31,6 +38,8 @@ public class DragableSlot : MonoBehaviour, IBeginDragHandler, IDragHandler, IEnd
     public void OnEndDrag(PointerEventData eventData)
     {
         transform.SetParent(parentAfterDrag);
+
+        group.alpha = 1f;
         image.raycastTarget = true;
     }
 
