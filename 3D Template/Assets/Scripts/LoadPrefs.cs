@@ -1,23 +1,15 @@
-<<<<<<< HEAD
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
-=======
-//using System.Collections;
-//using System.Collections.Generic;
-//using UnityEngine;
-//using UnityEngine.UI;
->>>>>>> c08c2f4748b2e3cd2e0f03db15f9ae9556a0669d
 
-//public class LoadPrefs : MonoBehaviour
-//{
-//    [Header("General Settings")]
-//    [SerializeField] private bool canUse = false;
-//    [SerializeField] private MenuController menuController;
+public class LoadPrefs : MonoBehaviour
+{
+    [Header("General Settings")]
+    [SerializeField] private bool canUse = false;
+    [SerializeField] private MenuController menuController;
 
-<<<<<<< HEAD
     [Header("Volume Settings")]
     [SerializeField] private TMP_Text volumeTextValue = null;
     [SerializeField] private Slider volumeSlider = null;
@@ -89,17 +81,3 @@ using TMPro;
         }
     }
 }
-=======
-//    [Header("Volume Settings")]
-
-//    [Header("Brightness Settings")]
-
-//    [Header("Quality Settings")]
-
-//    [Header("Fullscreen Settings")]
-
-//    [Header("Sensitivity Settings")]
-
-//    [Header("Invert Y Settings")]
-//}
->>>>>>> c08c2f4748b2e3cd2e0f03db15f9ae9556a0669d
