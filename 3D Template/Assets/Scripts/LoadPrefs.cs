@@ -78,6 +78,27 @@ public class LoadPrefs : MonoBehaviour
                 brightnessTextValue.text = localBrightness.ToString("0.0");
                 brightnessSlider.value = localBrightness;
             }
+
+            if (PlayerPrefs.HasKey("masterSensitvity"))
+            {
+                float localSensitivity = PlayerPrefs.GetFloat("masterSensitvity");
+
+                SensitvityTextValue.text = localSensitivity.ToString("0");
+                SensitvitySlider.value = localSensitivity;
+                menuController.mainSensitivity = Mathf.RoundToInt(localSensitivity);
+            }
+
+            if (PlayerPrefs.HasKey("masterInvertY"))
+            {
+                if (PlayerPrefs.GetInt("masterInvertY") == 1)
+                {
+                    invertYToggle.isOn = true;
+                }
+                else
+                {
+                    invertYToggle.isOn = false;
+                }
+            }
         }
     }
 }
