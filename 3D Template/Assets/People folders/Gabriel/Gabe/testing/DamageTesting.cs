@@ -1,16 +1,12 @@
+using Unity.Android.Gradle.Manifest;
 using UnityEngine;
 
 public class DamageTesting : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    public AttributesManager PlayerATM;
+    public AttributesManager enemyATM;
+    private void Update()
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        if (Input.GetKeyDown(KeyCode.F11)) ;
     }
 }
