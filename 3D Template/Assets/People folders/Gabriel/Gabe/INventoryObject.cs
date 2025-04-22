@@ -10,7 +10,7 @@ public class INventoryObject : MonoBehaviour
 
     public GameObject textContainer;
 
-
+    private static GameObject CurrentTarget;
 
     public void Start()
     {
@@ -21,29 +21,42 @@ public class INventoryObject : MonoBehaviour
     {
         var ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 
-        if (Physics.Raycast(ray, out RaycastHit hit, distancebetweentarget))
+        if (Physics.Raycast(ray, out RaycastHit hit, distancebetweentarget)&& hit.collider.gameObject == this.gameObject)
         {
+
+                CurrentTarget = this.gameObject;
+
+
+                //FindFirstObjectByType<Inventory>().AddItem(inventoryItem.inventoryItem, this.gameObject);
+
+                if (Input.GetKeyDown(KeyCode.B))
+                {
+                    if (!InventorySystem.Instance.CheckIfFull())
+                    {
+                        InventorySystem.Instance.AddToInventory(inventoryItem.name);
+                        Destroy(this.gameObject);
+                    }
+                    else
+                    {
+                        Debug.Log("Inventory Is Full");
+                    }
+                }
+        }
+        else if (CurrentTarget == this.gameObject)
+        {
+            CurrentTarget = null;   
+        }
+
+        if (CurrentTarget)
+        {
+
             Debug.Log("Pick Up UI");
             textContainer.SetActive(true);
             textContainer.GetComponent<TMP_Text>().text = inventoryItem.name + " x" + inventoryItem.inventoryItem.quantity + " [B]";
-
-            if (hit.collider.gameObject == this.gameObject && Input.GetKeyDown(KeyCode.B))
-            {
-                //FindFirstObjectByType<Inventory>().AddItem(inventoryItem.inventoryItem, this.gameObject);
-
-                if (!InventorySystem.Instance.CheckIfFull())
-                {
-                    InventorySystem.Instance.AddToInventory(inventoryItem.name);
-                    Destroy(this.gameObject);
-                }
-                else
-                {
-                    Debug.Log("Inventory Is Full");
-                }
-            }
         }
         else
         {
+
             Debug.Log("No Pick Up UI");
             textContainer.SetActive(false);
         }

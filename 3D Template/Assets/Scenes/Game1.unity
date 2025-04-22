@@ -900,6 +900,12 @@ PrefabInstance:
       propertyPath: m_Name
       value: Pine tree
       objectReference: {fileID: 0}
+    - target: {fileID: 1446317025356153247, guid: 9efabfba52b9c5e4db8386fd01c6213d,
+        type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 4835078630258379571, guid: b0dc32e699f321a419a9c745ecbf8c95,
+        type: 3}
     m_RemovedComponents:
     - {fileID: -7511558181221131132, guid: 9efabfba52b9c5e4db8386fd01c6213d, type: 3}
     m_RemovedGameObjects: []
@@ -939,7 +945,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 1620dfd824016f14d8283a2f55be284b, type: 2}
+  - {fileID: 4835078630258379571, guid: b0dc32e699f321a419a9c745ecbf8c95, type: 3}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -3562,6 +3568,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: uploads_files_2787791_Mercedes+Benz+GLS+580
       objectReference: {fileID: 0}
+    - target: {fileID: 3898238236700238328, guid: 2445e697f196a4741b7582e979155420,
+        type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 4835078630258379571, guid: b0dc32e699f321a419a9c745ecbf8c95,
+        type: 3}
+    - target: {fileID: 3898238236700238328, guid: 2445e697f196a4741b7582e979155420,
+        type: 3}
+      propertyPath: 'm_Materials.Array.data[6]'
+      value: 
+      objectReference: {fileID: 4835078630258379571, guid: b0dc32e699f321a419a9c745ecbf8c95,
+        type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
