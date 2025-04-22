@@ -21,7 +21,7 @@ public class InventorySystem : MonoBehaviour
 
     public bool isOpen;
 
-    public bool isFull;
+    //public bool isFull;
 
 
     private void Awake()
@@ -41,7 +41,7 @@ public class InventorySystem : MonoBehaviour
     {
         inventoryScreenUI.SetActive(false);
         isOpen = false;
-        isFull = false;
+        //isFull = false;
 
         PopulateSlotList();
 
@@ -64,8 +64,6 @@ public class InventorySystem : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.I) && !isOpen)
         {
-
-            Debug.Log("i is pressed");
             inventoryScreenUI.SetActive(true);
             Cursor.lockState = CursorLockMode.None;
             isOpen = true;
@@ -81,20 +79,13 @@ public class InventorySystem : MonoBehaviour
 
     public void AddToInventory(string itemName)
     {
-        if(CheckIfFull())
-        {
-            isFull = true;
-            Debug.Log("Your Inventory Is Full!");
-        }
-        else
-        {
+        Debug.Log("Added" + itemName);
             whatSlotToEquip = FindNextEmptySlot();
 
-            itemToAdd = (GameObject)Instantiate(Resources.Load<GameObject>(itemName), whatSlotToEquip.transform.position, whatSlotToEquip.transform.rotation);
+            itemToAdd = Instantiate(Resources.Load<GameObject>(itemName), whatSlotToEquip.transform.position, whatSlotToEquip.transform.rotation);
             itemToAdd.transform.SetParent(whatSlotToEquip.transform);
 
             itemList.Add(itemName);
-        }
     }
 
 
@@ -113,7 +104,7 @@ public class InventorySystem : MonoBehaviour
 
 
 
-    private bool CheckIfFull()
+    public bool CheckIfFull()
     {
         int counter = 0;
 

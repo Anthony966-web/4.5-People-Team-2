@@ -8,6 +8,7 @@ TagManager:
   - Destoryer
   - Water
   - wall
+  - Slot
   layers:
   - Default
   - TransparentFX
