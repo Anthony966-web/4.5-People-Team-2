@@ -15,7 +15,13 @@ public class InventorySystem : MonoBehaviour
 
     public List<String> itemList = new List<String>();
 
+    private GameObject itemToAdd;
+
+    private GameObject whatSlotToEquip;
+
     public bool isOpen;
+
+    //public bool isFull;
 
 
     private void Awake()
@@ -35,6 +41,21 @@ public class InventorySystem : MonoBehaviour
     {
         inventoryScreenUI.SetActive(false);
         isOpen = false;
+        //isFull = false;
+
+        PopulateSlotList();
+
+    }
+
+    private void PopulateSlotList()
+    {
+        foreach(Transform child in inventoryScreenUI.transform)
+        {
+            if(child.CompareTag("Slot"))
+            {
+                slotList.Add(child.gameObject);
+            }
+        }
     }
 
 
@@ -43,8 +64,6 @@ public class InventorySystem : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.I) && !isOpen)
         {
-
-            Debug.Log("i is pressed");
             inventoryScreenUI.SetActive(true);
             Cursor.lockState = CursorLockMode.None;
             isOpen = true;
@@ -58,4 +77,52 @@ public class InventorySystem : MonoBehaviour
         }
     }
 
+    public void AddToInventory(string itemName)
+    {
+        Debug.Log("Added" + itemName);
+            whatSlotToEquip = FindNextEmptySlot();
+
+            itemToAdd = Instantiate(Resources.Load<GameObject>(itemName), whatSlotToEquip.transform.position, whatSlotToEquip.transform.rotation);
+            itemToAdd.transform.SetParent(whatSlotToEquip.transform);
+
+            itemList.Add(itemName);
+    }
+
+
+    private GameObject FindNextEmptySlot()
+    {
+        foreach(GameObject slot in slotList)
+        {
+            if (slot.transform.childCount == 0)
+            {
+                return slot;
+            }
+        }
+
+        return new GameObject();
+    }
+
+
+
+    public bool CheckIfFull()
+    {
+        int counter = 0;
+
+        foreach(GameObject slot in slotList)
+        {
+            if(slot.transform.childCount > 0)
+            {
+                counter += 1;
+            }
+        }
+
+        if (counter == slotList.Count)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
 }
