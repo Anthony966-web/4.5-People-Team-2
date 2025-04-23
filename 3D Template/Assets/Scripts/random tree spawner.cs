@@ -1,5 +1,6 @@
 using UnityEngine;
 
+[RequireComponent (typeof(SphereCollider))]
 public class randomtreespawner : MonoBehaviour
 {
     [Header ("Spawn Settings")]
@@ -7,28 +8,57 @@ public class randomtreespawner : MonoBehaviour
     public float spawnChance;
 
     [Header("Raycast Settings")]
-    public float distanceBetweenCheck;
+    [Range(min: 5, max: 100)] public float distanceBetweenCheck;
     public float heightOfCheck = 10f, rangeOfCheck = 30f;
     public LayerMask layerMask;
-    public Vector2 positivePosition, negativePosition;
+    public Vector2 Size;
 
+    private bool _hasSpawned = false;
 
-    private void Start()
+    void SpawnResources()
+    {
+        if (_hasSpawned)
+        {
+            return;
+        }
+
+        for(float x = 0; x < Size.x; x += distanceBetweenCheck)
+        {
+            for (float z = 0; z < Size.y; z += distanceBetweenCheck)
+            {
+                RaycastHit hit;
+                if(Physics.Raycast(transform.position + new Vector3(x, heightOfCheck, z), Vector3.down, out hit, rangeOfCheck, layerMask))
+                {
+
+                    Instantiate(resourcePrefab, hit.point, Quaternion.Euler(new Vector3(0, Random.Range(0, 360), 0)), transform);
+                }
+            }
+        }
+
+        _hasSpawned = true;
+    }
+
+    private void OnTriggerEnter(Collider other)
     {
         SpawnResources();
     }
 
-    void SpawnResources()
+    private void OnDrawGizmos()
     {
-        for(float x = negativePosition.x; x < positivePosition.x; x += distanceBetweenCheck)
+        Vector3 center = transform.position + ((Vector3)Size / 2);
+        center.y = heightOfCheck;
+
+        Vector3 size = Size;
+        size.z = size.y;
+        size.y = rangeOfCheck;
+
+        Gizmos.DrawWireCube(center, size);
+
+        for (float x = 0; x < Size.x; x += distanceBetweenCheck)
         {
-            for (float z = negativePosition.y; z < positivePosition.y; z += distanceBetweenCheck)
+            for (float z = 0; z < Size.y; z += distanceBetweenCheck)
             {
-                RaycastHit hit;
-                if(Physics.Raycast(new Vector3(x, heightOfCheck, z), Vector3.down, out hit, rangeOfCheck, layerMask))
-                {
-                    Instantiate(resourcePrefab, hit.point, Quaternion.Euler(new Vector3(0, Random.Range(0, 360), 0)), transform);
-                }
+                Gizmos.DrawWireSphere(transform.position + new Vector3(x, heightOfCheck, z /2), 1);
             }
         }
     }
