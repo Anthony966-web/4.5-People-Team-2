@@ -203,10 +203,14 @@
 //}
 using UnityEngine;
 using System.Collections;
+using Unity.Collections;
+using Unity.Cinemachine;
 
 
 public class CharacterMovement : MonoBehaviour
 {
+    [SerializeField] private CinemachineCamera cam;
+    [SerializeField] private float tiltSpeed = 5f;
 
     public float moveSpeed = 5f;
     public float sprintSpeed = 8f;
@@ -224,6 +228,18 @@ public class CharacterMovement : MonoBehaviour
     public float fovChangeSpeed = 5f;
     public float leanAngle = 15f;
     public float leanSpeed = 5f;
+
+    [Header("Slide Settings")]
+    public float slideForce = 10f;
+    public float slideDuration = 0.8f;
+    public float slideCooldown = 1f;
+    public float slideCameraTilt = 15f;
+    private bool isSliding = false;
+    private bool canSlide = true;
+    private float slideTimer = 0f;
+    private Vector3 slideDirection;
+    private Coroutine slideCamTilt;
+
 
     private Rigidbody rb;
     private bool isGrounded;
@@ -274,7 +290,51 @@ public class CharacterMovement : MonoBehaviour
         {
             Cursor.lockState = CursorLockMode.Locked;
         }
+        if (Input.GetKeyDown(KeyCode.LeftControl) && isSprinting && canSlide && isGrounded)
+        {
+            StartSlide();
+        }
     }
+
+    void FixedUpdate()
+    {
+        if (isSliding)
+        {
+            slideTimer -= Time.fixedDeltaTime;
+            if (slideTimer <= 0 || !isGrounded)
+            {
+                StopSlide();
+            }
+        }
+
+    }
+
+    void StartSlide()
+    {
+        isSliding = true;
+        canSlide = false;
+        slideTimer = slideDuration;
+        slideDirection = rb.linearVelocity.normalized;
+        rb.AddForce(slideDirection * slideForce, ForceMode.Impulse);
+        if (slideCamTilt != null) StopCoroutine(slideCamTilt);
+        //slideCamTilt = StartCoroutine(SlideTiltCamera(slideCameraTilt));
+        // Optional: shrink player collider if you want sliding under obstacles
+        //   transform.localScale = new Vector3(originalScale.x, originalScale.y / 2, originalScale.z);
+        //    transform.localPosition = new Vector3(curentPosition.x, curentPosition.y + Ymeasure, curentPosition.z);
+    }
+    void ResetSlide()
+    {
+        canSlide = true;
+    }
+    void StopSlide()
+    {
+        isSliding = false;
+        if (slideCamTilt != null) StopCoroutine(slideCamTilt);
+      //  slideCamTilt = StartCoroutine(SlideTiltCamera(0f));
+        Invoke(nameof(ResetSlide), slideCooldown);
+    }
+
+
 
     void Move()
     {
@@ -317,7 +377,7 @@ public class CharacterMovement : MonoBehaviour
         {
             isCrouching = false;
             transform.localScale = originalScale;
-          //  transform.localPosition = new Vector3(curentPosition.x, curentPosition.y - Ymeasure, curentPosition.z);
+            //  transform.localPosition = new Vector3(curentPosition.x, curentPosition.y - Ymeasure, curentPosition.z);
         }
     }
 
@@ -360,6 +420,7 @@ public class CharacterMovement : MonoBehaviour
             Invoke("ResetTeleport", teleportCooldown);
         }
     }
+
 
     System.Collections.IEnumerator SlideCameraEffect()
     {
@@ -433,4 +494,20 @@ public class CharacterMovement : MonoBehaviour
             isGrounded = false;
         }
     }
+//    IEnumerator SlideTiltCamera(float targetTilt)
+//    {
+//        //float currentTilt =
+//        //cam.GetCinemachineComponent<CinemachinePOV>().m_VerticalAxis.Value;
+//        //float elapsed = 0f;
+//        //while (elapsed < 1f)
+//        //{
+//        //    float tilt = Mathf.Lerp(currentTilt, targetTilt, elapsed);
+//        //    cam.GetCinemachineComponent<Cinemachine.CinemachinePOV>().m_VerticalAxis.Value
+//        //    = tilt;
+//        //    elapsed += Time.deltaTime * tiltSpeed;
+//        //    yield return null;
+//        //}
+//        //cam.GetCinemachineComponent<Cinemachine.CinemachinePOV>().m_VerticalAxis.Value = targetTilt;
+//    }
 }
+    
