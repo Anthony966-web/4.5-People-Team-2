@@ -53,7 +53,7 @@ public class CraftingSystem : MonoBehaviour
         AxeReq1 = ToolsScreenUI.transform.Find("Contents").transform.Find("Axe").transform.Find("req1").GetComponent<TMP_Text>();
         AxeReq2 = ToolsScreenUI.transform.Find("Contents").transform.Find("Axe").transform.Find("req2").GetComponent<TMP_Text>();
 
-        CraftAxeBTN = ToolsScreenUI.transform.Find("Contents").transform.Find("Axe").transform.Find("Button").GetComponent<Button>();
+        CraftAxeBTN = ToolsScreenUI.transform.Find("Contents").transform.Find("Axe").transform.Find("CraftButton").GetComponent<Button>();
         CraftAxeBTN.onClick.AddListener(delegate { CraftAnyItem(AxeBLP); });
 
 
@@ -90,10 +90,17 @@ public class CraftingSystem : MonoBehaviour
         //    InventorySystem.Instance.RemoveItem(craftBlueprint.Req3, craftBlueprint.Req3Amount);
         //}
 
+        StartCoroutine(calculate());
 
         // Refresh List
         InventorySystem.Instance.ReCalculateList();
         
+    }
+
+    public IEnumerator calculate()
+    {
+        yield return new WaitForSeconds(1f);
+        InventorySystem.Instance.ReCalculateList();
     }
 
 
