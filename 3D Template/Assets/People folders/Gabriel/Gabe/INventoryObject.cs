@@ -12,7 +12,7 @@ public class INventoryObject : MonoBehaviour
 
     private static GameObject CurrentTarget;
 
-    public void Start()
+    public void OnEnable()
     {
         player = GameObject.FindGameObjectWithTag("Player");
         textContainer = GameObject.Find("Canvas").transform.Find("CrossHair").transform.Find("ItemFile").gameObject;
@@ -29,7 +29,7 @@ public class INventoryObject : MonoBehaviour
 
                 //FindFirstObjectByType<Inventory>().AddItem(inventoryItem.inventoryItem, this.gameObject);
 
-                if (Input.GetKeyDown(KeyCode.B))
+                if (Input.GetKeyDown(KeyCode.E))
                 {
                     if (!InventorySystem.Instance.CheckIfFull())
                     {
@@ -52,7 +52,7 @@ public class INventoryObject : MonoBehaviour
 
             Debug.Log("Pick Up UI");
             textContainer.SetActive(true);
-            textContainer.GetComponent<TMP_Text>().text = inventoryItem.name + " x" + inventoryItem.inventoryItem.quantity + " [B]";
+            textContainer.GetComponent<TMP_Text>().text = inventoryItem.name + " x" + inventoryItem.inventoryItem.quantity + " [E]";
         }
         else
         {
