@@ -9,11 +9,15 @@ public class HealthSystem : MonoBehaviour, IDamageable
     public int maxHealth = 100;
     public int currentHealth;
 
+    public float knockbackForce = 5f;
+    private Rigidbody rb;
+
     public bool isPlayer = false;
 
     private void Start()
     {
         currentHealth = maxHealth;
+        rb = GetComponent<Rigidbody>();
     }
 
     public void TakeDamage(int damage)
@@ -45,8 +49,14 @@ public class HealthSystem : MonoBehaviour, IDamageable
             }
         }
 
-    }
 
+    }
+    public void ApplyKnockback(Vector3 direction)
+    {
+        if (rb == null) return;
+        direction.y = 0; // prevent upward knockback
+        rb.AddForce(direction.normalized * knockbackForce, ForceMode.Impulse);
+    }
     void Die()
     {
         if (isPlayer)

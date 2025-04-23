@@ -25,6 +25,13 @@ public class PlayerAttack : MonoBehaviour
             if (target != null)
             {
                 target.TakeDamage(damage);
+                // Apply knockback
+                HealthSystem hs = enemy.GetComponent<HealthSystem>();
+                if (hs != null)
+                {
+                    Vector3 dir = enemy.transform.position - transform.position;
+                    hs.ApplyKnockback(dir);
+                }
             }
         }
     }

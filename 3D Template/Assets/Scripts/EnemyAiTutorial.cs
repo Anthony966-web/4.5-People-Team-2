@@ -32,7 +32,7 @@ public class EnemyAiTutorial : MonoBehaviour
         PlayerInSightRange = Physics.CheckSphere(transform.position, sightRange, WhatIsPlayer);
         PlayerInAttackRange = Physics.CheckSphere(transform.position, attackRange, WhatIsPlayer);
 
-        if (!PlayerInSightRange && !PlayerInAttackRange)
+        if (!PlayerInSightRange) //&& !PlayerInAttackRange)
         {
             Patroling();
         }
@@ -113,21 +113,18 @@ public class EnemyAiTutorial : MonoBehaviour
     }
     private IEnumerator SearchWalkPoint()
     {
-        
         float randomZ = Random.Range(-walkpointRange, walkpointRange);
         float randomX = Random.Range(-walkpointRange, walkpointRange);
-        
+        yield return new WaitForSeconds(2);
         walkpoint = new Vector3(transform.position.x + randomX, transform.position.y, transform.position.z + randomZ);
         if (Physics.Raycast(walkpoint, -transform.up, 2f, WhatIsGround))
         {
             walkPointset = true;
 
         }
-        yield return new WaitForSeconds(2);
     }
     private void OnCollisionEnter(Collision collision)
     {
-        SearchWalkPoint();
-
+        StartCoroutine(SearchWalkPoint());
     }
 }

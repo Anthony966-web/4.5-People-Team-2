@@ -23,6 +23,12 @@ public class EnemyAttack : MonoBehaviour
                 {
                     target.TakeDamage(damage);
                     nextAttackTime = Time.time + attackCooldown;
+                    HealthSystem hs = player.GetComponent<HealthSystem>();
+                    if (hs != null)
+                    {
+                        Vector3 dir = player.transform.position - transform.position;
+                        hs.ApplyKnockback(dir);
+                    }
                 }
             }
         }
