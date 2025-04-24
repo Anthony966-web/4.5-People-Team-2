@@ -34,7 +34,7 @@ public class INventoryObject : MonoBehaviour
                     if (!InventorySystem.Instance.CheckIfFull())
                     {
                         InventorySystem.Instance.AddToInventory(inventoryItem.name);
-                        Destroy(this.gameObject);
+                        DestroyImmediate(this.gameObject);
                     }
                     else
                     {
@@ -52,7 +52,7 @@ public class INventoryObject : MonoBehaviour
 
             Debug.Log("Pick Up UI");
             textContainer.SetActive(true);
-            textContainer.GetComponent<TMP_Text>().text = inventoryItem.name + " x" + inventoryItem.inventoryItem.quantity + " [E]";
+            textContainer.GetComponent<TMP_Text>().text = inventoryItem.ItemName + " x" + inventoryItem.Quantity + " [E]";
         }
         else
         {

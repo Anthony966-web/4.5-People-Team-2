@@ -28,17 +28,17 @@ public class CraftingSystem : MonoBehaviour
     public ItemBlueprint AxeBLP = new ItemBlueprint("Axe", 2, "Stone", 3, "Stick", 3);
 
 
-    public static CraftingSystem instance { get; set; }
+    public static CraftingSystem Instance { get; set; }
 
     private void Awake()
     {
-        if(instance != null && instance != this)
+        if(Instance != null && Instance != this)
         {
             Destroy(gameObject);
         }
         else
         {
-            instance = this;
+            Instance = this;
         }
     }
 

@@ -13,6 +13,7 @@ public class InventorySystem : MonoBehaviour
     public static InventorySystem Instance { get; set; }
 
     public GameObject inventoryScreenUI;
+    public GameObject ItemInfoUI;
 
     public List<GameObject> slotList = new List<GameObject>();
 
@@ -55,11 +56,13 @@ public class InventorySystem : MonoBehaviour
 
         PopulateSlotList();
 
+        Cursor.visible = false;
+
     }
 
     private void PopulateSlotList()
     {
-        foreach(Transform child in inventoryScreenUI.transform)
+        foreach(Transform child in inventoryScreenUI.transform.Find("Contents").transform)
         {
             if(child.CompareTag("Slot"))
             {
@@ -71,11 +74,16 @@ public class InventorySystem : MonoBehaviour
 
     void Update()
     {
+        //if(isOpen == true)
+        //{
+        //    itemToAdd = null;
+        //}
 
         if (Input.GetKeyDown(KeyCode.I) && !isOpen)
         {
             inventoryScreenUI.SetActive(true);
             Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
             isOpen = true;
 
         }
@@ -83,6 +91,7 @@ public class InventorySystem : MonoBehaviour
         {
             inventoryScreenUI.SetActive(false);
             Cursor.lockState = CursorLockMode.Locked;
+            Cursor.visible = false;
             isOpen = false;
         }
     }
@@ -100,7 +109,7 @@ public class InventorySystem : MonoBehaviour
         TriggerPickupPopup(itemName, itemToAdd.GetComponent<Image>().sprite);
 
         ReCalculateList();
-        CraftingSystem.instance.RefreshNeededItems();
+        CraftingSystem.Instance.RefreshNeededItems();
     }
 
 
@@ -152,7 +161,7 @@ public class InventorySystem : MonoBehaviour
             {
                 if (slotList[i].transform.GetChild(0).name == nameToRemove + "(Clone)" && counter != 0)
                 {
-                    Destroy(slotList[i].transform.GetChild(0).gameObject);
+                    DestroyImmediate(slotList[i].transform.GetChild(0).gameObject);
 
                     counter -= 1;
                 }
@@ -160,7 +169,7 @@ public class InventorySystem : MonoBehaviour
         }
 
         ReCalculateList();
-        CraftingSystem.instance.RefreshNeededItems();
+        CraftingSystem.Instance.RefreshNeededItems();
     }
 
     void TriggerPickupPopup(string itemName, Sprite itemIcon)

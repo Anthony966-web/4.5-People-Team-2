@@ -12,7 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bc6d2c3b67905674e9bb08da5fc2cb8e, type: 3}
   m_Name: Apple
   m_EditorClassIdentifier: 
-  inventoryItem:
-    itemName: Apple
-    icon: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
-    quantity: 1
+  ItemIcon: {fileID: 0}
+  ItemName: 1
+  Quantity: 2
+  Description: 
+  IsDroppable: 0
+  IsConsumable: 0
+  healthEffect: 0
+  hungerEffect: 0
