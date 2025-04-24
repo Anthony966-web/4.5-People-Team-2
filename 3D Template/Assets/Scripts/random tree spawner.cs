@@ -13,7 +13,7 @@ public class randomtreespawner : MonoBehaviour
     public LayerMask layerMask;
     public Vector2 Size;
 
-    private bool _hasSpawned = false;
+    public bool _hasSpawned = false;
 
     void SpawnResources()
     {
@@ -27,10 +27,11 @@ public class randomtreespawner : MonoBehaviour
             for (float z = 0; z < Size.y; z += distanceBetweenCheck)
             {
                 RaycastHit hit;
+                
                 if(Physics.Raycast(transform.position + new Vector3(x, heightOfCheck, z), Vector3.down, out hit, rangeOfCheck, layerMask))
                 {
-
                     Instantiate(resourcePrefab, hit.point, Quaternion.Euler(new Vector3(0, Random.Range(0, 360), 0)), transform);
+                    print(resourcePrefab.gameObject.name);
                 }
             }
         }
@@ -40,6 +41,7 @@ public class randomtreespawner : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        print(other.gameObject.name);
         SpawnResources();
     }
 
@@ -58,7 +60,7 @@ public class randomtreespawner : MonoBehaviour
         {
             for (float z = 0; z < Size.y; z += distanceBetweenCheck)
             {
-                Gizmos.DrawWireSphere(transform.position + new Vector3(x, heightOfCheck, z /2), 1);
+                Gizmos.DrawWireSphere(transform.position + new Vector3(x, heightOfCheck, z), 1);
             }
         }
     }
