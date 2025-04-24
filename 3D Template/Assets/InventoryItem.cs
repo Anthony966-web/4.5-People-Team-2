@@ -41,6 +41,13 @@ public class InventoryItem : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
         itemInfoUI_itemDescription = itemInfoUI.transform.Find("ItemDescription").GetComponent<TMP_Text>();
     }
 
+    void OnEnable()
+    {
+        print(gameObject.name);
+        this.gameObject.name = ItemID.ItemName;
+        this.GetComponent<Image>().sprite = ItemID.ItemIcon;
+    }
+
     void Update()
     {
         if(isSelected)
@@ -76,9 +83,9 @@ public class InventoryItem : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
                 consumingFunction(ItemID.healthEffect, ItemID.hungerEffect);
             }
 
-            print(ItemID.IsEquippable);
-            print(isInsideQuickSlot);
-            print(EquipSystem.Instance.CheckIfFull());
+            //print(ItemID.IsEquippable);
+            //print(isInsideQuickSlot);
+            //print(EquipSystem.Instance.CheckIfFull());
 
             if (ItemID.IsEquippable && isInsideQuickSlot == false && EquipSystem.Instance.CheckIfFull() == false)
             {

@@ -23,6 +23,8 @@ public class InventorySystem : MonoBehaviour
 
     private GameObject whatSlotToEquip;
 
+    public GameObject ItemSlotPrefab;
+
     public bool isOpen;
 
     //public bool isFull;
@@ -101,7 +103,10 @@ public class InventorySystem : MonoBehaviour
         Debug.Log("Added" + itemName);
             whatSlotToEquip = FindNextEmptySlot();
 
-            itemToAdd = Instantiate(Resources.Load<GameObject>(itemName.ItemName), whatSlotToEquip.transform.position, whatSlotToEquip.transform.rotation);
+            itemToAdd = Instantiate(ItemSlotPrefab, whatSlotToEquip.transform.position, whatSlotToEquip.transform.rotation);
+
+            itemToAdd.GetComponent<InventoryItem>().ItemID = itemName;
+
             itemToAdd.transform.SetParent(whatSlotToEquip.transform);
 
             itemList.Add(itemName);

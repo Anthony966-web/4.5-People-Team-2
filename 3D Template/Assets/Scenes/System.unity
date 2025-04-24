@@ -932,7 +932,6 @@ GameObject:
   - component: {fileID: 96055787}
   - component: {fileID: 96055786}
   - component: {fileID: 96055785}
-  - component: {fileID: 96055788}
   - component: {fileID: 96055789}
   - component: {fileID: 96055790}
   m_Layer: 0
@@ -1016,18 +1015,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &96055788
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 96055784}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a79441f348de89743a2939f4d699eac1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &96055789
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3492,31 +3479,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   inventoryScreenUI: {fileID: 72938735}
   ItemInfoUI: {fileID: 645855857}
-  slotList:
-  - {fileID: 1293161619}
-  - {fileID: 1623953549}
-  - {fileID: 572481250}
-  - {fileID: 390358599}
-  - {fileID: 98898685}
-  - {fileID: 1282526432}
-  - {fileID: 1158548489}
-  - {fileID: 2018336721}
-  - {fileID: 592265753}
-  - {fileID: 16846582}
-  - {fileID: 1890171635}
-  - {fileID: 428362355}
-  - {fileID: 1287506541}
-  - {fileID: 1711471475}
-  - {fileID: 1309997978}
-  - {fileID: 783247840}
-  - {fileID: 441849974}
-  - {fileID: 512153372}
-  - {fileID: 578307187}
-  - {fileID: 91633523}
-  - {fileID: 672499746}
-  - {fileID: 1647259253}
-  - {fileID: 479233141}
-  - {fileID: 751564485}
+  slotList: []
   itemList: []
   isOpen: 0
   pickupAlert: {fileID: 707816252}
@@ -8933,14 +8896,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   quickSlotsPanel: {fileID: 1797134001}
-  quickSlotsList:
-  - {fileID: 1317915702}
-  - {fileID: 1646962696}
-  - {fileID: 1350049337}
-  - {fileID: 2128313779}
-  - {fileID: 362226584}
-  - {fileID: 201837794}
-  - {fileID: 763388336}
+  quickSlotsList: []
   numbersHolder: {fileID: 1179620183}
   selectedNumber: -1
   selectedItem: {fileID: 0}

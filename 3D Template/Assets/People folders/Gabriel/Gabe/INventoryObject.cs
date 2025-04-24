@@ -50,14 +50,14 @@ public class INventoryObject : MonoBehaviour
         if (CurrentTarget)
         {
 
-            Debug.Log("Pick Up UI");
+            //Debug.Log("Pick Up UI");
             textContainer.SetActive(true);
             textContainer.GetComponent<TMP_Text>().text = inventoryItem.ItemName + " x" + inventoryItem.Quantity + " [E]";
         }
         else
         {
 
-            Debug.Log("No Pick Up UI");
+            //Debug.Log("No Pick Up UI");
             textContainer.SetActive(false);
         }
     }
