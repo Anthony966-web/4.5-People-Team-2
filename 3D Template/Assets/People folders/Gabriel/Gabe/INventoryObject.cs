@@ -33,7 +33,7 @@ public class INventoryObject : MonoBehaviour
                 {
                     if (!InventorySystem.Instance.CheckIfFull())
                     {
-                        InventorySystem.Instance.AddToInventory(inventoryItem.name);
+                        InventorySystem.Instance.AddToInventory(inventoryItem);
                         DestroyImmediate(this.gameObject);
                     }
                     else

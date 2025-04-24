@@ -14,18 +14,19 @@ public class InventoryItem : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
     private TMP_Text itemInfoUI_itemName;
     private TMP_Text itemInfoUI_itemDescription;
 
-    public Image thisIcon;
-    public string thisName, thisDescription;
+    public ItemAssets ItemID;
+    //public Image thisIcon;
+    //public string thisName, thisDescription;
 
     // ---- Consumption ---- //
     private GameObject itemPendingConsumption;
-    public bool isConsumable;
+    //public bool isConsumable;
 
-    public float healthEffect;
-    public float hungerEffect;
+    //public float healthEffect;
+    //public float hungerEffect;
 
     // ---- Equipping ---- //
-    public bool isEquippable;
+    //public bool isEquippable;
     private GameObject itemPendingEquipping;
     public bool isInsideQuickSlot;
 
@@ -55,9 +56,9 @@ public class InventoryItem : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
     public void OnPointerEnter(PointerEventData eventData)
     {
         itemInfoUI.SetActive(true);
-        itemInfoUI_itemIcon.sprite = thisIcon.sprite;
-        itemInfoUI_itemName.text = thisName;
-        itemInfoUI_itemDescription.text = thisDescription;
+        itemInfoUI_itemIcon.sprite = ItemID.ItemIcon;
+        itemInfoUI_itemName.text = ItemID.ItemName;
+        itemInfoUI_itemDescription.text = ItemID.ItemDescription;
     }
 
     public void OnPointerExit(PointerEventData eventData)
@@ -69,14 +70,19 @@ public class InventoryItem : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
     {
         if(eventData.button == PointerEventData.InputButton.Right)
         {
-            if(isConsumable)
+            if(ItemID.IsConsumable)
             {
                 itemPendingConsumption = gameObject;
-                consumingFunction(healthEffect, hungerEffect);
+                consumingFunction(ItemID.healthEffect, ItemID.hungerEffect);
             }
 
-            if (isEquippable && isInsideQuickSlot == false && EquipSystem.Instance.CheckIfFull() == false)
+            print(ItemID.IsEquippable);
+            print(isInsideQuickSlot);
+            print(EquipSystem.Instance.CheckIfFull());
+
+            if (ItemID.IsEquippable && isInsideQuickSlot == false && EquipSystem.Instance.CheckIfFull() == false)
             {
+                print("Works");
                 EquipSystem.Instance.AddToQuickSlots(gameObject);
                 isInsideQuickSlot = true;
             }
@@ -87,7 +93,7 @@ public class InventoryItem : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
     {
         if (eventData.button == PointerEventData.InputButton.Right)
         {
-            if (isConsumable && itemPendingConsumption == gameObject)
+            if (ItemID.IsConsumable && itemPendingConsumption == gameObject)
             {
                 DestroyImmediate(gameObject);
                 InventorySystem.Instance.ReCalculateList();

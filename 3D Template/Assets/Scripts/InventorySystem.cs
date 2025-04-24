@@ -17,7 +17,7 @@ public class InventorySystem : MonoBehaviour
 
     public List<GameObject> slotList = new List<GameObject>();
 
-    public List<String> itemList = new List<String>();
+    public List<ItemAssets> itemList = new List<ItemAssets>();
 
     private GameObject itemToAdd;
 
@@ -96,17 +96,17 @@ public class InventorySystem : MonoBehaviour
         }
     }
 
-    public void AddToInventory(string itemName)
+    public void AddToInventory(ItemAssets itemName)
     {
         Debug.Log("Added" + itemName);
             whatSlotToEquip = FindNextEmptySlot();
 
-            itemToAdd = Instantiate(Resources.Load<GameObject>(itemName), whatSlotToEquip.transform.position, whatSlotToEquip.transform.rotation);
+            itemToAdd = Instantiate(Resources.Load<GameObject>(itemName.ItemName), whatSlotToEquip.transform.position, whatSlotToEquip.transform.rotation);
             itemToAdd.transform.SetParent(whatSlotToEquip.transform);
 
             itemList.Add(itemName);
 
-        TriggerPickupPopup(itemName, itemToAdd.GetComponent<Image>().sprite);
+        TriggerPickupPopup(itemName.ItemName, itemToAdd.GetComponent<Image>().sprite);
 
         ReCalculateList();
         CraftingSystem.Instance.RefreshNeededItems();
@@ -151,7 +151,7 @@ public class InventorySystem : MonoBehaviour
     }
 
 
-    public void RemoveItem(string nameToRemove, int amountToRemove)
+    public void RemoveItem(ItemAssets nameToRemove, int amountToRemove)
     {
         int counter = amountToRemove;
 
@@ -196,11 +196,14 @@ IEnumerator Gone(float Time)
         {
             if(slot.transform.childCount > 0)
             {
-                string name = slot.transform.GetChild(0).name;
-                string str1 = "(Clone)";
-                string result = name.Replace(str1, "");
+                ItemAssets name = slot.transform.GetChild(0).GetComponent<InventoryItem>().ItemID;
 
-                itemList.Add(result);
+                //string str1 = "(Clone)";
+                //ItemAssets result = name.name.Replace(str1, "");
+                ItemAssets Item = name;
+                //Item = name.ItemName;
+
+                itemList.Add(Item);
             }
         }
     }

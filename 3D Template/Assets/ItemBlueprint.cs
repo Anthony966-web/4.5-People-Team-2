@@ -1,27 +1,11 @@
+using System.Collections.Generic;
 using UnityEngine;
 
-public class ItemBlueprint : MonoBehaviour
+[CreateAssetMenu(fileName = "ItemBlueprint", menuName = "Scriptable Objects/ItemBlueprint")]
+public class ItemBlueprint : ScriptableObject
 {
-    public string itemname;
+    public ItemAssets itemname;
 
-    public string Req1;
-    public string Req2;
-
-    public int Req1Amount;
-    public int Req2Amount;
-
-    public int numOfRequirements;
-
-    public ItemBlueprint(string name, int reqNUM, string R1, int R1num, string R2, int R2num)
-    {
-        itemname = name;
-
-        numOfRequirements = reqNUM;
-
-        Req1 = R1;
-        Req2 = R2;
-
-        Req1Amount = R1num;
-        Req2Amount = R2num;
-    }
+    public List<ItemAssets> Req;
+    public List<int> ReqAmount;
 }
