@@ -10,7 +10,8 @@ public class INventoryObject : MonoBehaviour
 
     private GameObject textContainer;
 
-    private static GameObject CurrentTarget;
+
+    public static GameObject CurrentTarget;
 
     public void OnEnable()
     {
@@ -18,7 +19,7 @@ public class INventoryObject : MonoBehaviour
         textContainer = GameObject.Find("Canvas").transform.Find("CrossHair").transform.Find("ItemFile").gameObject;
     }
     public void Update()
-    {
+    {   
         var ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 
         if (Physics.Raycast(ray, out RaycastHit hit, distancebetweentarget)&& hit.collider.gameObject == this.gameObject)
@@ -29,11 +30,11 @@ public class INventoryObject : MonoBehaviour
 
                 //FindFirstObjectByType<Inventory>().AddItem(inventoryItem.inventoryItem, this.gameObject);
 
-                if (Input.GetKeyDown(KeyCode.E))
+                if (Input.GetKeyDown(KeyCode.E) && InventorySystem.Instance.isOpen == false && InventorySystem.Instance.IsDraggingItem == false)
                 {
                     if (!InventorySystem.Instance.CheckIfFull())
                     {
-                        InventorySystem.Instance.AddToInventory(inventoryItem.name);
+                        InventorySystem.Instance.AddToInventory(inventoryItem);
                         DestroyImmediate(this.gameObject);
                     }
                     else
@@ -50,14 +51,14 @@ public class INventoryObject : MonoBehaviour
         if (CurrentTarget)
         {
 
-            Debug.Log("Pick Up UI");
+            //Debug.Log("Pick Up UI");
             textContainer.SetActive(true);
-            textContainer.GetComponent<TMP_Text>().text = inventoryItem.ItemName + " x" + inventoryItem.Quantity + " [E]";
+            textContainer.GetComponent<TMP_Text>().text = CurrentTarget.GetComponent<INventoryObject>().inventoryItem.ItemName + " [E]";
         }
         else
         {
 
-            Debug.Log("No Pick Up UI");
+            //Debug.Log("No Pick Up UI");
             textContainer.SetActive(false);
         }
     }

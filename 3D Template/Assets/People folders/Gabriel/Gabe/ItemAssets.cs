@@ -6,10 +6,12 @@ public class ItemAssets : ScriptableObject
 {
     public Sprite ItemIcon;
     public string ItemName;
+    public GameObject ItemModel;
     public int Quantity;
 
-    [TextArea(3, 3)] public string Description;
+    [TextArea(3, 3)] public string ItemDescription;
     public bool IsDroppable;
+    public bool IsEquippable;
     public bool IsConsumable;
 
     public float healthEffect;
