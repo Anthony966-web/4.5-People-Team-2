@@ -228,6 +228,7 @@ public class CharacterMovement : MonoBehaviour
     public float fovChangeSpeed = 5f;
     public float leanAngle = 15f;
     public float leanSpeed = 5f;
+    public float originalMoveSpeed; 
 
     [Header("Slide Settings")]
     public float slideForce = 10f;
@@ -256,7 +257,7 @@ public class CharacterMovement : MonoBehaviour
     private bool sprintOnCooldown = false;
     private float targetLean = 0f;
     public float Ymeasure = 1;
-    Vector3 knobackvelocity;
+    public Vector3 knobackvelocity;
 
     void Start()
     {
@@ -270,6 +271,7 @@ public class CharacterMovement : MonoBehaviour
             originalFOV = playerCamera.fieldOfView;
         }
         Cursor.lockState = CursorLockMode.Locked;
+        originalMoveSpeed = moveSpeed;
     }
 
     void Update()
@@ -282,6 +284,12 @@ public class CharacterMovement : MonoBehaviour
         CameraControl();
         HandleCameraFOV();
         HandleAutoLean();
+        if (knobackvelocity != Vector3.zero)
+        {
+            knobackvelocity = knobackvelocity * (10 - Time.deltaTime);
+            if (knobackvelocity.magnitude < 0.1f)
+                knobackvelocity = Vector3.zero;
+        }
         curentPosition = transform.localPosition;
         if (Input.GetKeyDown(KeyCode.M))
         {
@@ -302,7 +310,7 @@ public class CharacterMovement : MonoBehaviour
         if (isSliding)
         {
             slideTimer -= Time.fixedDeltaTime;
-            if (slideTimer <= 0 || !isGrounded)
+            if (slideTimer <= 0 && !isGrounded)
             {
                 StopSlide();
             }
@@ -316,12 +324,13 @@ public class CharacterMovement : MonoBehaviour
         canSlide = false;
         slideTimer = slideDuration;
         slideDirection = rb.linearVelocity.normalized;
-        rb.AddForce(slideDirection * slideForce, ForceMode.Impulse);
+        rb.linearVelocity = slideDirection.normalized * slideForce;
         if (slideCamTilt != null) StopCoroutine(slideCamTilt);
         slideCamTilt = StartCoroutine(SlideTiltCamera(slideCameraTilt));
         // Optional: shrink player collider if you want sliding under obstacles
            transform.localScale = new Vector3(originalScale.x, originalScale.y / 2, originalScale.z);
-        transform.localPosition = new Vector3(curentPosition.x, curentPosition.y + Ymeasure, curentPosition.z);
+        moveSpeed = moveSpeed - Time.deltaTime;
+
     }
     void ResetSlide()
     {
@@ -333,7 +342,7 @@ public class CharacterMovement : MonoBehaviour
         if (slideCamTilt != null) StopCoroutine(slideCamTilt);
         slideCamTilt = StartCoroutine(SlideTiltCamera(0f));
         Invoke(nameof(ResetSlide), slideCooldown);
-        transform.localScale = originalScale;
+        moveSpeed = originalMoveSpeed;
     }
 
 
@@ -379,7 +388,7 @@ public class CharacterMovement : MonoBehaviour
                 transform.localPosition = new Vector3(curentPosition.x, curentPosition.y + Ymeasure, curentPosition.z);
             
         }
-        else if (Input.GetKeyUp(KeyCode.LeftControl))
+        else if ( Input.GetKeyUp(KeyCode.LeftControl) )
         {
             isCrouching = false;
             transform.localScale = originalScale;

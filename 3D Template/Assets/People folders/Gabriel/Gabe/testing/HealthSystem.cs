@@ -38,16 +38,16 @@ public class HealthSystem : MonoBehaviour, IDamageable
             {
                 flash.Flash();
             }
-            ScreenShake shaker = GetComponent<ScreenShake>();
-            if (shaker != null) shaker.Shake(0.5f); // maybe smaller shake
+            //ScreenShake shaker = GetComponent<ScreenShake>();
+           // if (shaker != null) shaker.Shake(0.5f); // maybe smaller shake
         }
         if (isPlayer)
         {
-            ScreenShake shaker = GetComponent<ScreenShake>();
-            if (shaker != null)
-            {
+          //  ScreenShake shaker = GetComponent<ScreenShake>();
+          //  if (shaker != null)
+           // {
                // shaker.Shake();
-            }
+         //   }
         }
 
 
@@ -59,7 +59,8 @@ public class HealthSystem : MonoBehaviour, IDamageable
         rb.linearVelocity = direction.normalized * knockbackForce;
         if (isPlayer)
         {
-            rb.linearVelocity *= knockbackForce;
+            //rb.linearVelocity *= knockbackForce;
+            rb.gameObject.GetComponent<CharacterMovement>().knobackvelocity = direction.normalized * knockbackForce;
         }
     }
     void Die()
