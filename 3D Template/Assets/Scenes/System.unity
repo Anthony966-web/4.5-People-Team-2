@@ -3484,6 +3484,7 @@ MonoBehaviour:
   ItemSlotPrefab: {fileID: 2217343548316700775, guid: 23aab66244918eb40b72083fbd3e16c6,
     type: 3}
   isOpen: 0
+  IsDraggingItem: 0
   pickupAlert: {fileID: 707816252}
   pickupName: {fileID: 448404299}
   pickupIcon: {fileID: 2046743439}
@@ -12576,6 +12577,8 @@ MonoBehaviour:
   maxHealth: 100
   currentHunger: 0
   maxHunger: 100
+  HungerDown: 0.75
+  CanRun: 0
   playerBody: {fileID: 1232417780}
   currentToxicImmunity: 0
   maxToxicImmunity: 100

@@ -28,6 +28,7 @@ public class HealthSystem : MonoBehaviour, IDamageable
         if (currentHealth <= 0)
         {
             Die();
+            return;
         }
         // Flash red if enemy
         if (!isPlayer)
@@ -45,7 +46,7 @@ public class HealthSystem : MonoBehaviour, IDamageable
             ScreenShake shaker = GetComponent<ScreenShake>();
             if (shaker != null)
             {
-                shaker.Shake();
+               // shaker.Shake();
             }
         }
 
@@ -55,13 +56,14 @@ public class HealthSystem : MonoBehaviour, IDamageable
     {
         if (rb == null) return;
         direction.y = 0; // prevent upward knockback
-        rb.AddForce(direction.normalized * knockbackForce, ForceMode.Impulse);
+        rb.linearVelocity = direction.normalized * knockbackForce;
     }
     void Die()
     {
         if (isPlayer)
         {
             Debug.Log("Player died!");
+            Destroy(this.gameObject);
             // Disable movement or show respawn screen
         }
         else

@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class EnemyAttack : MonoBehaviour
 {
@@ -8,10 +9,15 @@ public class EnemyAttack : MonoBehaviour
     public LayerMask playerLayer;
     public Transform attackPoint;
 
-    private float nextAttackTime = 0f;
+    //private float Tim1e;
+    //private float MaxTime = 3f;
+
+    private float nextAttackTime = 1.5f;
 
     void Update()
     {
+
+
         if (Time.time >= nextAttackTime)
         {
             Collider[] hitPlayer = Physics.OverlapSphere(attackPoint.position, attackRange, playerLayer);
@@ -21,8 +27,13 @@ public class EnemyAttack : MonoBehaviour
                 IDamageable target = player.GetComponent<IDamageable>();
                 if (target != null)
                 {
-                    target.TakeDamage(damage);
+
                     nextAttackTime = Time.time + attackCooldown;
+                    Debug.Log(nextAttackTime);
+                    Debug.Log(Time.time);
+                    target.TakeDamage(damage);
+
+
                     HealthSystem hs = player.GetComponent<HealthSystem>();
                     if (hs != null)
                     {

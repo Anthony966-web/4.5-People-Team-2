@@ -20,5 +20,5 @@ MonoBehaviour:
   IsDroppable: 0
   IsEquippable: 0
   IsConsumable: 1
-  healthEffect: 1
-  hungerEffect: 2
+  healthEffect: 10
+  hungerEffect: 10
