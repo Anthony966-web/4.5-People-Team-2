@@ -115,13 +115,14 @@ public class EnemyAiTutorial : MonoBehaviour
     {
         float randomZ = Random.Range(-walkpointRange, walkpointRange);
         float randomX = Random.Range(-walkpointRange, walkpointRange);
-        yield return new WaitForSeconds(2);
+        
         walkpoint = new Vector3(transform.position.x + randomX, transform.position.y, transform.position.z + randomZ);
-        if (Physics.Raycast(walkpoint, -transform.up, 2f, WhatIsGround))
+        if (Physics.Raycast(walkpoint, -transform.up, 5f, WhatIsGround))
         {
             walkPointset = true;
 
         }
+        yield return new WaitForSeconds(10);
     }
     private void OnCollisionEnter(Collision collision)
     {

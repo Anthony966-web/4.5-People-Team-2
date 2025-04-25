@@ -256,6 +256,7 @@ public class CharacterMovement : MonoBehaviour
     private bool sprintOnCooldown = false;
     private float targetLean = 0f;
     public float Ymeasure = 1;
+    Vector3 knobackvelocity;
 
     void Start()
     {
@@ -317,10 +318,10 @@ public class CharacterMovement : MonoBehaviour
         slideDirection = rb.linearVelocity.normalized;
         rb.AddForce(slideDirection * slideForce, ForceMode.Impulse);
         if (slideCamTilt != null) StopCoroutine(slideCamTilt);
-        //slideCamTilt = StartCoroutine(SlideTiltCamera(slideCameraTilt));
+        slideCamTilt = StartCoroutine(SlideTiltCamera(slideCameraTilt));
         // Optional: shrink player collider if you want sliding under obstacles
-        //   transform.localScale = new Vector3(originalScale.x, originalScale.y / 2, originalScale.z);
-        //    transform.localPosition = new Vector3(curentPosition.x, curentPosition.y + Ymeasure, curentPosition.z);
+           transform.localScale = new Vector3(originalScale.x, originalScale.y / 2, originalScale.z);
+        transform.localPosition = new Vector3(curentPosition.x, curentPosition.y + Ymeasure, curentPosition.z);
     }
     void ResetSlide()
     {
@@ -330,8 +331,9 @@ public class CharacterMovement : MonoBehaviour
     {
         isSliding = false;
         if (slideCamTilt != null) StopCoroutine(slideCamTilt);
-      //  slideCamTilt = StartCoroutine(SlideTiltCamera(0f));
+        slideCamTilt = StartCoroutine(SlideTiltCamera(0f));
         Invoke(nameof(ResetSlide), slideCooldown);
+        transform.localScale = originalScale;
     }
 
 
@@ -342,9 +344,11 @@ public class CharacterMovement : MonoBehaviour
         float moveZ = Input.GetAxis("Vertical");
 
         Vector3 moveDir = transform.right * moveX + transform.forward * moveZ;
+
         float currentSpeed = isSprinting ? sprintSpeed : (isCrouching ? crouchSpeed : moveSpeed);
 
-        rb.linearVelocity = new Vector3(moveDir.x * currentSpeed, rb.linearVelocity.y, moveDir.z * currentSpeed);
+        rb.linearVelocity = new Vector3(moveDir.x * currentSpeed, rb.linearVelocity.y, moveDir.z * currentSpeed ) + knobackvelocity;
+
     }
 
     void HandleJump()
@@ -367,11 +371,13 @@ public class CharacterMovement : MonoBehaviour
     void HandleCrouch()
     {
         bool isMoving = Input.GetAxis("Horizontal") != 0 || Input.GetAxis("Vertical") != 0;
-        if (Input.GetKeyDown(KeyCode.LeftControl))
-        {
-            isCrouching = true;
-            transform.localScale = new Vector3(originalScale.x, originalScale.y / 2, originalScale.z);
-            transform.localPosition = new Vector3(curentPosition.x, curentPosition.y + Ymeasure, curentPosition.z);
+        if (isSprinting == false && Input.GetKeyDown(KeyCode.LeftControl))
+        { 
+            
+                isCrouching = true;
+                transform.localScale = new Vector3(originalScale.x, originalScale.y / 2, originalScale.z);
+                transform.localPosition = new Vector3(curentPosition.x, curentPosition.y + Ymeasure, curentPosition.z);
+            
         }
         else if (Input.GetKeyUp(KeyCode.LeftControl))
         {
@@ -494,20 +500,26 @@ public class CharacterMovement : MonoBehaviour
             isGrounded = false;
         }
     }
-//    IEnumerator SlideTiltCamera(float targetTilt)
-//    {
-//        //float currentTilt =
-//        //cam.GetCinemachineComponent<CinemachinePOV>().m_VerticalAxis.Value;
-//        //float elapsed = 0f;
-//        //while (elapsed < 1f)
-//        //{
-//        //    float tilt = Mathf.Lerp(currentTilt, targetTilt, elapsed);
-//        //    cam.GetCinemachineComponent<Cinemachine.CinemachinePOV>().m_VerticalAxis.Value
-//        //    = tilt;
-//        //    elapsed += Time.deltaTime * tiltSpeed;
-//        //    yield return null;
-//        //}
-//        //cam.GetCinemachineComponent<Cinemachine.CinemachinePOV>().m_VerticalAxis.Value = targetTilt;
-//    }
+    public void StartSlideTilt(float targetTilt)
+    {
+        StopAllCoroutines();
+        StartCoroutine(SlideTiltCamera(targetTilt));
+    }
+
+    IEnumerator SlideTiltCamera(float targetTilt)
+    {
+        Quaternion startRot = cam.transform.localRotation;
+        Quaternion targetRot = Quaternion.Euler(targetTilt, 0, 0); // Tilting on X-axis
+
+        float elapsed = 0f;
+        while (elapsed < 1f)
+        {
+            cam.transform.localRotation = Quaternion.Slerp(startRot, targetRot, elapsed);
+            elapsed += Time.deltaTime * tiltSpeed;
+            yield return null;
+        }
+
+        cam.transform.localRotation = targetRot;
+    }
 }
-    
+
