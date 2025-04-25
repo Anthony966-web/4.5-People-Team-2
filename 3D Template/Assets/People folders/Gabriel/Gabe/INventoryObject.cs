@@ -5,7 +5,7 @@ public class INventoryObject : MonoBehaviour
 {
     public ItemAssets inventoryItem;
     //private float distanced;
-    private float distancebetweentarget = 3;
+    private float distancebetweentarget = 5;
     private GameObject player;
 
     private GameObject textContainer;
@@ -22,9 +22,12 @@ public class INventoryObject : MonoBehaviour
     {   
         var ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 
-        if (Physics.Raycast(ray, out RaycastHit hit, distancebetweentarget)&& hit.collider.gameObject == this.gameObject)
-        {
+        //print(ray);
+        //print(gameObject);
 
+        if (Physics.Raycast(ray, out RaycastHit hit, distancebetweentarget) && hit.collider.gameObject == this.gameObject)
+        {
+            print("Works");
                 CurrentTarget = this.gameObject;
 
 
