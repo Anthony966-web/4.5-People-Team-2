@@ -13,16 +13,21 @@ public class InventorySystem : MonoBehaviour
     public static InventorySystem Instance { get; set; }
 
     public GameObject inventoryScreenUI;
+    public GameObject ItemInfoUI;
 
     public List<GameObject> slotList = new List<GameObject>();
 
-    public List<String> itemList = new List<String>();
+    public List<ItemAssets> itemList = new List<ItemAssets>();
 
     private GameObject itemToAdd;
 
     private GameObject whatSlotToEquip;
 
+    public GameObject ItemSlotPrefab;
+
     public bool isOpen;
+
+    public bool IsDraggingItem;
 
     //public bool isFull;
 
@@ -51,15 +56,18 @@ public class InventorySystem : MonoBehaviour
     {
         inventoryScreenUI.SetActive(false);
         isOpen = false;
+        IsDraggingItem = false;
         //isFull = false;
 
         PopulateSlotList();
+
+        Cursor.visible = false;
 
     }
 
     private void PopulateSlotList()
     {
-        foreach(Transform child in inventoryScreenUI.transform)
+        foreach(Transform child in inventoryScreenUI.transform.Find("Contents").transform)
         {
             if(child.CompareTag("Slot"))
             {
@@ -71,36 +79,44 @@ public class InventorySystem : MonoBehaviour
 
     void Update()
     {
+        //if(isOpen == true)
+        //{
+        //    itemToAdd = null;
+        //}
 
-        if (Input.GetKeyDown(KeyCode.I) && !isOpen)
+        if (Input.GetKeyDown(KeyCode.Tab) && !isOpen)
         {
             inventoryScreenUI.SetActive(true);
             Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
             isOpen = true;
 
         }
-        else if (Input.GetKeyDown(KeyCode.I) && isOpen)
+        else if (Input.GetKeyDown(KeyCode.Tab) && isOpen)
         {
             inventoryScreenUI.SetActive(false);
             Cursor.lockState = CursorLockMode.Locked;
+            Cursor.visible = false;
             isOpen = false;
         }
     }
 
-    public void AddToInventory(string itemName)
+    public void AddToInventory(ItemAssets itemName)
     {
         Debug.Log("Added" + itemName);
             whatSlotToEquip = FindNextEmptySlot();
 
-            itemToAdd = Instantiate(Resources.Load<GameObject>(itemName), whatSlotToEquip.transform.position, whatSlotToEquip.transform.rotation);
+            itemToAdd = Instantiate(ItemSlotPrefab, whatSlotToEquip.transform.position, whatSlotToEquip.transform.rotation);
+            itemToAdd.GetComponent<InventoryItem>().ItemID = itemName;
+
             itemToAdd.transform.SetParent(whatSlotToEquip.transform);
 
             itemList.Add(itemName);
 
-        TriggerPickupPopup(itemName, itemToAdd.GetComponent<Image>().sprite);
+        TriggerPickupPopup(itemName.ItemName, itemName.ItemIcon);
 
         ReCalculateList();
-        CraftingSystem.instance.RefreshNeededItems();
+        CraftingSystem.Instance.RefreshNeededItems();
     }
 
 
@@ -142,7 +158,7 @@ public class InventorySystem : MonoBehaviour
     }
 
 
-    public void RemoveItem(string nameToRemove, int amountToRemove)
+    public void RemoveItem(ItemAssets nameToRemove, int amountToRemove)
     {
         int counter = amountToRemove;
 
@@ -152,7 +168,7 @@ public class InventorySystem : MonoBehaviour
             {
                 if (slotList[i].transform.GetChild(0).name == nameToRemove + "(Clone)" && counter != 0)
                 {
-                    Destroy(slotList[i].transform.GetChild(0).gameObject);
+                    DestroyImmediate(slotList[i].transform.GetChild(0).gameObject);
 
                     counter -= 1;
                 }
@@ -160,7 +176,7 @@ public class InventorySystem : MonoBehaviour
         }
 
         ReCalculateList();
-        CraftingSystem.instance.RefreshNeededItems();
+        CraftingSystem.Instance.RefreshNeededItems();
     }
 
     void TriggerPickupPopup(string itemName, Sprite itemIcon)
@@ -187,11 +203,14 @@ IEnumerator Gone(float Time)
         {
             if(slot.transform.childCount > 0)
             {
-                string name = slot.transform.GetChild(0).name;
-                string str1 = "(Clone)";
-                string result = name.Replace(str1, "");
+                ItemAssets name = slot.transform.GetChild(0).GetComponent<InventoryItem>().ItemID;
 
-                itemList.Add(result);
+                //string str1 = "(Clone)";
+                //ItemAssets result = name.name.Replace(str1, "");
+                ItemAssets Item = name;
+                //Item = name.ItemName;
+
+                itemList.Add(Item);
             }
         }
     }

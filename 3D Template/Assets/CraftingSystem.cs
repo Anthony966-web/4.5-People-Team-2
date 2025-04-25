@@ -11,7 +11,7 @@ public class CraftingSystem : MonoBehaviour
     public GameObject CraftingScreenUI;
     public GameObject ToolsScreenUI;
 
-    public List<string> InventoryItemList = new List<string>();
+    public List<ItemAssets> InventoryItemList = new List<ItemAssets>();
 
     // Category Buttons
     Button ToolsBTN;
@@ -25,20 +25,20 @@ public class CraftingSystem : MonoBehaviour
     bool isOpen;
 
     // All Blueprints
-    public ItemBlueprint AxeBLP = new ItemBlueprint("Axe", 2, "Stone", 3, "Stick", 3);
+    public ItemBlueprint AxeBLP;
 
 
-    public static CraftingSystem instance { get; set; }
+    public static CraftingSystem Instance { get; set; }
 
     private void Awake()
     {
-        if(instance != null && instance != this)
+        if(Instance != null && Instance != this)
         {
             Destroy(gameObject);
         }
         else
         {
-            instance = this;
+            Instance = this;
         }
     }
 
@@ -74,14 +74,9 @@ public class CraftingSystem : MonoBehaviour
         InventorySystem.Instance.AddToInventory(craftBlueprint.itemname);
 
         // Remove Resources From Inventory
-        if(craftBlueprint.numOfRequirements == 1)
+        for (int i = 0; i < craftBlueprint.Req.Count; i++)
         {
-            InventorySystem.Instance.RemoveItem(craftBlueprint.Req1, craftBlueprint.Req1Amount);
-        }
-        else if (craftBlueprint.numOfRequirements == 2)
-        {
-            InventorySystem.Instance.RemoveItem(craftBlueprint.Req1, craftBlueprint.Req1Amount);
-            InventorySystem.Instance.RemoveItem(craftBlueprint.Req2, craftBlueprint.Req2Amount);
+            InventorySystem.Instance.RemoveItem(craftBlueprint.Req[i], craftBlueprint.ReqAmount[i]);
         }
 
         //if (craftBlueprint.numOfRequirements == 3)
@@ -108,14 +103,14 @@ public class CraftingSystem : MonoBehaviour
     void Update()
     {
 
-        if (Input.GetKeyDown(KeyCode.I) && !isOpen)
+        if (Input.GetKeyDown(KeyCode.Tab) && !isOpen)
         {
             CraftingScreenUI.SetActive(true);
             Cursor.lockState = CursorLockMode.None;
             isOpen = true;
 
         }
-        else if (Input.GetKeyDown(KeyCode.I) && isOpen)
+        else if (Input.GetKeyDown(KeyCode.Tab) && isOpen)
         {
             CraftingScreenUI.SetActive(false);
             ToolsScreenUI.SetActive(false);
@@ -132,15 +127,15 @@ public class CraftingSystem : MonoBehaviour
 
         InventoryItemList = InventorySystem.Instance.itemList;
 
-        foreach(string itemname in InventoryItemList)
+        foreach(ItemAssets itemname in InventoryItemList)
         {
 
-            switch(itemname)
+            switch(itemname.ItemName)
             {
-                case "Stone":
+                case "Orange":
                     stone_count += 1;
                 break;
-                case "Stick":
+                case "Apple":
                     stick_count += 1;
                 break;
 
@@ -149,10 +144,10 @@ public class CraftingSystem : MonoBehaviour
 
 
         //---- AXE ----//
-        AxeReq1.text =  AxeBLP.Req1Amount + " " + AxeBLP.Req1 + " [" + stone_count + "]";
-        AxeReq2.text = AxeBLP.Req2Amount + " " + AxeBLP.Req2 + " [" + stick_count + "]";
+        AxeReq1.text = AxeBLP.ReqAmount[0] + " " + AxeBLP.Req[0].name + " [" + stone_count + "]";
+        AxeReq2.text = AxeBLP.ReqAmount[1] + " " + AxeBLP.Req[1].name + " [" + stick_count + "]";
 
-        if (stone_count >= AxeBLP.Req1Amount &&  stick_count >= AxeBLP.Req2Amount)
+        if (stone_count >= AxeBLP.ReqAmount[0] &&  stick_count >= AxeBLP.ReqAmount[1])
         {
             CraftAxeBTN.gameObject.SetActive(true);
         }

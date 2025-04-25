@@ -9,6 +9,7 @@ TagManager:
   - Water
   - wall
   - Slot
+  - QuickSlot
   layers:
   - Default
   - TransparentFX
