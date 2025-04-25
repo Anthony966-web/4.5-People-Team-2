@@ -57,6 +57,10 @@ public class HealthSystem : MonoBehaviour, IDamageable
         if (rb == null) return;
         direction.y = 0; // prevent upward knockback
         rb.linearVelocity = direction.normalized * knockbackForce;
+        if (isPlayer)
+        {
+            rb.linearVelocity *= knockbackForce;
+        }
     }
     void Die()
     {
