@@ -14,8 +14,12 @@ public class PlayerState : MonoBehaviour
     public float currentHunger;
     public float maxHunger;
 
+    public float HungerDown = 0.75f;
+
     float distanceTravelled = 0;
     Vector3 lastPosition;
+
+    public bool CanRun;
 
     public GameObject playerBody;
 
@@ -53,20 +57,6 @@ public class PlayerState : MonoBehaviour
         StartCoroutine(TickHunger());
     }
 
-    IEnumerator DecreaseToxicImmunity()
-    {
-        while (true)
-        {
-            if(ToxicImmunity == false)
-            {
-                currentToxicImmunity -= ToxicRate;
-            }
-
-            yield return new WaitForSeconds(ToxicTick);
-        }
-    }
-
-
 
     void Update()
     {
@@ -76,10 +66,45 @@ public class PlayerState : MonoBehaviour
         if(distanceTravelled >= 5)
         {
             distanceTravelled = 0;
-            currentHunger -= 0.75f;
+            if(currentHunger >= HungerDown)
+            {
+                currentHunger -= HungerDown;
+            }
+            else
+            {
+                currentHunger = 0;
+            }
+            
         }
 
 
+    }
+
+    IEnumerator DecreaseToxicImmunity()
+    {
+        while (true)
+        {
+            if (ToxicImmunity == false)
+            {
+                if (currentToxicImmunity >= ToxicRate)
+                {
+                    currentToxicImmunity -= ToxicRate;
+                }
+                else
+                {
+                    currentToxicImmunity = 0;
+                }
+
+                if (currentToxicImmunity == 0)
+                {
+                    currentHealth -= ToxicRate * 3;
+                }
+
+                
+            }
+
+            yield return new WaitForSeconds(ToxicTick);
+        }
     }
 
     IEnumerator TickHunger()
@@ -88,10 +113,17 @@ public class PlayerState : MonoBehaviour
         {
             if (currentHunger <= 0)
             {
-                currentHealth -= 3f;
+                CanRun = false;
+                currentHealth -= ToxicRate * 3;
+            }
+            else
+            {
+                CanRun = true;
             }
 
-            yield return new WaitForSeconds(1f);
+            
+
+                yield return new WaitForSeconds(1f);
         }
     }
 
