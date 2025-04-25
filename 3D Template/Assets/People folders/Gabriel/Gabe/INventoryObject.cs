@@ -52,7 +52,7 @@ public class INventoryObject : MonoBehaviour
 
             //Debug.Log("Pick Up UI");
             textContainer.SetActive(true);
-            textContainer.GetComponent<TMP_Text>().text = inventoryItem.ItemName + " x" + inventoryItem.Quantity + " [E]";
+            textContainer.GetComponent<TMP_Text>().text = inventoryItem.ItemName + " [E]";
         }
         else
         {

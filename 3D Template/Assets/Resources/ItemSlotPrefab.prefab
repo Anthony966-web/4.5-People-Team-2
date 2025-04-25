@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: -6166089486692315588}
   - component: {fileID: 32882868177634317}
   m_Layer: 0
-  m_Name: Apple
+  m_Name: ItemSlotPrefab
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -73,7 +73,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isDroppable: 1
-  ItemID: {fileID: 11400000, guid: 805645120a73baa419def8ab5e8fbce4, type: 2}
+  ItemID: {fileID: 0}
   isInsideQuickSlot: 0
   isSelected: 0
 --- !u!114 &-6166089486692315588

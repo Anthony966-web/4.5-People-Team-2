@@ -43,13 +43,17 @@ public class InventoryItem : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
 
     void OnEnable()
     {
-        print(gameObject.name);
-        this.gameObject.name = ItemID.ItemName;
-        this.GetComponent<Image>().sprite = ItemID.ItemIcon;
+        if (ItemID != null && gameObject.name != ItemID.ItemName)
+        {
+            print(gameObject.name);
+            gameObject.name = ItemID.ItemName;
+            GetComponent<Image>().sprite = ItemID.ItemIcon;
+        }
     }
 
     void Update()
     {
+
         if(isSelected)
         {
             gameObject.GetComponent<DragDrop>().enabled = false;

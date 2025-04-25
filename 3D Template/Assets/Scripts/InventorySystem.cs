@@ -104,7 +104,6 @@ public class InventorySystem : MonoBehaviour
             whatSlotToEquip = FindNextEmptySlot();
 
             itemToAdd = Instantiate(ItemSlotPrefab, whatSlotToEquip.transform.position, whatSlotToEquip.transform.rotation);
-
             itemToAdd.GetComponent<InventoryItem>().ItemID = itemName;
 
             itemToAdd.transform.SetParent(whatSlotToEquip.transform);
