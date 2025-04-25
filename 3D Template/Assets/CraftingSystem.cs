@@ -103,14 +103,14 @@ public class CraftingSystem : MonoBehaviour
     void Update()
     {
 
-        if (Input.GetKeyDown(KeyCode.I) && !isOpen)
+        if (Input.GetKeyDown(KeyCode.Tab) && !isOpen)
         {
             CraftingScreenUI.SetActive(true);
             Cursor.lockState = CursorLockMode.None;
             isOpen = true;
 
         }
-        else if (Input.GetKeyDown(KeyCode.I) && isOpen)
+        else if (Input.GetKeyDown(KeyCode.Tab) && isOpen)
         {
             CraftingScreenUI.SetActive(false);
             ToolsScreenUI.SetActive(false);

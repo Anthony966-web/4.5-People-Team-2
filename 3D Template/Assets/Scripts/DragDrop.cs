@@ -16,8 +16,6 @@ public class DragDrop : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDrag
     Vector3 startPosition;
     Transform startParent;
 
-
-
     private void Awake()
     {
         rectTransform = GetComponent<RectTransform>();
@@ -40,6 +38,7 @@ public class DragDrop : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDrag
         startParent = transform.parent;
         transform.SetParent(transform.root);
         itemBeingDragged = gameObject;
+        InventorySystem.Instance.IsDraggingItem = true;
 
     }
 
@@ -67,6 +66,7 @@ public class DragDrop : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDrag
         Debug.Log("OnEndDrag");
         canvasGroup.alpha = 1f;
         canvasGroup.blocksRaycasts = true;
+        InventorySystem.Instance.IsDraggingItem = false;
     }
 
 

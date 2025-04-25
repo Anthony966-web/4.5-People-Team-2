@@ -27,6 +27,8 @@ public class InventorySystem : MonoBehaviour
 
     public bool isOpen;
 
+    public bool IsDraggingItem;
+
     //public bool isFull;
 
 
@@ -54,6 +56,7 @@ public class InventorySystem : MonoBehaviour
     {
         inventoryScreenUI.SetActive(false);
         isOpen = false;
+        IsDraggingItem = false;
         //isFull = false;
 
         PopulateSlotList();
@@ -81,7 +84,7 @@ public class InventorySystem : MonoBehaviour
         //    itemToAdd = null;
         //}
 
-        if (Input.GetKeyDown(KeyCode.I) && !isOpen)
+        if (Input.GetKeyDown(KeyCode.Tab) && !isOpen)
         {
             inventoryScreenUI.SetActive(true);
             Cursor.lockState = CursorLockMode.None;
@@ -89,7 +92,7 @@ public class InventorySystem : MonoBehaviour
             isOpen = true;
 
         }
-        else if (Input.GetKeyDown(KeyCode.I) && isOpen)
+        else if (Input.GetKeyDown(KeyCode.Tab) && isOpen)
         {
             inventoryScreenUI.SetActive(false);
             Cursor.lockState = CursorLockMode.Locked;
@@ -110,7 +113,7 @@ public class InventorySystem : MonoBehaviour
 
             itemList.Add(itemName);
 
-        TriggerPickupPopup(itemName.ItemName, itemToAdd.GetComponent<Image>().sprite);
+        TriggerPickupPopup(itemName.ItemName, itemName.ItemIcon);
 
         ReCalculateList();
         CraftingSystem.Instance.RefreshNeededItems();
