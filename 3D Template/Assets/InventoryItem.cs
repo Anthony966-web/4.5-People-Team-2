@@ -19,7 +19,7 @@ public class InventoryItem : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
     //public string thisName, thisDescription;
 
     // ---- Consumption ---- //
-    private GameObject itemPendingConsumption;
+    public GameObject itemPendingConsumption;
     //public bool isConsumable;
 
     //public float healthEffect;
@@ -112,7 +112,7 @@ public class InventoryItem : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
         }
     }
 
-    private void consumingFunction(float healthEffect, float hungerEffect)
+    public void consumingFunction(float healthEffect, float hungerEffect)
     {
         itemInfoUI.SetActive(false);
 
