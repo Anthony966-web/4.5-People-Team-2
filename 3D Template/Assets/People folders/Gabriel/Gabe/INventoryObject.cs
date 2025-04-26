@@ -37,9 +37,9 @@ public class INventoryObject : MonoBehaviour
 
                 if (Input.GetKeyDown(KeyCode.E) && InventorySystem.Instance.isOpen == false && InventorySystem.Instance.IsDraggingItem == false)
                 {
-                    if (!InventorySystem.Instance.CheckIfFull())
+                    if (InventorySystem.Instance.CheckSlotIsAvailable(1))
                     {
-                        InventorySystem.Instance.AddToInventory(inventoryItem);
+                        InventorySystem.Instance.AddToInventory(inventoryItem, inventoryItem.Quantity);
                         DestroyImmediate(this.gameObject);
                     }
                     else

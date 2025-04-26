@@ -101,9 +101,13 @@ public class InventorySystem : MonoBehaviour
         }
     }
 
-    public void AddToInventory(ItemAssets itemName)
+    public void AddToInventory(ItemAssets itemName, int Amount)
     {
-        Debug.Log("Added" + itemName);
+        Debug.Log("Added " + itemName);
+
+        for (int i = 0; i < Amount; i++)
+        {
+
             whatSlotToEquip = FindNextEmptySlot();
 
             itemToAdd = Instantiate(ItemSlotPrefab, whatSlotToEquip.transform.position, whatSlotToEquip.transform.rotation);
@@ -113,10 +117,11 @@ public class InventorySystem : MonoBehaviour
 
             itemList.Add(itemName);
 
-        TriggerPickupPopup(itemName.ItemName, itemName.ItemIcon);
+            TriggerPickupPopup(itemName.ItemName, itemName.ItemIcon);
 
-        ReCalculateList();
-        CraftingSystem.Instance.RefreshNeededItems();
+            ReCalculateList();
+            CraftingSystem.Instance.RefreshNeededItems();
+        }
     }
 
 
@@ -133,21 +138,19 @@ public class InventorySystem : MonoBehaviour
         return new GameObject();
     }
 
-
-
-    public bool CheckIfFull()
+    public bool CheckSlotIsAvailable(int emptyNeeded)
     {
-        int counter = 0;
+        int emptySlot = 0;
 
         foreach(GameObject slot in slotList)
         {
-            if(slot.transform.childCount > 0)
+            if(slot.transform.childCount <= 0)
             {
-                counter += 1;
+                emptySlot += 1;
             }
         }
 
-        if (counter == slotList.Count)
+        if (emptySlot >= emptyNeeded)
         {
             return true;
         }
@@ -166,11 +169,12 @@ public class InventorySystem : MonoBehaviour
         {
             if (slotList[i].transform.childCount > 0)
             {
-                if (slotList[i].transform.GetChild(0).name == nameToRemove + "(Clone)" && counter != 0)
+                InventoryItem invItem = slotList[i].transform.GetChild(0).GetComponent<InventoryItem>();
+
+                if (invItem != null && invItem.ItemID == nameToRemove && counter > 0)
                 {
                     DestroyImmediate(slotList[i].transform.GetChild(0).gameObject);
-
-                    counter -= 1;
+                    counter--;
                 }
             }
         }
@@ -185,7 +189,7 @@ public class InventorySystem : MonoBehaviour
         pickupIcon.sprite = itemIcon;
         pickupAlert.SetActive(true);
 
-        StartCoroutine(Gone(1));
+        StartCoroutine(Gone(2));
     }
 
 IEnumerator Gone(float Time)

@@ -43,6 +43,11 @@ public class EquipSystem : MonoBehaviour
         PopulateSlotList();
     }
 
+    public void ClickButton(int number)
+    {
+        SelectQuickSlot(number);
+    }
+
 
     void Update()
     {

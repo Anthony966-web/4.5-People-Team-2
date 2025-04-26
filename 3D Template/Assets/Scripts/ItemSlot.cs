@@ -7,7 +7,6 @@ using UnityEngine.EventSystems;
 
 public class ItemSlot : MonoBehaviour, IDropHandler
 {
-
     public GameObject Item
     {
         get
@@ -20,7 +19,6 @@ public class ItemSlot : MonoBehaviour, IDropHandler
             return null;
         }
     }
-
 
     public void OnDrop(PointerEventData eventData)
     {

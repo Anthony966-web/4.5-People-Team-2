@@ -5,6 +5,7 @@ using UnityEngine;
 public class ItemBlueprint : ScriptableObject
 {
     public ItemAssets itemname;
+    public int ProduceAmount = 1;
 
     public List<ItemAssets> Req;
     public List<int> ReqAmount;

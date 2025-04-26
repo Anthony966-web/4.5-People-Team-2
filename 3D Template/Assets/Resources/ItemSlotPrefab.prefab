@@ -74,6 +74,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isDroppable: 1
   ItemID: {fileID: 0}
+  itemPendingConsumption: {fileID: 0}
   isInsideQuickSlot: 0
   isSelected: 0
 --- !u!114 &-6166089486692315588
@@ -96,7 +97,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 28d2c2677149d45e290e8fa042b1b80f, type: 3}
+  m_Sprite: {fileID: 0}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
