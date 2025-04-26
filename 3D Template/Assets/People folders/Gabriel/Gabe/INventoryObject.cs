@@ -5,7 +5,7 @@ public class INventoryObject : MonoBehaviour
 {
     public ItemAssets inventoryItem;
     //private float distanced;
-    private float distancebetweentarget = 1000;
+    private float distancebetweentarget = 3;
     private GameObject player;
 
     private GameObject textContainer;

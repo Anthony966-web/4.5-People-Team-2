@@ -189,7 +189,7 @@ public class InventorySystem : MonoBehaviour
         pickupIcon.sprite = itemIcon;
         pickupAlert.SetActive(true);
 
-        StartCoroutine(Gone(2));
+        StartCoroutine(Gone(2.25f));
     }
 
 IEnumerator Gone(float Time)

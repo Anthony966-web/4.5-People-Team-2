@@ -3,10 +3,16 @@ using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.Collections.Generic;
 
+[System.Serializable]
+public class InventorySaveData
+{
+    public List<string> savedItemNames = new List<string>();
+}
+
 public class SaveLoad : MonoBehaviour
 {
-
     public List<SavableObjects> savableObjects;
+    public List<ItemAssets> ItemAssets;
     RandomPlacer randomPlacer;
 
     [SerializeField] public static string SlotKey = "None";
@@ -14,7 +20,6 @@ public class SaveLoad : MonoBehaviour
 
     private void Get()
     {
-        // Ensure RandomPlacer is assigned properly
         if (randomPlacer == null)
         {
             randomPlacer = FindObjectOfType<RandomPlacer>();
@@ -26,38 +31,38 @@ public class SaveLoad : MonoBehaviour
         }
     }
 
-    public void Save()
+    private void Update()
     {
-        Get();
-        savableObjects = randomPlacer.savableObjects;
-        if (randomPlacer == null)
+        if (Input.GetKeyDown(KeyCode.S))
         {
-            Debug.LogError("Save failed: RandomPlacer reference is null.");
-            return;
+            Save();
         }
 
-        savableObjects = randomPlacer.savableObjects;
+        if (Input.GetKeyDown(KeyCode.L))
+        {
+            Load();
+        }
+    }
+
+    public void Save()
+    {
+        ItemAssets = InventorySystem.Instance.itemList;
+
+        InventorySaveData saveData = new InventorySaveData();
+
+        foreach (var item in ItemAssets)
+        {
+            saveData.savedItemNames.Add(item.name); // save only the name
+        }
 
         FileStream fs = File.Create(Application.persistentDataPath + "/Game.Data." + SlotKey + FileType);
         BinaryFormatter bf = new BinaryFormatter();
-        bf.Serialize(fs, savableObjects);
+        bf.Serialize(fs, saveData);
         fs.Close();
     }
 
     public bool Load()
     {
-
-        if (randomPlacer == null)
-        {
-            randomPlacer = FindObjectOfType<RandomPlacer>(); // Assign if null
-        }
-
-        if (randomPlacer == null)
-        {
-            Debug.LogError("Load failed: RandomPlacer reference is null.");
-            return false;
-        }
-
         string path = Application.persistentDataPath + "/Game.Data." + SlotKey + FileType;
         if (File.Exists(path))
         {
@@ -68,73 +73,28 @@ public class SaveLoad : MonoBehaviour
             BinaryFormatter bf = new BinaryFormatter();
             if (fs.Length > 0)
             {
-                randomPlacer.Uninstantiate(); // Destroy old objects before loading new ones
-                savableObjects = (List<SavableObjects>)bf.Deserialize(fs);
-                randomPlacer.savableObjects = savableObjects;
-                randomPlacer.Reinstantiate();
+                InventorySaveData saveData = (InventorySaveData)bf.Deserialize(fs);
                 fs.Close();
+
+                ItemAssets.Clear();
+
+                foreach (var itemName in saveData.savedItemNames)
+                {
+                    ItemAssets foundItem = Resources.Load<ItemAssets>("Prefabs/Items/" + itemName);
+                    if (foundItem != null)
+                    {
+                        ItemAssets.Add(foundItem);
+                    }
+                    else
+                    {
+                        Debug.LogWarning($"Item '{itemName}' not found in Resources/Prefabs/Items!");
+                    }
+                }
+
+                InventorySystem.Instance.itemList = ItemAssets;
                 return true;
             }
         }
-          return false;
+        return false;
     }
-
-    //public void Save()
-    //{
-    //    Get();
-    //    savableObjects = randomPlacer.savableObjects;
-
-    //    using (BinaryWriter writer = new BinaryWriter(File.Create(Application.persistentDataPath + "/Game.Data." + SlotKey + FileType)))
-    //    {
-    //        writer.Write(savableObjects.Count);
-    //        foreach (var obj in savableObjects)
-    //        {
-    //            writer.Write(obj.id);
-    //            writer.Write(obj.px);
-    //            writer.Write(obj.py);
-    //            writer.Write(obj.pz);
-    //            writer.Write(obj.rx);
-    //            writer.Write(obj.ry);
-    //            writer.Write(obj.rz);
-    //            writer.Write(obj.rw);
-    //        }
-    //    }
-    //}
-
-    //public bool Load()
-    //{
-    //    if (randomPlacer == null)
-    //    {
-    //        randomPlacer = FindObjectOfType<RandomPlacer>(); // Assign if null
-    //    }
-    //    string path = Application.persistentDataPath + "/Game.Data." + SlotKey + FileType;
-    //    if (File.Exists(path))
-    //    {
-    //        using (BinaryReader reader = new BinaryReader(File.Open(path, FileMode.Open)))
-    //        {
-    //            int count = reader.ReadInt32();
-    //            savableObjects = new List<SavableObjects>(count);
-
-    //            for (int i = 0; i < count; i++)
-    //            {
-    //                string id = reader.ReadString();
-    //                float px = reader.ReadSingle();
-    //                float py = reader.ReadSingle();
-    //                float pz = reader.ReadSingle();
-    //                float rx = reader.ReadSingle();
-    //                float ry = reader.ReadSingle();
-    //                float rz = reader.ReadSingle();
-    //                float rw = reader.ReadSingle();
-
-    //                savableObjects.Add(new SavableObjects(id, new Vector3(px, py, pz), new Quaternion(rx, ry, rz, rw)));
-    //            }
-    //        }
-
-    //        randomPlacer.Uninstantiate();
-    //        randomPlacer.savableObjects = savableObjects;
-    //        randomPlacer.Reinstantiate();
-    //        return true;
-    //    }
-    //    return false;
-    //}
 }

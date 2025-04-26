@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 [CreateAssetMenu(fileName = "ItemAssets", menuName = "Scriptable Objects/ItemAssets")]
+[System.Serializable]
 public class ItemAssets : ScriptableObject
 {
     public Sprite ItemIcon;
