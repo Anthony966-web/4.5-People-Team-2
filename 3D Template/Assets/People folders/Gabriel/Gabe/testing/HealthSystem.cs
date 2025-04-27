@@ -43,12 +43,20 @@ public class HealthSystem : MonoBehaviour, IDamageable
         }
         if (isPlayer)
         {
-          //  ScreenShake shaker = GetComponent<ScreenShake>();
-          //  if (shaker != null)
-           // {
-               // shaker.Shake();
-         //   }
+            PlayerParry parry = GetComponent<PlayerParry>();
+            if (parry != null && parry.IsParrying)
+            {
+                Debug.Log("Attack parried!");
+                // You can reflect damage, stun enemy, etc. here
+                return;
+                //  ScreenShake shaker = GetComponent<ScreenShake>();
+                //  if (shaker != null)
+                // {
+                // shaker.Shake();
+                //   }
+            }
         }
+
 
 
     }

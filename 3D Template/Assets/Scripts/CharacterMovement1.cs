@@ -212,6 +212,8 @@ public class CharacterMovement : MonoBehaviour
     [SerializeField] private CinemachineCamera cam;
     [SerializeField] private float tiltSpeed = 5f;
 
+    public static CharacterMovement Instance { set; get; }
+
     public float moveSpeed = 5f;
     public float sprintSpeed = 8f;
     public float crouchSpeed = 2.5f;
@@ -261,6 +263,18 @@ public class CharacterMovement : MonoBehaviour
 
     public bool Water;
 
+    private void Awake()
+    {
+        if (Instance != null && Instance != this)
+        {
+            Destroy(gameObject);
+        }
+        else
+        {
+            Instance = this;
+        }
+    }
+
     void Start()
     {
         rb = GetComponent<Rigidbody>();
@@ -286,12 +300,21 @@ public class CharacterMovement : MonoBehaviour
         CameraControl();
         HandleCameraFOV();
         HandleAutoLean();
-        if (knobackvelocity != Vector3.zero)
+
+        //if (knobackvelocity != Vector3.zero)
+        //{
+        //    knobackvelocity = knobackvelocity * (10 - Time.deltaTime);
+        //    if (knobackvelocity.magnitude < 0.1f)
+        //        knobackvelocity = Vector3.zero;
+        //}
+        while (knobackvelocity != Vector3.zero)
         {
-            knobackvelocity = knobackvelocity * (10 - Time.deltaTime);
+            knobackvelocity = Vector3.Lerp(knobackvelocity, Vector3.zero, 1 * Time.deltaTime);
             if (knobackvelocity.magnitude < 0.1f)
                 knobackvelocity = Vector3.zero;
+            return;
         }
+
         curentPosition = transform.localPosition;
         if (Input.GetKeyDown(KeyCode.M))
         {
@@ -304,6 +327,16 @@ public class CharacterMovement : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.LeftControl) && isSprinting && canSlide && isGrounded)
         {
             StartSlide();
+        }
+    }
+
+    public void Knockback()
+    {
+        if (knobackvelocity != Vector3.zero)
+        {
+            knobackvelocity = knobackvelocity * (10 - Time.deltaTime);
+            if (knobackvelocity.magnitude < 0.1f)
+                knobackvelocity = Vector3.zero;
         }
     }
 
@@ -447,7 +480,7 @@ public class CharacterMovement : MonoBehaviour
     }
 
 
-    System.Collections.IEnumerator SlideCameraEffect()
+    IEnumerator SlideCameraEffect()
     {
         float elapsedTime = 0f;
         float targetFOV = originalFOV * slideZoomAmount;
