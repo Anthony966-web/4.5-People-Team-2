@@ -21,7 +21,7 @@ public class RandomPlacer : MonoBehaviour
 
     //public GameObject BuildGhosts;
 
-    SaveLoad saveLoad;
+   
 
     Transform parent;
 
@@ -42,26 +42,10 @@ public class RandomPlacer : MonoBehaviour
         Vector3 mousePosition = Input.mousePosition;
     }
 
-    public void Start()
-    {
+    //public void Start()
+    //{
         //Cursor.visible = false;
         //Cursor.lockState = CursorLockMode.Locked;
-
-        saveLoad = FindObjectOfType<SaveLoad>(); // Ensure SaveLoad is assigned
-
-        if (saveLoad == null)
-        {
-            Debug.LogError("SaveLoad not found in the scene!");
-            return;
-        }
-
-        saveLoad.Load(); // Now it's safe to call Load()
-
-        if (saveLoad.savableObjects == null)
-        {
-            saveLoad.savableObjects = new List<SavableObjects>();
-        }
-    }
 
     //public void SelectPrefab(GameObject prefab)
     //{
@@ -75,7 +59,7 @@ public class RandomPlacer : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.S)) // Save
         {
             Stopwatch stopwatch = Stopwatch.StartNew();
-            saveLoad.Save();
+            
             stopwatch.Stop();
             Debug.Log($"Save Time: {stopwatch.ElapsedMilliseconds} ms");
         }
@@ -83,7 +67,7 @@ public class RandomPlacer : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.L)) // Load
         {
             Stopwatch stopwatch = Stopwatch.StartNew();
-            saveLoad.Load();
+            
             stopwatch.Stop();
             Debug.Log($"Load Time: {stopwatch.ElapsedMilliseconds} ms");
         }
@@ -186,7 +170,7 @@ public class RandomPlacer : MonoBehaviour
         {
             savableObjects.Remove(toRemove);
             Destroy(build.gameObject);
-            saveLoad.Save();
+           
         }
         else
         {
