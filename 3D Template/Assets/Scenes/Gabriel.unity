@@ -7924,11 +7924,13 @@ MonoBehaviour:
   fovChangeSpeed: 5
   leanAngle: 5
   leanSpeed: 5
-  slideForce: 100
+  originalMoveSpeed: 0
+  slideForce: 10000
   slideDuration: 1.5
   slideCooldown: 0.5
   slideCameraTilt: 480
   Ymeasure: 0
+  knobackvelocity: {x: 0, y: 0, z: 0}
 --- !u!23 &1232417783
 MeshRenderer:
   m_ObjectHideFlags: 0
