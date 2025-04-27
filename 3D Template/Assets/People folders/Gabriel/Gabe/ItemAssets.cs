@@ -14,6 +14,8 @@ public class ItemAssets : ScriptableObject
     public bool IsDroppable;
     public bool IsEquippable;
     public bool IsConsumable;
+    public bool IsUseable;
+    public GameObject itemPendingToBeUsed; // Only if Useable
 
     public float healthEffect;
     public float hungerEffect;

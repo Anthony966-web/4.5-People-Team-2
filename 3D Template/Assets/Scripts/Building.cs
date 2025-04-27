@@ -14,7 +14,7 @@ public class Building : MonoBehaviour
     private Vector3 currentRot;
 
     public RandomPlacer randomPlacer;
-    public SaveLoad saveLoad;
+    //public SaveLoad saveLoad;
     public GameObject BuildParent;
 
     void Update()
@@ -96,14 +96,14 @@ public class Building : MonoBehaviour
 
             //savableObjects.Add(new SavableObjects(obj.name, obj.transform.position, obj.transform.rotation));
 
-            saveLoad.Save();
+            //saveLoad.Save();
 
             currentBuildTransform = null;
         }
         else
         {
             Destroy(currentBuildTransform.gameObject);
-            saveLoad.Save();
+            //saveLoad.Save();
             currentBuildTransform = null;
         }
     }

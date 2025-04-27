@@ -10,6 +10,7 @@ public class CraftingSystem : MonoBehaviour
 
     public GameObject CraftingScreenUI;
     public GameObject ToolsScreenUI;
+    public GameObject ConstructionScreenUI;
 
     public List<ItemAssets> InventoryItemList = new List<ItemAssets>();
 
@@ -59,6 +60,7 @@ public class CraftingSystem : MonoBehaviour
 
         CraftingScreenUI.SetActive(false);
         ToolsScreenUI.SetActive(false);
+        ConstructionScreenUI.SetActive(false);
     }
 
 
@@ -66,6 +68,7 @@ public class CraftingSystem : MonoBehaviour
     {
         CraftingScreenUI.SetActive(false);
         ToolsScreenUI.SetActive(true);
+        ConstructionScreenUI.SetActive(true);
     }
 
     private void CraftAnyItem(ItemBlueprint craftBlueprint)
@@ -114,6 +117,7 @@ public class CraftingSystem : MonoBehaviour
         {
             CraftingScreenUI.SetActive(false);
             ToolsScreenUI.SetActive(false);
+            ConstructionScreenUI.SetActive(false);
             Cursor.lockState = CursorLockMode.Locked;
             isOpen = false;
         }
