@@ -43,6 +43,11 @@ public class EquipSystem : MonoBehaviour
         PopulateSlotList();
     }
 
+    public void ClickButton(int number)
+    {
+        SelectQuickSlot(number);
+    }
+
 
     void Update()
     {
@@ -92,7 +97,23 @@ public class EquipSystem : MonoBehaviour
                 selectedItem = GetSelectedItem(number);
                 selectedItem.GetComponent<InventoryItem>().isSelected = true;
 
+                // Another Check For Consumable
+                if (selectedItem.GetComponent<InventoryItem>().ItemID.IsConsumable == true)
+                {
+                    selectedItem.GetComponent<InventoryItem>().itemPendingConsumption = gameObject;
+                    selectedItem.GetComponent<InventoryItem>().consumingFunction(selectedItem.GetComponent<InventoryItem>().ItemID.healthEffect, selectedItem.GetComponent<InventoryItem>().ItemID.hungerEffect);
 
+                    if (selectedItem.GetComponent<InventoryItem>().itemPendingConsumption == gameObject)
+                    {
+                        DestroyImmediate(selectedItem.gameObject);
+                        InventorySystem.Instance.ReCalculateList();
+                        CraftingSystem.Instance.RefreshNeededItems();
+                    }
+                    selectedItem = null;
+                    selectedNumber = -1;
+                    return;
+                }
+                
                 SetEquippedModel(selectedItem);
 
 

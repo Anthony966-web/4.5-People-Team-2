@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c61c90c8e8f5bdc43933e13451ed8564, type: 3}
+  m_Name: Jocobe
+  m_EditorClassIdentifier: 
+  FullName: Jocobe
+  TeamRole: Scripter/Scrum Master
+  VGD: 0
+  AMI: 1
+  Image1: {fileID: 21300000, guid: 28d2c2677149d45e290e8fa042b1b80f, type: 3}
+  Image2: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
+  Image3: {fileID: 10915, guid: 0000000000000000f000000000000000, type: 0}
+  Image4: {fileID: 21300000, guid: 5f27b2d79faa3a14a99b89718a75e7af, type: 3}
+  Image5: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}

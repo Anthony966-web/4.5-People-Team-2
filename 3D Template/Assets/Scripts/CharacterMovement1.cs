@@ -228,7 +228,7 @@ public class CharacterMovement : MonoBehaviour
     public float fovChangeSpeed = 5f;
     public float leanAngle = 15f;
     public float leanSpeed = 5f;
-    public float originalMoveSpeed; 
+    public float originalMoveSpeed;
 
     [Header("Slide Settings")]
     public float slideForce = 10f;
@@ -258,6 +258,8 @@ public class CharacterMovement : MonoBehaviour
     private float targetLean = 0f;
     public float Ymeasure = 1;
     public Vector3 knobackvelocity;
+
+    public bool Water;
 
     void Start()
     {
@@ -328,7 +330,7 @@ public class CharacterMovement : MonoBehaviour
         if (slideCamTilt != null) StopCoroutine(slideCamTilt);
         slideCamTilt = StartCoroutine(SlideTiltCamera(slideCameraTilt));
         // Optional: shrink player collider if you want sliding under obstacles
-           transform.localScale = new Vector3(originalScale.x, originalScale.y / 2, originalScale.z);
+        transform.localScale = new Vector3(originalScale.x, originalScale.y / 2, originalScale.z);
         moveSpeed = moveSpeed - Time.deltaTime;
 
     }
@@ -356,7 +358,7 @@ public class CharacterMovement : MonoBehaviour
 
         float currentSpeed = isSprinting ? sprintSpeed : (isCrouching ? crouchSpeed : moveSpeed);
 
-        rb.linearVelocity = new Vector3(moveDir.x * currentSpeed, rb.linearVelocity.y, moveDir.z * currentSpeed ) + knobackvelocity;
+        rb.linearVelocity = new Vector3(moveDir.x * currentSpeed, rb.linearVelocity.y, moveDir.z * currentSpeed) + knobackvelocity;
 
     }
 
@@ -374,6 +376,14 @@ public class CharacterMovement : MonoBehaviour
                 rb.linearVelocity = new Vector3(rb.linearVelocity.x, jumpForce, rb.linearVelocity.z);
                 canDoubleJump = false;
             }
+            else if (Water == true)
+            {
+                rb.linearVelocity = new Vector3(rb.linearVelocity.x, jumpForce / 1.1f, rb.linearVelocity.z);
+            }
+            else if (Water == false)
+            {
+                rb.linearVelocity = new Vector3(rb.linearVelocity.x, -jumpForce / 1.1f, rb.linearVelocity.z);
+            }
         }
     }
 
@@ -381,14 +391,14 @@ public class CharacterMovement : MonoBehaviour
     {
         bool isMoving = Input.GetAxis("Horizontal") != 0 || Input.GetAxis("Vertical") != 0;
         if (isSprinting == false && Input.GetKeyDown(KeyCode.LeftControl))
-        { 
-            
-                isCrouching = true;
-                transform.localScale = new Vector3(originalScale.x, originalScale.y / 2, originalScale.z);
-                transform.localPosition = new Vector3(curentPosition.x, curentPosition.y + Ymeasure, curentPosition.z);
-            
+        {
+
+            isCrouching = true;
+            transform.localScale = new Vector3(originalScale.x, originalScale.y / 2, originalScale.z);
+            transform.localPosition = new Vector3(curentPosition.x, curentPosition.y + Ymeasure, curentPosition.z);
+
         }
-        else if ( Input.GetKeyUp(KeyCode.LeftControl) )
+        else if (Input.GetKeyUp(KeyCode.LeftControl))
         {
             isCrouching = false;
             transform.localScale = originalScale;
@@ -398,7 +408,7 @@ public class CharacterMovement : MonoBehaviour
 
     void HandleSprint()
     {
-        if (!sprintOnCooldown && Input.GetKey(KeyCode.LeftShift) && stamina > 0)
+        if (!sprintOnCooldown && Input.GetKey(KeyCode.LeftShift) && stamina > 0 && PlayerState.Instance.CanRun == true)
         {
             isSprinting = true;
             stamina -= Time.deltaTime;
@@ -509,6 +519,23 @@ public class CharacterMovement : MonoBehaviour
             isGrounded = false;
         }
     }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.CompareTag("Water"))
+        {
+            Water = true;
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.gameObject.CompareTag("Water"))
+        {
+            Water = false;
+        }
+    }
+
     public void StartSlideTilt(float targetTilt)
     {
         StopAllCoroutines();

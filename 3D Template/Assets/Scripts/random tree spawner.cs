@@ -41,7 +41,7 @@ public class randomtreespawner : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        print(other.gameObject.name);
+        //print(other.gameObject.name);
         SpawnResources();
     }
 

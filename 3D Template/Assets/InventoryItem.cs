@@ -19,7 +19,7 @@ public class InventoryItem : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
     //public string thisName, thisDescription;
 
     // ---- Consumption ---- //
-    private GameObject itemPendingConsumption;
+    public GameObject itemPendingConsumption;
     //public bool isConsumable;
 
     //public float healthEffect;
@@ -41,7 +41,7 @@ public class InventoryItem : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
         itemInfoUI_itemDescription = itemInfoUI.transform.Find("ItemDescription").GetComponent<TMP_Text>();
     }
 
-    void OnEnable()
+    void Update()
     {
         if (ItemID != null && gameObject.name != ItemID.ItemName)
         {
@@ -49,12 +49,8 @@ public class InventoryItem : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
             gameObject.name = ItemID.ItemName;
             GetComponent<Image>().sprite = ItemID.ItemIcon;
         }
-    }
 
-    void Update()
-    {
-
-        if(isSelected)
+        if (isSelected)
         {
             gameObject.GetComponent<DragDrop>().enabled = false;
         }
@@ -69,7 +65,15 @@ public class InventoryItem : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
         itemInfoUI.SetActive(true);
         itemInfoUI_itemIcon.sprite = ItemID.ItemIcon;
         itemInfoUI_itemName.text = ItemID.ItemName;
-        itemInfoUI_itemDescription.text = ItemID.ItemDescription;
+
+        if(ItemID.IsConsumable)
+        {
+            itemInfoUI_itemDescription.text = ItemID.ItemDescription + " +" + ItemID.healthEffect + " Health, +" + ItemID.hungerEffect + " Hunger.";
+        }
+        else
+        {
+            itemInfoUI_itemDescription.text = ItemID.ItemDescription;
+        }
     }
 
     public void OnPointerExit(PointerEventData eventData)
@@ -112,7 +116,7 @@ public class InventoryItem : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
         }
     }
 
-    private void consumingFunction(float healthEffect, float hungerEffect)
+    public void consumingFunction(float healthEffect, float hungerEffect)
     {
         itemInfoUI.SetActive(false);
 

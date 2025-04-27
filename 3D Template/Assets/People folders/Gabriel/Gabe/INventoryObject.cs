@@ -5,7 +5,7 @@ public class INventoryObject : MonoBehaviour
 {
     public ItemAssets inventoryItem;
     //private float distanced;
-    private float distancebetweentarget = 5;
+    private float distancebetweentarget = 3;
     private GameObject player;
 
     private GameObject textContainer;
@@ -27,7 +27,9 @@ public class INventoryObject : MonoBehaviour
 
         if (Physics.Raycast(ray, out RaycastHit hit, distancebetweentarget) && hit.collider.gameObject == this.gameObject)
         {
-            print("Works");
+            Debug.DrawLine(player.transform.position, hit.collider.transform.position);
+
+            print(hit.collider.name);
                 CurrentTarget = this.gameObject;
 
 
@@ -35,9 +37,9 @@ public class INventoryObject : MonoBehaviour
 
                 if (Input.GetKeyDown(KeyCode.E) && InventorySystem.Instance.isOpen == false && InventorySystem.Instance.IsDraggingItem == false)
                 {
-                    if (!InventorySystem.Instance.CheckIfFull())
+                    if (InventorySystem.Instance.CheckSlotIsAvailable(1))
                     {
-                        InventorySystem.Instance.AddToInventory(inventoryItem);
+                        InventorySystem.Instance.AddToInventory(inventoryItem, inventoryItem.Quantity);
                         DestroyImmediate(this.gameObject);
                     }
                     else
@@ -64,6 +66,11 @@ public class INventoryObject : MonoBehaviour
             //Debug.Log("No Pick Up UI");
             textContainer.SetActive(false);
         }
+    }
+
+    private void OnDrawGizmos()
+    {
+        
     }
 
 }

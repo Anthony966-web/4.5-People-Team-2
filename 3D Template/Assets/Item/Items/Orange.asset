@@ -16,9 +16,9 @@ MonoBehaviour:
   ItemName: Orange
   ItemModel: {fileID: 0}
   Quantity: 1
-  ItemDescription: Orange
+  ItemDescription: Food (Right Click To Eat)
   IsDroppable: 0
-  IsEquippable: 0
+  IsEquippable: 1
   IsConsumable: 1
   healthEffect: 10
   hungerEffect: 10

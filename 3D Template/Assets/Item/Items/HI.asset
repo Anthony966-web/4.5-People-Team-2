@@ -18,7 +18,7 @@ MonoBehaviour:
   Quantity: 1
   ItemDescription: Hi
   IsDroppable: 0
-  IsEquippable: 0
+  IsEquippable: 1
   IsConsumable: 0
   healthEffect: 0
   hungerEffect: 0

@@ -71,7 +71,7 @@ public class CraftingSystem : MonoBehaviour
     private void CraftAnyItem(ItemBlueprint craftBlueprint)
     {
         // Add Crafted Item Into Inventory
-        InventorySystem.Instance.AddToInventory(craftBlueprint.itemname);
+        InventorySystem.Instance.AddToInventory(craftBlueprint.itemname, craftBlueprint.ProduceAmount);
 
         // Remove Resources From Inventory
         for (int i = 0; i < craftBlueprint.Req.Count; i++)
@@ -120,41 +120,70 @@ public class CraftingSystem : MonoBehaviour
     }
 
 
+    //public void RefreshNeededItems()
+    //{
+    //    int stone_count = 0;
+    //    int stick_count = 0;
+
+    //    InventoryItemList = InventorySystem.Instance.itemList;
+
+    //    foreach(ItemAssets itemname in InventoryItemList)
+    //    {
+
+    //        switch(itemname.ItemName)
+    //        {
+    //            case "Orange":
+    //                stone_count += 1;
+    //            break;
+    //            case "Apple":
+    //                stick_count += 1;
+    //            break;
+
+    //        }
+    //    }
+
+
+    //    //---- AXE ----//
+    //    AxeReq1.text = AxeBLP.ReqAmount[0] + " " + AxeBLP.Req[0].name + " [" + stone_count + "]";
+    //    AxeReq2.text = AxeBLP.ReqAmount[1] + " " + AxeBLP.Req[1].name + " [" + stick_count + "]";
+
+    //    if (stone_count >= AxeBLP.ReqAmount[0] &&  stick_count >= AxeBLP.ReqAmount[1] && InventorySystem.Instance.CheckSlotIsAvailable(1))
+    //    {
+    //        CraftAxeBTN.gameObject.SetActive(true);
+    //    }
+    //    else
+    //    {
+    //        CraftAxeBTN.gameObject.SetActive(false);
+    //    }
+    //}
+
+
     public void RefreshNeededItems()
     {
-        int stone_count = 0;
-        int stick_count = 0;
+        Dictionary<string, int> itemCounts = new Dictionary<string, int>();
 
-        InventoryItemList = InventorySystem.Instance.itemList;
+        var inventory = InventorySystem.Instance.itemList;
 
-        foreach(ItemAssets itemname in InventoryItemList)
+        // Count all items
+        foreach (ItemAssets item in inventory)
         {
-
-            switch(itemname.ItemName)
-            {
-                case "Orange":
-                    stone_count += 1;
-                break;
-                case "Apple":
-                    stick_count += 1;
-                break;
-
-            }
+            if (itemCounts.ContainsKey(item.ItemName))
+                itemCounts[item.ItemName]++;
+            else
+                itemCounts[item.ItemName] = 1;
         }
 
+        // Get counts safely
+        int stoneCount = itemCounts.ContainsKey("Orange") ? itemCounts["Orange"] : 0;
+        int stickCount = itemCounts.ContainsKey("Apple") ? itemCounts["Apple"] : 0;
 
-        //---- AXE ----//
-        AxeReq1.text = AxeBLP.ReqAmount[0] + " " + AxeBLP.Req[0].name + " [" + stone_count + "]";
-        AxeReq2.text = AxeBLP.ReqAmount[1] + " " + AxeBLP.Req[1].name + " [" + stick_count + "]";
+        // ---- AXE ---- //
+        AxeReq1.text = $"{AxeBLP.ReqAmount[0]} {AxeBLP.Req[0].name} [{stoneCount}]";
+        AxeReq2.text = $"{AxeBLP.ReqAmount[1]} {AxeBLP.Req[1].name} [{stickCount}]";
 
-        if (stone_count >= AxeBLP.ReqAmount[0] &&  stick_count >= AxeBLP.ReqAmount[1])
-        {
-            CraftAxeBTN.gameObject.SetActive(true);
-        }
-        else
-        {
-            CraftAxeBTN.gameObject.SetActive(false);
-        }
+        bool canCraftAxe = stoneCount >= AxeBLP.ReqAmount[0] && stickCount >= AxeBLP.ReqAmount[1] && InventorySystem.Instance.CheckSlotIsAvailable(1);
+
+        CraftAxeBTN.gameObject.SetActive(canCraftAxe);
     }
 }
 
