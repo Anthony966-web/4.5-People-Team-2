@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bc6d2c3b67905674e9bb08da5fc2cb8e, type: 3}
+  m_Name: Foundation
+  m_EditorClassIdentifier: 
+  ItemIcon: {fileID: 21300000, guid: 5f27b2d79faa3a14a99b89718a75e7af, type: 3}
+  ItemName: Foundation
+  ItemModel: {fileID: 0}
+  Quantity: 1
+  ItemDescription: Foundation
+  IsDroppable: 0
+  IsEquippable: 0
+  IsConsumable: 0
+  IsUseable: 1
+  itemPendingToBeUsed: {fileID: 1020390065561434825, guid: 290156231d2cd2f48a05517b5cd8874d,
+    type: 3}
+  healthEffect: 0
+  hungerEffect: 0

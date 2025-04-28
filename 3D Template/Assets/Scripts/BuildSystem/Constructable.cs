@@ -23,10 +23,10 @@ public class Constructable : MonoBehaviour
 
     private void Start()
     {
-        mRenderer = GetComponent<Renderer>();
+        mRenderer = transform.GetChild(0).GetComponent<Renderer>();
 
         mRenderer.material = defaultMaterial;
-        foreach (Transform child in transform)
+        foreach (Transform child in transform.GetChild(0).transform)
         {
             ghostList.Add(child.gameObject);
         }
@@ -46,18 +46,18 @@ public class Constructable : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Ground") && gameObject.CompareTag("activeConstructable"))
+        if (other.CompareTag("Ground") && gameObject.CompareTag("ActiveConstructable"))
         {
             isGrounded = true;
         }
 
-        if (other.CompareTag("Tree") || other.CompareTag("pickable") && gameObject.CompareTag("activeConstructable"))
+        if (other.CompareTag("Tree") || other.CompareTag("Pickable") && gameObject.CompareTag("ActiveConstructable"))
         {
 
             isOverlappingItems = true;
         }
 
-        if (other.gameObject.CompareTag("ghost") && gameObject.CompareTag("activeConstructable"))
+        if (other.gameObject.CompareTag("Ghost") && gameObject.CompareTag("ActiveConstructable"))
         {
             detectedGhostMemeber = true;
         }
@@ -65,17 +65,17 @@ public class Constructable : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.CompareTag("Ground") && gameObject.CompareTag("activeConstructable"))
+        if (other.CompareTag("Ground") && gameObject.CompareTag("ActiveConstructable"))
         {
             isGrounded = false;
         }
 
-        if (other.CompareTag("Tree") || other.CompareTag("pickable") && gameObject.CompareTag("activeConstructable"))
+        if (other.CompareTag("Tree") || other.CompareTag("Pickable") && gameObject.CompareTag("ActiveConstructable"))
         {
             isOverlappingItems = false;
         }
 
-        if (other.gameObject.CompareTag("ghost") && gameObject.CompareTag("activeConstructable"))
+        if (other.gameObject.CompareTag("Ghost") && gameObject.CompareTag("ActiveConstructable"))
         {
             detectedGhostMemeber = false;
         }
