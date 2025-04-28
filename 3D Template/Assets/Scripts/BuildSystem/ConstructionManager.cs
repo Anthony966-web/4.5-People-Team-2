@@ -37,16 +37,16 @@ public class ConstructionManager : MonoBehaviour
         }
     }
 
-    public void ActivateConstructionPlacement(string itemToConstruct)
+    public void ActivateConstructionPlacement(ItemAssets ItemID)
     {
-        GameObject item = Instantiate(Resources.Load<GameObject>(itemToConstruct));
+        GameObject item = Instantiate(ItemID.itemPendingToBeUsed);
 
         //change the name of the gameobject so it will not be (clone)
-        item.name = itemToConstruct;
+        item.name = ItemID.ItemName;
 
         item.transform.SetParent(constructionHoldingSpot.transform, false);
         itemToBeConstructed = item;
-        itemToBeConstructed.gameObject.tag = "activeConstructable";
+        itemToBeConstructed.gameObject.tag = "ActiveConstructable";
 
         // Disabling the non-trigger collider so our mouse can cast a ray
         itemToBeConstructed.GetComponent<Constructable>().solidCollider.enabled = false;
