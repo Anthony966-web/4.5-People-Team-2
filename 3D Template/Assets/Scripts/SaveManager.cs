@@ -55,7 +55,7 @@ public class SaveManager : MonoBehaviour
         return new PlayerData(playerStats, playerPosAndRot);
     }
 
-    public void SaveAllGameData(AllGameData gameData)
+    public void SelectSavingType(AllGameData gameData)
     {
         if (IsSaveingToJson)
         {
@@ -106,4 +106,37 @@ public class SaveManager : MonoBehaviour
 
 
     #endregion
+
+
+    public void TempSaveGame()
+    {
+        SaveManager.Instance.SaveGame();
+    }
+
+    public AllGameData SelectLoadingType()
+    {
+        if(IsSaveingToJson)
+        {
+            AllGameData gameData = LoadGameDataFromBinaryFile();
+            return gameData;
+        }
+        else
+        {
+            AllGameData gameData = LoadGameDataFromBinaryFile();
+            return gameData;
+        }
+    }
+
+    public void LoadGame()
+    {
+        // Player Data
+        SetPlayerData(LoadAllGameData().playerData);
+
+        // Enviroment Data
+    }
+
+    private void SetPlayerData()
+    {
+        
+    }
 }
