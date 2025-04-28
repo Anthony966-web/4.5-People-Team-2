@@ -6,12 +6,7 @@ public class PlayerAttack : MonoBehaviour
     public float attackRange = 2f;
     public LayerMask enemyLayer;
     public Transform attackPoint;
-    public Rigidbody rb;
 
-    private void Start()
-    {
-        rb.gameObject.GetComponent<Rigidbody>();
-    }
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Mouse0)) // Left-click
