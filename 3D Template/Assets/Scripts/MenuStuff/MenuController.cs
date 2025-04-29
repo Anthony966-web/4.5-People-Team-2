@@ -7,6 +7,8 @@ using TMPro;
 
 public class MenuController : MonoBehaviour
 {
+    public Button LoadGameDialog_YesBtn;
+
     [Header("Volume Setting")]
     [SerializeField] private TMP_Text volumeTextValue = null;
     [SerializeField] private Slider volumeSlider = null;
@@ -70,6 +72,12 @@ public class MenuController : MonoBehaviour
         resolutionDropdown.AddOptions(options);
         resolutionDropdown.value = currentResolutionIndex;
         resolutionDropdown.RefreshShownValue();
+
+        LoadGameDialog_YesBtn.onClick.AddListener(() =>
+        {
+            SaveManager.Instance.StartLoadedGame();
+        });
+
     }
 
     public void SetResolution(int resolutionIndex)

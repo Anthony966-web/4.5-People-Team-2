@@ -4,9 +4,12 @@ using System.Collections.Generic;
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class SaveManager : MonoBehaviour
 {
+
+    
 
     public static SaveManager Instance { get; set; }
     private void Awake()
@@ -26,6 +29,12 @@ public class SaveManager : MonoBehaviour
     public bool IsSaveingToJson;
 
     #region  || ---- General Section ---- ||
+
+    #region || ----- Saving ----- ||
+    public void TempSaveGame()
+    {
+        SaveManager.Instance.SaveGame();
+    }
 
     public void SaveGame()
     {
@@ -55,7 +64,7 @@ public class SaveManager : MonoBehaviour
         return new PlayerData(playerStats, playerPosAndRot);
     }
 
-    public void SelectSavingType(AllGameData gameData)
+    public void SavingTypeSwitch(AllGameData gameData)
     {
         if (IsSaveingToJson)
         {
@@ -67,6 +76,76 @@ public class SaveManager : MonoBehaviour
         }
         
     }
+    #endregion
+
+
+    #region || ----- Loading ----- ||
+    public AllGameData LoadingTypeSwitch()
+    {
+        if (IsSaveingToJson)
+        {
+            AllGameData gameData = LoadGameDataFromBinaryFile();
+            return gameData;
+        }
+        else
+        {
+            AllGameData gameData = LoadGameDataFromBinaryFile();
+            return gameData;
+        }
+    }
+
+    public void LoadGame()
+    {
+        // Player Data
+        SetPlayerData(LoadingTypeSwitch().playerData);
+
+        // Enviroment Data
+
+    }
+
+    private void SetPlayerData(PlayerData playerData)
+    {
+        // Setting Player Stats
+
+        PlayerState.Instance.currentHealth = playerData.playerStats[0];
+        PlayerState.Instance.currentHunger = playerData.playerStats[1];
+        PlayerState.Instance.currentToxicImmunity = playerData.playerStats[2];
+
+        // Setting Player Position
+
+        Vector3 loadedPosition;
+        loadedPosition.x = playerData.playerPositionAndRotation[0];
+        loadedPosition.y = playerData.playerPositionAndRotation[1];
+        loadedPosition.z = playerData.playerPositionAndRotation[2];
+
+        PlayerState.Instance.playerBody.transform.position = loadedPosition;
+
+        // Setting Player Rotation
+
+        Vector3 loadedRotation;
+        loadedRotation.x = playerData.playerPositionAndRotation[3];
+        loadedRotation.y = playerData.playerPositionAndRotation[4];
+        loadedRotation.z = playerData.playerPositionAndRotation[5];
+
+        PlayerState.Instance.playerBody.transform.rotation = Quaternion.Euler(loadedRotation);
+    }
+
+    public void StartLoadedGame()
+    {
+        SceneManager.LoadScene("Game1");
+
+        StartCoroutine(DelayedLoading());
+    }
+
+    private IEnumerator DelayedLoading()
+    {
+        yield return new WaitForSeconds(1f);
+
+        LoadGame();
+
+    }
+
+    #endregion
 
     #endregion
 
@@ -96,6 +175,8 @@ public class SaveManager : MonoBehaviour
             AllGameData data = formatter.Deserialize(stream) as AllGameData;
             stream.Close();
 
+            print("Data Loaded from" + Application.persistentDataPath + "/save_game.bin");
+
             return data;    
         }
         else
@@ -108,35 +189,10 @@ public class SaveManager : MonoBehaviour
     #endregion
 
 
-    public void TempSaveGame()
+    void OnApplicationQuit()
     {
-        SaveManager.Instance.SaveGame();
+
+        SaveManager.Instance.TempSaveGame();
     }
 
-    public AllGameData SelectLoadingType()
-    {
-        if(IsSaveingToJson)
-        {
-            AllGameData gameData = LoadGameDataFromBinaryFile();
-            return gameData;
-        }
-        else
-        {
-            AllGameData gameData = LoadGameDataFromBinaryFile();
-            return gameData;
-        }
-    }
-
-    public void LoadGame()
-    {
-        // Player Data
-        //SetPlayerData(LoadAllGameData().playerData);
-
-        // Enviroment Data
-    }
-
-    private void SetPlayerData()
-    {
-        
-    }
 }
