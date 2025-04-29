@@ -19,6 +19,7 @@ public class GhostItem : MonoBehaviour
     {
         mRenderer = GetComponent<Renderer>();
         solidCollider = GetComponent<BoxCollider>();
+        print(solidCollider.isTrigger);
         // We get them from the manager, because this way the referece always exists.
         semiTransparentMat = ConstructionManager.Instance.ghostSemiTransparentMat;
         fullTransparentnMat = ConstructionManager.Instance.ghostFullTransparentMat;
