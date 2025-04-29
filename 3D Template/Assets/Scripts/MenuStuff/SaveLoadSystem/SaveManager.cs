@@ -189,6 +189,10 @@ public class SaveManager : MonoBehaviour
     #endregion
 
 
-   
-   
+    void OnApplicationQuit()
+    {
+
+        SaveManager.Instance.TempSaveGame();
+    }
+
 }
