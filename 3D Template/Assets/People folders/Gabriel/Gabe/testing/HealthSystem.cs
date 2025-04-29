@@ -81,7 +81,7 @@ public class HealthSystem : MonoBehaviour, IDamageable
         }
         else
         {
-            Destroy(gameObject); // Enemy dies
+            Destroy(this.gameObject); // Enemy dies
         }
     }
 }

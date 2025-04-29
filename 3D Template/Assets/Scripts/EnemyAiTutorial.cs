@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.AI;
 using System.Collections;
 using Unity.VisualScripting;
+using System.Linq;
 
 public class EnemyAiTutorial : MonoBehaviour
 {
@@ -12,6 +13,7 @@ public class EnemyAiTutorial : MonoBehaviour
     public LayerMask WhatIsGround, WhatIsPlayer;
     public GameObject Projectile;
     public float health;
+    
 
     //patrol
     public Vector3 walkpoint;
@@ -61,7 +63,7 @@ public class EnemyAiTutorial : MonoBehaviour
 
             Vector3 distanceToWalkPoint = transform.position - walkpoint;
 
-            if (distanceToWalkPoint.magnitude < 2f)
+            if (distanceToWalkPoint.magnitude < 5f)
             {
                 yield return new WaitForSeconds(3);
                 walkPointset = false;
@@ -119,7 +121,7 @@ public class EnemyAiTutorial : MonoBehaviour
         float randomX = Random.Range(-walkpointRange, walkpointRange);
         
         walkpoint = new Vector3(transform.position.x + randomX, transform.position.y, transform.position.z + randomZ);
-        if (Physics.Raycast(walkpoint, -transform.up, 2f, WhatIsGround))
+        if (Physics.Raycast(walkpoint, -transform.up, 5f, WhatIsGround))
         {
             walkPointset = true;
 

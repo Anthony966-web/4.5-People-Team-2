@@ -1,3 +1,5 @@
+using NUnit.Framework.Internal;
+using UnityEditor.PackageManager;
 using UnityEngine;
 using UnityEngine.UIElements;
 
@@ -13,6 +15,8 @@ public class EnemyAttack : MonoBehaviour
     private bool isStunned = false;
     public float knockbackForce = 10f;
     private Rigidbody rb;
+    public GameObject explosion;
+    public Camera cam;
 
     private void Start()
     {
@@ -71,12 +75,18 @@ public class EnemyAttack : MonoBehaviour
             }
         }
     }
-    private System.Collections.IEnumerator StunRoutine()
+    public System.Collections.IEnumerator StunRoutine()
     {
-        Vector3 dir = this.gameObject.transform.position - transform.position;
+        test();
+        Vector3 dir = this.gameObject.transform.position - transform.position * 10;
         isStunned = true;
         yield return new WaitForSeconds(stunDuration);
         isStunned = false;
+    }
+
+    public void test()
+    {
+        Instantiate(explosion, this.gameObject.transform.position, Quaternion.identity);
     }
     void OnDrawGizmosSelected()
     {
