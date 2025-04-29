@@ -163,7 +163,7 @@ public class ConstructionManager : MonoBehaviour
             if (Physics.Raycast(ray, out hit))
             {
                 var selectionTransform = hit.transform;
-                if (selectionTransform.gameObject.CompareTag("ghost"))
+                if (selectionTransform.gameObject.CompareTag("Ghost"))
                 {
                     itemToBeConstructed.SetActive(false);
                     selectingAGhost = true;
@@ -244,7 +244,7 @@ public class ConstructionManager : MonoBehaviour
         itemToBeConstructed.GetComponent<Constructable>().ExtractGhostMembers();
         // Setting the default color/material
         itemToBeConstructed.GetComponent<Constructable>().SetDefaultColor();
-        itemToBeConstructed.tag = "placedFoundation";
+        itemToBeConstructed.tag = "PlacedFoundation";
         itemToBeConstructed.GetComponent<Constructable>().enabled = false;
         // Enabling back the solider collider that we disabled earlier
         itemToBeConstructed.GetComponent<Constructable>().solidCollider.enabled = true;

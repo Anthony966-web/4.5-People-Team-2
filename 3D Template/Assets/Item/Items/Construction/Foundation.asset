@@ -21,7 +21,7 @@ MonoBehaviour:
   IsEquippable: 0
   IsConsumable: 0
   IsUseable: 1
-  itemPendingToBeUsed: {fileID: 1020390065561434825, guid: 290156231d2cd2f48a05517b5cd8874d,
+  itemPendingToBeUsed: {fileID: 9181541187100603645, guid: 290156231d2cd2f48a05517b5cd8874d,
     type: 3}
   healthEffect: 0
   hungerEffect: 0

@@ -33,7 +33,7 @@ public class SaveManager : MonoBehaviour
 
         data.playerData = GetPlayerData();
 
-        SaveAllGameData(data);
+        //SaveAllGameData(data);
     }
 
     private PlayerData GetPlayerData()
@@ -130,7 +130,7 @@ public class SaveManager : MonoBehaviour
     public void LoadGame()
     {
         // Player Data
-        SetPlayerData(LoadAllGameData().playerData);
+        //SetPlayerData(LoadAllGameData().playerData);
 
         // Enviroment Data
     }

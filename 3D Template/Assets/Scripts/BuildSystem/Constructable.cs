@@ -23,7 +23,8 @@ public class Constructable : MonoBehaviour
 
     private void Start()
     {
-        mRenderer = transform.GetChild(0).GetComponent<Renderer>();
+        mRenderer = GetComponent<Renderer>();
+        solidCollider = GetComponent<BoxCollider>();
 
         mRenderer.material = defaultMaterial;
         foreach (Transform child in transform.GetChild(0).transform)
