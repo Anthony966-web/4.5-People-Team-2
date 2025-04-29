@@ -84,7 +84,7 @@ public class InventorySystem : MonoBehaviour
         //    itemToAdd = null;
         //}
 
-        if (Input.GetKeyDown(KeyCode.Tab) && !isOpen)
+        if (Input.GetKeyDown(KeyCode.Tab) && !isOpen && !ConstructionManager.Instance.inConstructionMode)
         {
             inventoryScreenUI.SetActive(true);
             Cursor.lockState = CursorLockMode.None;
