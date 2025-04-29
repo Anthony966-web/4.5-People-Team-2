@@ -34,7 +34,7 @@ public class InventoryItem : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
     public bool isSelected;
 
     // ---- Construction ---- //
-    public GameObject itemPendingToBeUsed;
+    //public GameObject itemPendingToBeUsed;
 
     void Start()
     {
@@ -94,10 +94,6 @@ public class InventoryItem : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
                 consumingFunction(ItemID.healthEffect, ItemID.hungerEffect);
             }
 
-            //print(ItemID.IsEquippable);
-            //print(isInsideQuickSlot);
-            //print(EquipSystem.Instance.CheckIfFull());
-
             if (ItemID.IsEquippable && isInsideQuickSlot == false && EquipSystem.Instance.CheckIfFull() == false)
             {
                 EquipSystem.Instance.AddToQuickSlots(gameObject);
@@ -106,8 +102,9 @@ public class InventoryItem : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
 
             if (ItemID.IsUseable)
             {
-                itemPendingToBeUsed = ItemID.itemPendingToBeUsed;
-
+                //itemPendingToBeUsed = ItemID.itemPendingToBeUsed;
+                ConstructionManager.Instance.itemToBeDestroyed = gameObject;
+                gameObject.SetActive(false);
                 UseItem();
             }
         }
@@ -152,12 +149,7 @@ public class InventoryItem : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
                 CraftingSystem.Instance.RefreshNeededItems();
             }
 
-            if(ItemID.IsUseable && itemPendingToBeUsed == ItemID.itemPendingToBeUsed)
-            {
-                DestroyImmediate(gameObject);
-                InventorySystem.Instance.ReCalculateList();
-                CraftingSystem.Instance.RefreshNeededItems();
-            }
+
         }
     }
 

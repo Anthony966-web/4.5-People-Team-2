@@ -26,8 +26,6 @@ public class Constructable : MonoBehaviour
         mRenderer = GetComponent<Renderer>();
         solidCollider = GetComponent<BoxCollider>();
 
-        print(solidCollider.isTrigger);
-
         mRenderer.material = defaultMaterial;
         foreach (Transform child in transform)
         {

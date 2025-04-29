@@ -16,6 +16,7 @@ public class CraftingSystem : MonoBehaviour
 
     // Category Buttons
     Button ToolsBTN;
+    Button CunstructionBTN;
 
     // Craft Buttons
     Button CraftAxeBTN;
@@ -50,6 +51,9 @@ public class CraftingSystem : MonoBehaviour
         ToolsBTN = CraftingScreenUI.transform.Find("Contents").Find("ToolsButton").GetComponent<Button>();
         ToolsBTN.onClick.AddListener(delegate { OpenToolsCategory(); });
 
+        CunstructionBTN = CraftingScreenUI.transform.Find("Contents").Find("ConstructionButton").GetComponent<Button>();
+        CunstructionBTN.onClick.AddListener(delegate { OpenConstructionCategory(); });
+
         // Axe
         AxeReq1 = ToolsScreenUI.transform.Find("Contents").transform.Find("Axe").transform.Find("req1").GetComponent<TMP_Text>();
         AxeReq2 = ToolsScreenUI.transform.Find("Contents").transform.Find("Axe").transform.Find("req2").GetComponent<TMP_Text>();
@@ -68,6 +72,11 @@ public class CraftingSystem : MonoBehaviour
     {
         CraftingScreenUI.SetActive(false);
         ToolsScreenUI.SetActive(true);
+    }
+
+    private void OpenConstructionCategory()
+    {
+        CraftingScreenUI.SetActive(false);
         ConstructionScreenUI.SetActive(true);
     }
 
@@ -106,7 +115,7 @@ public class CraftingSystem : MonoBehaviour
     void Update()
     {
 
-        if (Input.GetKeyDown(KeyCode.Tab) && !isOpen)
+        if (Input.GetKeyDown(KeyCode.Tab) && !isOpen && !ConstructionManager.Instance.inConstructionMode)
         {
             CraftingScreenUI.SetActive(true);
             Cursor.lockState = CursorLockMode.None;
