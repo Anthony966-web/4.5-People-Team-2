@@ -32,18 +32,18 @@ public class EnemyAiTutorial : MonoBehaviour
         PlayerInSightRange = Physics.CheckSphere(transform.position, sightRange, WhatIsPlayer);
         PlayerInAttackRange = Physics.CheckSphere(transform.position, attackRange, WhatIsPlayer);
 
-        if (!PlayerInSightRange) //&& !PlayerInAttackRange)
+        if (!PlayerInSightRange && !PlayerInAttackRange)
         {
-            Patroling();
+            StartCoroutine(Patroling());
         }
-        if (PlayerInSightRange)/* && !PlayerInAttackRange)*/
+        if (PlayerInSightRange && !PlayerInAttackRange)
         {
             ChasePlayer();
         }
-        //if (PlayerInSightRange && PlayerInAttackRange)
-        //{
-        //    AttackPlayer();
-        //}
+        if (PlayerInSightRange && PlayerInAttackRange)
+        {
+            AttackPlayer();
+        }
     }
     private void Awake()
     {
@@ -51,10 +51,10 @@ public class EnemyAiTutorial : MonoBehaviour
         Agent = GetComponent<NavMeshAgent>();
     }
 
-    private void Patroling()
+    private IEnumerator Patroling()
     {
         if (!walkPointset)
-        { StartCoroutine(SearchWalkPoint()); }
+        { SearchWalkPoint(); }
         if (walkPointset)
         {
             Agent.SetDestination(walkpoint);
@@ -63,6 +63,7 @@ public class EnemyAiTutorial : MonoBehaviour
 
             if (distanceToWalkPoint.magnitude < 2f)
             {
+                yield return new WaitForSeconds(3);
                 walkPointset = false;
             }
         }
@@ -72,25 +73,26 @@ public class EnemyAiTutorial : MonoBehaviour
         Agent.SetDestination(Player.position);
     }
 
-    //private void AttackPlayer()
-    //{
-    //    Agent.SetDestination(transform.position);
-    //    transform.LookAt(Player);
+    private void AttackPlayer()
+    {
+        Agent.SetDestination(transform.position);
+        transform.LookAt(Player);
 
-    //    if (!alreadyAttacked) {
-    //        Rigidbody rb = Instantiate(Projectile, transform.position, Quaternion.identity).GetComponent<Rigidbody>();
-    //        rb.AddForce(transform.forward * 32f, ForceMode.Impulse);
-    //        rb.AddForce(transform.up * 8f, ForceMode.Impulse);
+        if (!alreadyAttacked)
+        {
+            //Rigidbody rb = Instantiate(Projectile, transform.position, Quaternion.identity).GetComponent<Rigidbody>();
+            //rb.AddForce(transform.forward * 32f, ForceMode.Impulse);
+            //rb.AddForce(transform.up * 8f, ForceMode.Impulse);
 
-    //        alreadyAttacked = true;
-    //        Invoke(nameof(ResetAttack), timeBetweenAttacks);
+            alreadyAttacked = true;
+            Invoke(nameof(ResetAttack), timeBetweenAttacks);
 
-    //    }
-    //}
-    //private void ResetAttack()
-    //{
-    //   alreadyAttacked = false;
-    //}
+        }
+    }
+    private void ResetAttack()
+    {
+        alreadyAttacked = false;
+    }
 
     public void TakeDamage(int damage)
     {
@@ -111,21 +113,21 @@ public class EnemyAiTutorial : MonoBehaviour
         Gizmos.color = Color.yellow;
         Gizmos.DrawWireSphere(transform.position, sightRange);
     }
-    private IEnumerator SearchWalkPoint()
+    private void SearchWalkPoint()
     {
         float randomZ = Random.Range(-walkpointRange, walkpointRange);
         float randomX = Random.Range(-walkpointRange, walkpointRange);
         
         walkpoint = new Vector3(transform.position.x + randomX, transform.position.y, transform.position.z + randomZ);
-        if (Physics.Raycast(walkpoint, -transform.up, 5f, WhatIsGround))
+        if (Physics.Raycast(walkpoint, -transform.up, 2f, WhatIsGround))
         {
             walkPointset = true;
 
         }
-        yield return new WaitForSeconds(10);
+        
     }
     private void OnCollisionEnter(Collision collision)
     {
-        StartCoroutine(SearchWalkPoint());
+        SearchWalkPoint();
     }
 }
