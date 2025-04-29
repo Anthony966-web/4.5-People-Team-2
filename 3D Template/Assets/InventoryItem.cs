@@ -130,11 +130,12 @@ public class InventoryItem : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
         switch (ItemID.ItemName)
         {
             case "Foundation":
-                ConstructionManager.Instance.ActivateConstructionPlacement("FoundationModel");
+                ConstructionManager.Instance.ActivateConstructionPlacement(ItemID);
                 break;
 
             default:
                 // Do Nothing
+                print("No Item Found ):");
                 break;
         }
     }

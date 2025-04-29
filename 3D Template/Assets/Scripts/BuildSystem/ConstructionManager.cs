@@ -37,16 +37,16 @@ public class ConstructionManager : MonoBehaviour
         }
     }
 
-    public void ActivateConstructionPlacement(string itemToConstruct)
+    public void ActivateConstructionPlacement(ItemAssets ItemID)
     {
-        GameObject item = Instantiate(Resources.Load<GameObject>(itemToConstruct));
+        GameObject item = Instantiate(ItemID.itemPendingToBeUsed);
 
         //change the name of the gameobject so it will not be (clone)
-        item.name = itemToConstruct;
+        item.name = ItemID.ItemName;
 
         item.transform.SetParent(constructionHoldingSpot.transform, false);
         itemToBeConstructed = item;
-        itemToBeConstructed.gameObject.tag = "activeConstructable";
+        itemToBeConstructed.gameObject.tag = "ActiveConstructable";
 
         // Disabling the non-trigger collider so our mouse can cast a ray
         itemToBeConstructed.GetComponent<Constructable>().solidCollider.enabled = false;
@@ -163,7 +163,7 @@ public class ConstructionManager : MonoBehaviour
             if (Physics.Raycast(ray, out hit))
             {
                 var selectionTransform = hit.transform;
-                if (selectionTransform.gameObject.CompareTag("ghost"))
+                if (selectionTransform.gameObject.CompareTag("Ghost"))
                 {
                     itemToBeConstructed.SetActive(false);
                     selectingAGhost = true;
@@ -244,7 +244,7 @@ public class ConstructionManager : MonoBehaviour
         itemToBeConstructed.GetComponent<Constructable>().ExtractGhostMembers();
         // Setting the default color/material
         itemToBeConstructed.GetComponent<Constructable>().SetDefaultColor();
-        itemToBeConstructed.tag = "placedFoundation";
+        itemToBeConstructed.tag = "PlacedFoundation";
         itemToBeConstructed.GetComponent<Constructable>().enabled = false;
         // Enabling back the solider collider that we disabled earlier
         itemToBeConstructed.GetComponent<Constructable>().solidCollider.enabled = true;
