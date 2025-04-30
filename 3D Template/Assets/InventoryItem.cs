@@ -130,6 +130,10 @@ public class InventoryItem : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
                 ConstructionManager.Instance.ActivateConstructionPlacement(ItemID);
                 break;
 
+            case "Wall":
+                ConstructionManager.Instance.ActivateConstructionPlacement(ItemID);
+                break;
+
             default:
                 // Do Nothing
                 print("No Item Found ):");

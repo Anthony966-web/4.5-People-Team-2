@@ -15,6 +15,8 @@ TagManager:
   - Pickable
   - Ghost
   - PlacedFoundation
+  - WallGhost
+  - PlacedWall
   layers:
   - Default
   - TransparentFX
