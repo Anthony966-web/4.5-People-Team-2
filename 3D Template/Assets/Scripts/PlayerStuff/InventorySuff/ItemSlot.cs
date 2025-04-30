@@ -7,6 +7,12 @@ using UnityEngine.EventSystems;
 
 public class ItemSlot : MonoBehaviour, IDropHandler
 {
+
+    public void Start()
+    {
+        transform.GetChild(0).transform.position = this.transform.position;
+    }
+
     public GameObject Item
     {
         get
