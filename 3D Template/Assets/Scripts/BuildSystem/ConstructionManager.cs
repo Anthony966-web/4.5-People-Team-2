@@ -184,6 +184,8 @@ public class ConstructionManager : MonoBehaviour
             if (Physics.Raycast(ray, out hit))
             {
                 var selectionTransform = hit.transform;
+                print(selectionTransform);
+                print(hit.transform.name);
                 if (selectionTransform.gameObject.CompareTag("Ghost") && itemToBeConstructed.name == "Foundation")
                 {
                     itemToBeConstructed.SetActive(false);
