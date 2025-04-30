@@ -8,8 +8,9 @@ using UnityEngine.SceneManagement;
 
 public class SaveManager : MonoBehaviour
 {
+    public string saveSlot;
 
-    
+
 
     public static SaveManager Instance { get; set; }
     private void Awake()
@@ -33,14 +34,17 @@ public class SaveManager : MonoBehaviour
     #region || ----- Saving ----- ||
     public void TempSaveGame()
     {
-        SaveManager.Instance.SaveGame();
+        SaveGame();
     }
 
     public void SaveGame()
     {
+        print("works");
         AllGameData data = new AllGameData();
-
+        print("works1");
         data.playerData = GetPlayerData();
+        print("works2");
+        SaveGameDataToBinaryFile(data);
 
         //SaveAllGameData(data);
     }
@@ -52,14 +56,15 @@ public class SaveManager : MonoBehaviour
         playerStats[1] = PlayerState.Instance.currentHunger;
         playerStats[2] = PlayerState.Instance.currentToxicImmunity;
 
-        float[] playerPosAndRot = new float[6];
+        float[] playerPosAndRot = new float[7];
         playerPosAndRot[0] = PlayerState.Instance.playerBody.transform.position.x;
         playerPosAndRot[1] = PlayerState.Instance.playerBody.transform.position.y;
         playerPosAndRot[2] = PlayerState.Instance.playerBody.transform.position.z;
 
-        playerPosAndRot[3] = PlayerState.Instance.playerBody.transform.position.x;
-        playerPosAndRot[4] = PlayerState.Instance.playerBody.transform.position.y;
-        playerPosAndRot[5] = PlayerState.Instance.playerBody.transform.position.z;
+        playerPosAndRot[3] = PlayerState.Instance.playerBody.transform.rotation.x;
+        playerPosAndRot[4] = PlayerState.Instance.playerBody.transform.rotation.y;
+        playerPosAndRot[5] = PlayerState.Instance.playerBody.transform.rotation.z;
+        playerPosAndRot[6] = PlayerState.Instance.playerBody.transform.rotation.w;
 
         return new PlayerData(playerStats, playerPosAndRot);
     }
@@ -122,10 +127,11 @@ public class SaveManager : MonoBehaviour
 
         // Setting Player Rotation
 
-        Vector3 loadedRotation;
+        Vector4 loadedRotation;
         loadedRotation.x = playerData.playerPositionAndRotation[3];
         loadedRotation.y = playerData.playerPositionAndRotation[4];
         loadedRotation.z = playerData.playerPositionAndRotation[5];
+        loadedRotation.w = playerData.playerPositionAndRotation[6];
 
         PlayerState.Instance.playerBody.transform.rotation = Quaternion.Euler(loadedRotation);
     }
@@ -155,18 +161,18 @@ public class SaveManager : MonoBehaviour
     {
         BinaryFormatter formatter = new BinaryFormatter();
 
-        string path = Application.persistentDataPath + "/save_game.bin";
+        string path = Application.persistentDataPath + "/save_game" + saveSlot + ".bin";
         FileStream stream = new FileStream(path, FileMode.Create);
 
         formatter.Serialize(stream, gameData);
         stream.Close();
 
-        print("Data saved to" + Application.persistentDataPath + "/save_game.bin");
+        print("Data saved to" + Application.persistentDataPath + "/save_game" + saveSlot + ".bin");
     }
 
     public AllGameData LoadGameDataFromBinaryFile()
     {
-        string path = Application.persistentDataPath + "/save_game.bin";
+        string path = Application.persistentDataPath + "/save_game" + saveSlot + ".bin";
         if (File.Exists(path))
         {
             BinaryFormatter formatter = new BinaryFormatter();
@@ -175,7 +181,7 @@ public class SaveManager : MonoBehaviour
             AllGameData data = formatter.Deserialize(stream) as AllGameData;
             stream.Close();
 
-            print("Data Loaded from" + Application.persistentDataPath + "/save_game.bin");
+            print("Data Loaded from" + Application.persistentDataPath + "/save_game" + saveSlot + ".bin");
 
             return data;    
         }
