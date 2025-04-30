@@ -10,6 +10,7 @@ public class HealthSystem : MonoBehaviour, IDamageable
     public int maxHealth = 100;
     public int currentHealth;
     public PlayableDirector youdied;
+    public GameObject gameover;
 
     public float knockbackForce = 5f;
     private Rigidbody rb;
@@ -79,6 +80,7 @@ public class HealthSystem : MonoBehaviour, IDamageable
         {
             Debug.Log("Player died!");
             Destroy(this.gameObject);
+            youdied.Play();
             // Disable movement or show respawn screen
         }
         else
