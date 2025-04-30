@@ -84,7 +84,19 @@ public class InventorySystem : MonoBehaviour
         //    itemToAdd = null;
         //}
 
-        if (Input.GetKeyDown(KeyCode.Tab) && !isOpen && !ConstructionManager.Instance.inConstructionMode)
+        if (Input.GetKeyDown(KeyCode.Tab) && !ConstructionManager.Instance.inConstructionMode)
+        {
+            if (isOpen)
+            {
+                isOpen = false;
+            }
+            else
+            {
+                isOpen = true;
+            }
+        }
+
+        if (isOpen)
         {
             inventoryScreenUI.SetActive(true);
             Cursor.lockState = CursorLockMode.None;
@@ -92,7 +104,7 @@ public class InventorySystem : MonoBehaviour
             isOpen = true;
 
         }
-        else if (Input.GetKeyDown(KeyCode.Tab) && isOpen)
+        else if (!isOpen)
         {
             inventoryScreenUI.SetActive(false);
             Cursor.lockState = CursorLockMode.Locked;

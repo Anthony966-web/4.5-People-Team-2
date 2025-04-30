@@ -52,7 +52,7 @@ public class Constructable : MonoBehaviour
             isGrounded = true;
         }
 
-        if (other.CompareTag("Tree") || other.CompareTag("Pickable") && gameObject.CompareTag("ActiveConstructable"))
+        if ((other.CompareTag("Tree") || other.CompareTag("Pickable")) && gameObject.CompareTag("ActiveConstructable"))
         {
 
             isOverlappingItems = true;
@@ -71,7 +71,7 @@ public class Constructable : MonoBehaviour
             isGrounded = false;
         }
 
-        if (other.CompareTag("Tree") || other.CompareTag("Pickable") && gameObject.CompareTag("ActiveConstructable"))
+        if ((other.CompareTag("Tree") || other.CompareTag("Pickable")) && gameObject.CompareTag("ActiveConstructable"))
         {
             isOverlappingItems = false;
         }
@@ -105,8 +105,8 @@ public class Constructable : MonoBehaviour
         foreach (GameObject item in ghostList)
         {
             item.transform.SetParent(transform.parent, true);
-            item.gameObject.GetComponent<GhostItem>().solidCollider.enabled = false;
-            item.gameObject.GetComponent<MeshRenderer>().shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.Off;
+            //item.gameObject.GetComponent<GhostItem>().solidCollider.enabled = false;
+            //item.gameObject.GetComponent<MeshRenderer>().shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.Off;
             item.gameObject.GetComponent<GhostItem>().isPlaced = true;
         }
     }

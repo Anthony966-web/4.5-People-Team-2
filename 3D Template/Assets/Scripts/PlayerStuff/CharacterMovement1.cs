@@ -413,10 +413,6 @@ public class CharacterMovement : MonoBehaviour
             {
                 rb.linearVelocity = new Vector3(rb.linearVelocity.x, jumpForce / 1.1f, rb.linearVelocity.z);
             }
-            else if (Water == false)
-            {
-                rb.linearVelocity = new Vector3(rb.linearVelocity.x, -jumpForce / 1.1f, rb.linearVelocity.z);
-            }
         }
     }
 
