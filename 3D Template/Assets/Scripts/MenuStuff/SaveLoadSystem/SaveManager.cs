@@ -44,9 +44,7 @@ public class SaveManager : MonoBehaviour
         print("works1");
         data.playerData = GetPlayerData();
         print("works2");
-        SaveGameDataToBinaryFile(data);
-
-        //SaveAllGameData(data);
+        SaveAllGameData(data);
     }
 
     private PlayerData GetPlayerData()
@@ -69,11 +67,11 @@ public class SaveManager : MonoBehaviour
         return new PlayerData(playerStats, playerPosAndRot);
     }
 
-    public void SavingTypeSwitch(AllGameData gameData)
+    public void SaveAllGameData(AllGameData gameData)
     {
         if (IsSaveingToJson)
         {
-            // SaveGameDataToJsonFile(gameData);
+            SaveGameDataToJsonFile(gameData);
         }
         else
         {
@@ -85,7 +83,7 @@ public class SaveManager : MonoBehaviour
 
 
     #region || ----- Loading ----- ||
-    public AllGameData LoadingTypeSwitch()
+    public AllGameData LoadAllGameData()
     {
         if (IsSaveingToJson)
         {
@@ -102,7 +100,7 @@ public class SaveManager : MonoBehaviour
     public void LoadGame()
     {
         // Player Data
-        SetPlayerData(LoadingTypeSwitch().playerData);
+        SetPlayerData(LoadAllGameData().playerData);
 
         // Enviroment Data
 
@@ -201,10 +199,10 @@ public class SaveManager : MonoBehaviour
      
     }
 
-    public AllGameData LoadGameDataFromJsonFile()
-    {
+    //public AllGameData LoadGameDataFromJsonFile()
+    //{
    
-    }
+    //}
 
 
     #endregion
