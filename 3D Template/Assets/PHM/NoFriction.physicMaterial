@@ -8,7 +8,11 @@ PhysicsMaterial:
   m_PrefabAsset: {fileID: 0}
   m_Name: NoFriction
   serializedVersion: 2
+<<<<<<< HEAD
   m_DynamicFriction: 0.8
+=======
+  m_DynamicFriction: 0.6
+>>>>>>> parent of f3d61ae (g)
   m_StaticFriction: 0.6
   m_Bounciness: 0
   m_FrictionCombine: 0

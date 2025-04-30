@@ -12,7 +12,7 @@ public class ObjectGrabber : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.H))
+        if (Input.GetKeyDown(KeyCode.E))
         {
             if (!isHoldingObject)
             {
