@@ -259,7 +259,7 @@ public class ConstructionManager : MonoBehaviour
         // Setting the parent to be the root of our scene
         itemToBeConstructed.transform.SetParent(transform.parent.transform.parent, true);
 
-        var randomOffset = UnityEngine.Random.Range(0.009f, 0.032f);
+        var randomOffset = UnityEngine.Random.Range(0.008f, 0.032f);
 
         itemToBeConstructed.transform.position = new Vector3 (ghostPosition.x, ghostPosition.y, ghostPosition.z + randomOffset);
         itemToBeConstructed.transform.rotation = ghostRotation;

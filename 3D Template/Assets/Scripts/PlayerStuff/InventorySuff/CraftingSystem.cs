@@ -114,21 +114,20 @@ public class CraftingSystem : MonoBehaviour
 
     void Update()
     {
-
-        if (Input.GetKeyDown(KeyCode.Tab) && !isOpen && !ConstructionManager.Instance.inConstructionMode)
+        isOpen = InventorySystem.Instance.isOpen;
+            print(isOpen);
+        if (isOpen == true && !ConstructionManager.Instance.inConstructionMode)
         {
             CraftingScreenUI.SetActive(true);
             Cursor.lockState = CursorLockMode.None;
-            isOpen = true;
 
         }
-        else if (Input.GetKeyDown(KeyCode.Tab) && isOpen)
+        else if (isOpen == false)
         {
             CraftingScreenUI.SetActive(false);
             ToolsScreenUI.SetActive(false);
             ConstructionScreenUI.SetActive(false);
             Cursor.lockState = CursorLockMode.Locked;
-            isOpen = false;
         }
     }
 

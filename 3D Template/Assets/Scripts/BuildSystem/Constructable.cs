@@ -52,7 +52,7 @@ public class Constructable : MonoBehaviour
             isGrounded = true;
         }
 
-        if (other.CompareTag("Tree") || other.CompareTag("Pickable") && gameObject.CompareTag("ActiveConstructable"))
+        if ((other.CompareTag("Tree") || other.CompareTag("Pickable")) && gameObject.CompareTag("ActiveConstructable"))
         {
 
             isOverlappingItems = true;
@@ -71,7 +71,7 @@ public class Constructable : MonoBehaviour
             isGrounded = false;
         }
 
-        if (other.CompareTag("Tree") || other.CompareTag("Pickable") && gameObject.CompareTag("ActiveConstructable"))
+        if ((other.CompareTag("Tree") || other.CompareTag("Pickable")) && gameObject.CompareTag("ActiveConstructable"))
         {
             isOverlappingItems = false;
         }
