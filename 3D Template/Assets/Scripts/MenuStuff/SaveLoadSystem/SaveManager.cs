@@ -194,6 +194,21 @@ public class SaveManager : MonoBehaviour
 
     #endregion
 
+    #region || ---- To Json Section ---- ||
+
+    public void SaveGameDataToJsonFile(AllGameData gameData)
+    {
+     
+    }
+
+    public AllGameData LoadGameDataFromJsonFile()
+    {
+   
+    }
+
+
+    #endregion
+
 
     void OnApplicationQuit()
     {
