@@ -1,5 +1,4 @@
 using NUnit.Framework.Internal;
-using UnityEditor.PackageManager;
 using UnityEngine;
 using UnityEngine.UIElements;
 
@@ -11,16 +10,14 @@ public class EnemyAttack : MonoBehaviour
     public LayerMask playerLayer;
     public Transform attackPoint;
     public Vector3 knobackvelocity;
-    public float stunDuration = 1f;
+    public float stunDuration = 3f;
     private bool isStunned = false;
     public float knockbackForce = 10f;
-    private Rigidbody rb;
     public GameObject explosion;
     public Camera cam;
 
     private void Start()
     {
-        rb.gameObject.GetComponent<Rigidbody>();
     }
 
 
@@ -54,6 +51,10 @@ public class EnemyAttack : MonoBehaviour
                         StartCoroutine(StunRoutine()); 
                         return;
                     }
+                    if (isStunned == true)
+                    {
+                        return;
+                    }
                     target.TakeDamage(damage);
                     while (knobackvelocity != Vector3.zero)
                     {
@@ -75,16 +76,15 @@ public class EnemyAttack : MonoBehaviour
             }
         }
     }
-    public System.Collections.IEnumerator StunRoutine()
+    private System.Collections.IEnumerator StunRoutine()
     {
         test();
-        Vector3 dir = this.gameObject.transform.position - transform.position * 10;
+        Vector3 dir = this.gameObject.transform.position - transform.position;
         isStunned = true;
         yield return new WaitForSeconds(stunDuration);
         isStunned = false;
     }
-
-    public void test()
+    void test()
     {
         Instantiate(explosion, this.gameObject.transform.position, Quaternion.identity);
     }

@@ -506,10 +506,10 @@ public class CharacterMovement : MonoBehaviour
 
     void CameraControl()
     {
-        if (GameObject.Find("InventorySystem").GetComponent<InventorySystem>().isOpen == true)
-        {
-            return;
-        }
+        //if (GameObject.Find("InventorySystem").GetComponent<InventorySystem>().isOpen == true)
+        //{
+        //    return;
+        //}
         float mouseX = Input.GetAxis("Mouse X") * lookSensitivity;
         float mouseY = Input.GetAxis("Mouse Y") * lookSensitivity;
 
