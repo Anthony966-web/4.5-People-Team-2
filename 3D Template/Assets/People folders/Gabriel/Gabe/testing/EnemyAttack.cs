@@ -11,16 +11,16 @@ public class EnemyAttack : MonoBehaviour
     public LayerMask playerLayer;
     public Transform attackPoint;
     public Vector3 knobackvelocity;
-    public float stunDuration = 1f;
+    public float stunDuration = 3f;
     private bool isStunned = false;
     public float knockbackForce = 10f;
-    private Rigidbody rb;
+    //private Rigidbody rb;
     public GameObject explosion;
     public Camera cam;
 
     private void Start()
     {
-        rb.gameObject.GetComponent<Rigidbody>();
+        //rb.gameObject.GetComponent<Rigidbody>();
     }
 
 
@@ -52,6 +52,10 @@ public class EnemyAttack : MonoBehaviour
                     {
                         Debug.Log("Enemy stunned by parry!");
                         StartCoroutine(StunRoutine()); 
+                        return;
+                    }
+                    if (isStunned == true)
+                    {
                         return;
                     }
                     target.TakeDamage(damage);

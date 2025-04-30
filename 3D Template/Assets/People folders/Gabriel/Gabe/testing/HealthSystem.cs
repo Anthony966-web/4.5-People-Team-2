@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Playables;
 
 public interface IDamageable
 {
@@ -8,6 +9,7 @@ public class HealthSystem : MonoBehaviour, IDamageable
 {
     public int maxHealth = 100;
     public int currentHealth;
+    public PlayableDirector youdied;
 
     public float knockbackForce = 5f;
     private Rigidbody rb;
@@ -81,6 +83,7 @@ public class HealthSystem : MonoBehaviour, IDamageable
         }
         else
         {
+            
             Destroy(this.gameObject); // Enemy dies
         }
     }
