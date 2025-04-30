@@ -83,12 +83,8 @@ public class HealthSystem : MonoBehaviour, IDamageable
         }
         else
         {
-<<<<<<< HEAD
             
-            Destroy(this.gameObject); // Enemy dies
-=======
-            Destroy(gameObject); // Enemy dies
->>>>>>> parent of f3d61ae (g)
+            Destroy(this.gameObject);
         }
     }
 }
