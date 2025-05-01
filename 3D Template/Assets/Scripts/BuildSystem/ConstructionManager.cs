@@ -205,12 +205,18 @@ public class ConstructionManager : MonoBehaviour
                     selectingAGhost = true;
                     selectedGhost = selectionTransform.gameObject;
                 }
-                else
+                else if (selectionTransform.CompareTag("RoofGhost") && itemToBeConstructed.name == "Roof")
                 {
-                    itemToBeConstructed.SetActive(true);
-                    selectedGhost = null;
-                    selectingAGhost = false;
+                    itemToBeConstructed.SetActive(false);
+                    selectingAGhost = true;
+                    selectedGhost = selectionTransform.gameObject;
                 }
+            else
+            {
+                itemToBeConstructed.SetActive(true);
+                selectedGhost = null;
+                selectingAGhost = false;
+            }
             }
 
             // Re-enable the collider after the raycast
@@ -221,25 +227,19 @@ public class ConstructionManager : MonoBehaviour
         // Left Mouse Click to Place item
         if (Input.GetMouseButtonDown(0) && inConstructionMode)
         {
-            print("Works");
             if (isValidPlacement && selectedGhost == null && itemToBeConstructed.name == "Foundation") // We don't want the freestyle to be triggered when we select a ghost.
             {
-                print("Works1");
                 PlaceItemFreeStyle();
                 DestroyItem(itemToBeDestroyed);
             }
 
             if (selectingAGhost)
             {
-                print("Works2");
                 PlaceItemInGhostPosition(selectedGhost);
                 DestroyItem(itemToBeDestroyed);
             }
         }
-        else
-        {
-            print("Works3");
-        }
+
         // Right Mouse Click to Cancel                      //TODO - don't destroy the ui item until you actually placed it.
         if (Input.GetKeyDown(KeyCode.X))
         {     // Left Mouse Button
@@ -291,13 +291,18 @@ public class ConstructionManager : MonoBehaviour
             GetAllGhosts(itemToBeConstructed);
             PerformGhostDeletionScan();
         }
-        else
+        else if (itemToBeConstructed.name == "Wall")
         {
             itemToBeConstructed.tag = "PlacedWall";
             DestroyItem(selectedGhost); // We Delete this wallGhost, because the manager will not do it
         }
+        else if(itemToBeConstructed.name == "Roof")
+        {
+            itemToBeConstructed.tag = "PlacedRoof";
+            DestroyItem(selectedGhost); // We Delete this wallGhost, because the manager will not do it
+        }
 
-        itemToBeConstructed = null;
+            itemToBeConstructed = null;
 
         inConstructionMode = false;
     }

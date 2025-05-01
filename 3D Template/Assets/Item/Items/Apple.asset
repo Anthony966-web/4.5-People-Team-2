@@ -20,6 +20,8 @@ MonoBehaviour:
   ItemDescription: Apple
   IsDroppable: 0
   IsEquippable: 1
-  IsConsumable: 0
-  healthEffect: 0
-  hungerEffect: 0
+  IsConsumable: 1
+  IsUseable: 0
+  itemPendingToBeUsed: {fileID: 0}
+  healthEffect: 15
+  hungerEffect: 15
