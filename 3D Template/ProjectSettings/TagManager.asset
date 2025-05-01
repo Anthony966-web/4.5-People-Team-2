@@ -17,6 +17,8 @@ TagManager:
   - PlacedFoundation
   - WallGhost
   - PlacedWall
+  - PlacedRoof
+  - RoofGhost
   layers:
   - Default
   - TransparentFX
@@ -38,7 +40,7 @@ TagManager:
   - Crazy
   - Foundation
   - Roof
-  - 
+  - Wall
   - 
   - 
   - 

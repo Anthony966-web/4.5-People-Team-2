@@ -898,7 +898,7 @@ GameObject:
   - component: {fileID: 1724316128074642902}
   m_Layer: 0
   m_Name: R1
-  m_TagString: Ghost
+  m_TagString: RoofGhost
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
