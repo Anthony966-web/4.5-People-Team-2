@@ -8,13 +8,35 @@ using UnityEngine.SceneManagement;
 
 public class SaveManager : MonoBehaviour
 {
+
+    #region || ---- Variables ---- ||
     public static SaveManager Instance { get; set; }
 
     public string saveSlot;
     private string FileType = ".bin";
 
     public bool IsSaveingToJson;
-    
+
+    // Json Project Save Path
+    string jsonPathProject;
+
+    // Json External/Real Save Path
+    string jsonPathPersistant;
+
+    // Binary Save Path
+    string binaryPath;
+
+    #endregion
+
+
+    public void Start()
+    {
+        jsonPathProject = Application.dataPath + Path.AltDirectorySeparatorChar + "SaveGame.json";
+        jsonPathPersistant = Application.persistentDataPath + Path.AltDirectorySeparatorChar + "SaveGame.json";
+        binaryPath = Application.persistentDataPath + "/save_game";
+    }
+
+
     private void Awake()
     {
         if (Instance != null && Instance != this)
@@ -29,6 +51,7 @@ public class SaveManager : MonoBehaviour
         DontDestroyOnLoad (gameObject);
     }
 
+    
     #region  || ---- General Section ---- ||
 
     #region || ----- Saving ----- ||
@@ -78,15 +101,14 @@ public class SaveManager : MonoBehaviour
     }
     #endregion
 
-
     #region || ----- Loading ----- ||
     public AllGameData LoadingTypeSwitch()
     {
         if (IsSaveingToJson)
         {
-            //AllGameData gameData = LoadGameDataFromJsonFile();
-            //return gameData;
-            return null;
+            AllGameData gameData = LoadGameDataFromJsonFile();
+            return gameData;
+
         }
         else
         {
@@ -152,24 +174,25 @@ public class SaveManager : MonoBehaviour
 
     #endregion
 
+
     #region  || ---- To Binary Section ---- ||
 
     public void SaveGameDataToBinaryFile(AllGameData gameData)
     {
         BinaryFormatter formatter = new BinaryFormatter();
 
-        string path = Application.persistentDataPath + "/save_game" + saveSlot + FileType;
+        string path = binaryPath + saveSlot + FileType;
         FileStream stream = new FileStream(path, FileMode.Create);
 
         formatter.Serialize(stream, gameData);
         stream.Close();
 
-        print("Data saved to" + Application.persistentDataPath + "/save_game" + saveSlot + FileType);
+        print("Data saved to" + path);
     }
 
     public AllGameData LoadGameDataFromBinaryFile()
     {
-        string path = Application.persistentDataPath + "/save_game" + saveSlot + FileType;
+        string path = binaryPath + saveSlot + FileType;
         if (File.Exists(path))
         {
             BinaryFormatter formatter = new BinaryFormatter();
@@ -178,10 +201,10 @@ public class SaveManager : MonoBehaviour
             AllGameData data = formatter.Deserialize(stream) as AllGameData;
             stream.Close();
 
-            print("Data Loaded from" + Application.persistentDataPath + "/save_game" + saveSlot + FileType);
+            print("Data Loaded from" + path);
 
             return data;    
-        }
+        } 
         else
         {
             return null;
@@ -191,21 +214,58 @@ public class SaveManager : MonoBehaviour
 
     #endregion
 
+
     #region || ---- To Json Section ---- ||
 
     public void SaveGameDataToJsonFile(AllGameData gameData)
     {
-     
+        string json = JsonUtility.ToJson(gameData);
+
+        string encrypted = EncryptionDecryption(json);
+
+        //                                            change to PathPersistant for release 
+        using (StreamWriter writer = new StreamWriter(jsonPathProject))
+        {
+            writer.Write(encrypted);
+            print("Saved Game to Json File at :" + jsonPathProject);
+        };
+
     }
 
-    //public AllGameData LoadGameDataFromJsonFile()
-    //{
+    public AllGameData LoadGameDataFromJsonFile()
+    {
+        using (StreamReader reader = new StreamReader(jsonPathProject))
+        {
+            string json = reader.ReadToEnd();
 
-    //}
+            string decrypted = EncryptionDecryption(json);
+
+            AllGameData data = JsonUtility.FromJson<AllGameData>(decrypted);
+            return data; 
+        }
+    }
 
 
     #endregion
 
+
+    #region || ---- Very Small ---- ||
+
+    public string EncryptionDecryption(string jsonString)
+    {
+        string keyword = "6275330";
+        
+        string result = "";
+
+        for (int i = 0; i < jsonString.Length; i++)
+        {
+            result += (char)(jsonString[i] ^ keyword[i % keyword.Length]);
+        }
+
+        return result;
+    }
+
+    #endregion
 
     void OnApplicationQuit()
     {
