@@ -221,25 +221,19 @@ public class ConstructionManager : MonoBehaviour
         // Left Mouse Click to Place item
         if (Input.GetMouseButtonDown(0) && inConstructionMode)
         {
-            print("Works");
             if (isValidPlacement && selectedGhost == null && itemToBeConstructed.name == "Foundation") // We don't want the freestyle to be triggered when we select a ghost.
             {
-                print("Works1");
                 PlaceItemFreeStyle();
                 DestroyItem(itemToBeDestroyed);
             }
 
             if (selectingAGhost)
             {
-                print("Works2");
                 PlaceItemInGhostPosition(selectedGhost);
                 DestroyItem(itemToBeDestroyed);
             }
         }
-        else
-        {
-            print("Works3");
-        }
+
         // Right Mouse Click to Cancel                      //TODO - don't destroy the ui item until you actually placed it.
         if (Input.GetKeyDown(KeyCode.X))
         {     // Left Mouse Button
