@@ -35,14 +35,16 @@ public class Constructable : MonoBehaviour
     }
     void Update()
     {
-        if (isGrounded && isOverlappingItems == false)
-        {
-            isValidToBeBuilt = true;
-        }
-        else
-        {
-            isValidToBeBuilt = false;
-        }
+        //if (isGrounded && isOverlappingItems == false)
+        //{
+        //    isValidToBeBuilt = true;
+        //}
+        //else
+        //{
+        //    isValidToBeBuilt = false;
+        //}
+
+        isValidToBeBuilt = isGrounded && !isOverlappingItems && !detectedGhostMemeber;
     }
 
     private void OnTriggerEnter(Collider other)

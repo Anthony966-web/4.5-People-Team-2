@@ -87,8 +87,9 @@ public class SaveManager : MonoBehaviour
     {
         if (IsSaveingToJson)
         {
-            AllGameData gameData = LoadGameDataFromJsonFile();
-            return gameData;
+            //AllGameData gameData = LoadGameDataFromJsonFile();
+            //return gameData;
+            return null;
         }
         else
         {
@@ -200,10 +201,10 @@ public class SaveManager : MonoBehaviour
      
     }
 
-    public AllGameData LoadGameDataFromJsonFile()
-    {
+    //public AllGameData LoadGameDataFromJsonFile()
+    //{
 
-    }
+    //}
 
 
     #endregion

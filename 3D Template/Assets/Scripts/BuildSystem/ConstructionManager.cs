@@ -31,6 +31,8 @@ public class ConstructionManager : MonoBehaviour
 
     public GameObject Player;
 
+    public GameObject PlacerRay;
+
     private void Awake()
     {
         if (Instance != null && Instance != this)
@@ -179,20 +181,25 @@ public class ConstructionManager : MonoBehaviour
             }
 
 
-            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            // Temporarily disable the collider to prevent hitting itself
+            if (itemToBeConstructed != null)
+                itemToBeConstructed.GetComponent<Collider>().enabled = false;
+
+            //Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            Ray ray = new Ray(PlacerRay.transform.position, PlacerRay.transform.forward);
             RaycastHit hit;
-            if (Physics.Raycast(ray, out hit))
+            if (Physics.Raycast(ray, out hit, Mathf.Infinity, ~0, QueryTriggerInteraction.Collide))
             {
                 var selectionTransform = hit.transform;
-                print(selectionTransform);
-                print(hit.transform.name);
-                if (selectionTransform.gameObject.CompareTag("Ghost") && itemToBeConstructed.name == "Foundation")
+                Debug.Log("Raycast hit: " + selectionTransform.name);
+                Debug.DrawRay(ray.origin, ray.direction * 100f, Color.red);
+                if (selectionTransform.CompareTag("Ghost") && itemToBeConstructed.name == "Foundation")
                 {
                     itemToBeConstructed.SetActive(false);
                     selectingAGhost = true;
                     selectedGhost = selectionTransform.gameObject;
                 }
-                else if (selectionTransform.gameObject.CompareTag("WallGhost") && itemToBeConstructed.name == "Wall")
+                else if (selectionTransform.CompareTag("WallGhost") && itemToBeConstructed.name == "Wall")
                 {
                     itemToBeConstructed.SetActive(false);
                     selectingAGhost = true;
@@ -204,15 +211,18 @@ public class ConstructionManager : MonoBehaviour
                     selectedGhost = null;
                     selectingAGhost = false;
                 }
-
             }
+
+            // Re-enable the collider after the raycast
+            if (itemToBeConstructed != null)
+                itemToBeConstructed.GetComponent<Collider>().enabled = true;
         }
 
         // Left Mouse Click to Place item
         if (Input.GetMouseButtonDown(0) && inConstructionMode)
         {
             print("Works");
-            if (isValidPlacement && selectedGhost == false && itemToBeConstructed.name == "Foundation") // We don't want the freestyle to be triggered when we select a ghost.
+            if (isValidPlacement && selectedGhost == null && itemToBeConstructed.name == "Foundation") // We don't want the freestyle to be triggered when we select a ghost.
             {
                 print("Works1");
                 PlaceItemFreeStyle();
@@ -324,6 +334,7 @@ public class ConstructionManager : MonoBehaviour
         itemToBeConstructed = null;
 
         inConstructionMode = false;
+
     }
 
     private bool CheckValidConstructionPosition()
