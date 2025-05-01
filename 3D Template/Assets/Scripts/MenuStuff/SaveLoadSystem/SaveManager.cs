@@ -8,11 +8,13 @@ using UnityEngine.SceneManagement;
 
 public class SaveManager : MonoBehaviour
 {
-    public string saveSlot;
-
-
-
     public static SaveManager Instance { get; set; }
+
+    public string saveSlot;
+    private string FileType = ".bin";
+
+    public bool IsSaveingToJson;
+    
     private void Awake()
     {
         if (Instance != null && Instance != this)
@@ -27,8 +29,6 @@ public class SaveManager : MonoBehaviour
         DontDestroyOnLoad (gameObject);
     }
 
-    public bool IsSaveingToJson;
-
     #region  || ---- General Section ---- ||
 
     #region || ----- Saving ----- ||
@@ -39,11 +39,8 @@ public class SaveManager : MonoBehaviour
 
     public void SaveGame()
     {
-        print("works");
         AllGameData data = new AllGameData();
-        print("works1");
         data.playerData = GetPlayerData();
-        print("works2");
         SavingTypeSwitch(data);
     }
 
@@ -161,18 +158,18 @@ public class SaveManager : MonoBehaviour
     {
         BinaryFormatter formatter = new BinaryFormatter();
 
-        string path = Application.persistentDataPath + "/save_game" + saveSlot + ".bin";
+        string path = Application.persistentDataPath + "/save_game" + saveSlot + FileType;
         FileStream stream = new FileStream(path, FileMode.Create);
 
         formatter.Serialize(stream, gameData);
         stream.Close();
 
-        print("Data saved to" + Application.persistentDataPath + "/save_game" + saveSlot + ".bin");
+        print("Data saved to" + Application.persistentDataPath + "/save_game" + saveSlot + FileType);
     }
 
     public AllGameData LoadGameDataFromBinaryFile()
     {
-        string path = Application.persistentDataPath + "/save_game" + saveSlot + ".bin";
+        string path = Application.persistentDataPath + "/save_game" + saveSlot + FileType;
         if (File.Exists(path))
         {
             BinaryFormatter formatter = new BinaryFormatter();
@@ -181,7 +178,7 @@ public class SaveManager : MonoBehaviour
             AllGameData data = formatter.Deserialize(stream) as AllGameData;
             stream.Close();
 
-            print("Data Loaded from" + Application.persistentDataPath + "/save_game" + saveSlot + ".bin");
+            print("Data Loaded from" + Application.persistentDataPath + "/save_game" + saveSlot + FileType);
 
             return data;    
         }
