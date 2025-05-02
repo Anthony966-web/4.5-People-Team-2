@@ -32,6 +32,27 @@ public class PlayerState : MonoBehaviour
 
     public bool ToxicImmunity;
 
+    // ---- Player Currancy ---- //
+
+    public float Money = 100;
+
+    public bool SpendMoney(float Amount)
+    {
+        if (Money >= Amount)
+        {
+            Money -= Amount;
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+
+    public void AddMoney(float Amount)
+    {
+        Money += Amount;
+    }
 
     private void Awake()
     {

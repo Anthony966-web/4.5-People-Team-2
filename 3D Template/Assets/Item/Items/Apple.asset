@@ -26,6 +26,8 @@ MonoBehaviour:
   IsSword: 0
   IsAxe: 0
   Damage: 0
+  Cost: 100
+  Value: 0
   IsConsumable: 0
   IsUseable: 0
   itemPendingToBeUsed: {fileID: 0}
