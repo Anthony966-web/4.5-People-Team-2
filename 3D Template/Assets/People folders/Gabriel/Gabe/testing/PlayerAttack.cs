@@ -6,12 +6,14 @@ public class PlayerAttack : MonoBehaviour
     public float attackRange = 2f;
     public LayerMask enemyLayer;
     public Transform attackPoint;
+    public AudioSource atksoundi;
 
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Mouse0)) // Left-click
         {
             Attack();
+            atksoundi.Play();
         }
     }
 

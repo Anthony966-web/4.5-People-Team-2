@@ -32,6 +32,27 @@ public class PlayerState : MonoBehaviour
 
     public bool ToxicImmunity;
 
+    // ---- Player Currancy ---- //
+
+    public float Money = 100;
+
+    public bool SpendMoney(float Amount)
+    {
+        if (Money >= Amount)
+        {
+            Money -= Amount;
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+
+    public void AddMoney(float Amount)
+    {
+        Money += Amount;
+    }
 
     private void Awake()
     {
@@ -99,8 +120,19 @@ public class PlayerState : MonoBehaviour
                 {
                     currentHealth -= ToxicRate * 3;
                 }
-
-                
+            }
+            else
+            {
+                float ToxicPlus = ToxicRate * 5;
+                if (currentToxicImmunity + ToxicPlus <= maxToxicImmunity)
+                {
+                    currentToxicImmunity += ToxicPlus;
+                }
+                else
+                {
+                    currentToxicImmunity = maxToxicImmunity;
+                }
+               
             }
 
             yield return new WaitForSeconds(ToxicTick);

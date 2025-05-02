@@ -115,7 +115,7 @@ public class CraftingSystem : MonoBehaviour
     void Update()
     {
         isOpen = InventorySystem.Instance.isOpen;
-            print(isOpen);
+
         if (isOpen == true && !ConstructionManager.Instance.inConstructionMode)
         {
             CraftingScreenUI.SetActive(true);

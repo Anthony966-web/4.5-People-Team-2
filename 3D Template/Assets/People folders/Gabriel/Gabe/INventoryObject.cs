@@ -19,7 +19,12 @@ public class INventoryObject : MonoBehaviour
         textContainer = GameObject.Find("Canvas").transform.Find("CrossHair").transform.Find("ItemFile").gameObject;
     }
     public void Update()
-    {   
+    {
+        if (player == null || textContainer == null)
+        {
+            player = GameObject.FindGameObjectWithTag("Player");
+            textContainer = GameObject.Find("Canvas").transform.Find("CrossHair").transform.Find("ItemFile").gameObject;
+        }
         var ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 
         //print(ray);
@@ -29,7 +34,6 @@ public class INventoryObject : MonoBehaviour
         {
             Debug.DrawLine(player.transform.position, hit.collider.transform.position);
 
-            print(hit.collider.name);
                 CurrentTarget = this.gameObject;
 
 

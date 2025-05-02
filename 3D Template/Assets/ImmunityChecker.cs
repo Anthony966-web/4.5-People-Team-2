@@ -9,12 +9,6 @@ public class ImmunityChecker : MonoBehaviour
 
     public bool OnRoofCheck;
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
-    }
-
     // Update is called once per frame
     void Update()
     {
@@ -44,6 +38,11 @@ public class ImmunityChecker : MonoBehaviour
         if(OnFoundationCheck && OnRoofCheck)
         {
             print("Toxic Immunity += 1");
+            PlayerState.Instance.ToxicImmunity = true;
+        }
+        else
+        {
+            PlayerState.Instance.ToxicImmunity = false;
         }
     }
 }
