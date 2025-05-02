@@ -10,7 +10,13 @@ public class ItemSlot : MonoBehaviour, IDropHandler
 
     public void Start()
     {
-        transform.GetChild(0).transform.position = this.transform.position;
+        if(transform.childCount > 0)
+        {
+            if (transform.GetChild(0) != null)
+            {
+                transform.GetChild(0).transform.position = transform.position;
+            }
+        }
     }
 
     public GameObject Item

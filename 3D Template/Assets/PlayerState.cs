@@ -99,8 +99,19 @@ public class PlayerState : MonoBehaviour
                 {
                     currentHealth -= ToxicRate * 3;
                 }
-
-                
+            }
+            else
+            {
+                float ToxicPlus = ToxicRate * 5;
+                if (currentToxicImmunity + ToxicPlus <= maxToxicImmunity)
+                {
+                    currentToxicImmunity += ToxicPlus;
+                }
+                else
+                {
+                    currentToxicImmunity = maxToxicImmunity;
+                }
+               
             }
 
             yield return new WaitForSeconds(ToxicTick);

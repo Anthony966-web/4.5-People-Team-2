@@ -99,7 +99,11 @@ public class Constructable : MonoBehaviour
 
     public void SetDefaultColor()
     {
-        mRenderer.material = defaultMaterial;
+        Debug.Log("SetDefaultColor on: " + gameObject.name);
+        if (mRenderer != null && defaultMaterial != null)
+        {
+            mRenderer.material = defaultMaterial;
+        }
     }
 
     public void ExtractGhostMembers()

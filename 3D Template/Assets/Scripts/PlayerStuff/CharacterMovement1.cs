@@ -535,7 +535,7 @@ public class CharacterMovement : MonoBehaviour
 
     void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.CompareTag("Ground"))
+        if (collision.gameObject.CompareTag("Ground") || collision.gameObject.CompareTag("PlacedFoundation") || collision.gameObject.CompareTag("PlacedRoof"))
         {
             isGrounded = true;
         }
@@ -543,7 +543,7 @@ public class CharacterMovement : MonoBehaviour
 
     void OnCollisionExit(Collision collision)
     {
-        if (collision.gameObject.CompareTag("Ground"))
+        if (collision.gameObject.CompareTag("Ground") || collision.gameObject.CompareTag("PlacedFoundation") || collision.gameObject.CompareTag("PlacedRoof"))
         {
             isGrounded = false;
         }

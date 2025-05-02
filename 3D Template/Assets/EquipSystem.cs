@@ -157,10 +157,19 @@ public class EquipSystem : MonoBehaviour
             selectedItemModel = null;
         }
 
-        selectedItemModel = Instantiate(SelectedItemModel.GetComponent<InventoryItem>().ItemID.ItemModel,
-            new Vector3(0.6f, 0f, 0.04f), Quaternion.Euler(0, -12.5f, -20f));
+        selectedItemModel = Instantiate(SelectedItemModel.GetComponent<InventoryItem>().ItemID.ItemModel);
+
         selectedItemModel.name = SelectedItemModel.name;
-        selectedItemModel.transform.SetParent(ToolHolder.transform, false);
+
+        Transform handle = selectedItemModel.transform.Find("Handle").transform;
+
+        selectedItemModel.transform.rotation = handle.transform.rotation;
+
+        Vector3 handleOffset = selectedItemModel.transform.position - handle.position;
+
+        selectedItemModel.transform.position = ToolHolder.transform.position + handleOffset;
+
+        selectedItemModel.transform.SetParent(ToolHolder.transform, true);
     }
 
     private GameObject GetSelectedItem(int slotNumber)

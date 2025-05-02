@@ -71,7 +71,7 @@ public class InventoryItem : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
 
         if(ItemID.IsConsumable)
         {
-            itemInfoUI_itemDescription.text = ItemID.ItemDescription + " +" + ItemID.healthEffect + " Health, +" + ItemID.hungerEffect + " Hunger.";
+            itemInfoUI_itemDescription.text = ItemID.ItemDescription + ", +" + ItemID.healthEffect + " Health, +" + ItemID.hungerEffect + " Hunger.";
         }
         else
         {
@@ -124,25 +124,30 @@ public class InventoryItem : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
 
-        switch (ItemID.ItemName)
+        if(ItemID)
         {
-            case "Foundation":
-                ConstructionManager.Instance.ActivateConstructionPlacement(ItemID);
-                break;
-
-            case "Wall":
-                ConstructionManager.Instance.ActivateConstructionPlacement(ItemID);
-                break;
-
-            case "Roof":
-                ConstructionManager.Instance.ActivateConstructionPlacement(ItemID);
-                break;
-
-            default:
-                // Do Nothing
-                print("No Item Found ):");
-                break;
+            ConstructionManager.Instance.ActivateConstructionPlacement(ItemID);
         }
+
+        //switch (ItemID.ItemName)
+        //{
+        //    case "Foundation":
+        //        ConstructionManager.Instance.ActivateConstructionPlacement(ItemID);
+        //        break;
+
+        //    case "Wall":
+        //        ConstructionManager.Instance.ActivateConstructionPlacement(ItemID);
+        //        break;
+
+        //    case "Roof":
+        //        ConstructionManager.Instance.ActivateConstructionPlacement(ItemID);
+        //        break;
+
+        //    default:
+        //        // Do Nothing
+        //        print("No Item Found ):");
+        //        break;
+        //}
     }
 
     // Triggered when the mouse button is released over the item that has this script.
