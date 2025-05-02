@@ -75,7 +75,7 @@ public class MenuController : MonoBehaviour
 
         LoadGameDialog_YesBtn.onClick.AddListener(() =>
         {
-            SaveManager.Instance.StartLoadedGame();
+            SaveManager.Instance.StartLoadedGame(1);
         });
 
     }
