@@ -35,14 +35,16 @@ public class Constructable : MonoBehaviour
     }
     void Update()
     {
-        if (isGrounded && isOverlappingItems == false)
-        {
-            isValidToBeBuilt = true;
-        }
-        else
-        {
-            isValidToBeBuilt = false;
-        }
+        //if (isGrounded && isOverlappingItems == false)
+        //{
+        //    isValidToBeBuilt = true;
+        //}
+        //else
+        //{
+        //    isValidToBeBuilt = false;
+        //}
+
+        isValidToBeBuilt = isGrounded && !isOverlappingItems && !detectedGhostMemeber;
     }
 
     private void OnTriggerEnter(Collider other)
@@ -97,7 +99,11 @@ public class Constructable : MonoBehaviour
 
     public void SetDefaultColor()
     {
-        mRenderer.material = defaultMaterial;
+        Debug.Log("SetDefaultColor on: " + gameObject.name);
+        if (mRenderer != null && defaultMaterial != null)
+        {
+            mRenderer.material = defaultMaterial;
+        }
     }
 
     public void ExtractGhostMembers()

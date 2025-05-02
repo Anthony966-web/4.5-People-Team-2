@@ -16,10 +16,18 @@ MonoBehaviour:
   ItemName: Apple
   ItemModel: {fileID: 1331441614584636709, guid: 7e8dadfbbbb7bb344b6483b9b12e3b0d,
     type: 3}
+  ItemObject: {fileID: 9036496930164661480, guid: 716e49131793cf44cab2365d59e8329e,
+    type: 3}
   Quantity: 1
   ItemDescription: Apple
-  IsDroppable: 0
+  IsDroppable: 1
   IsEquippable: 1
+  IsPickaxe: 0
+  IsSword: 0
+  IsAxe: 0
+  Damage: 0
   IsConsumable: 0
-  healthEffect: 0
-  hungerEffect: 0
+  IsUseable: 0
+  itemPendingToBeUsed: {fileID: 0}
+  healthEffect: 15
+  hungerEffect: 15

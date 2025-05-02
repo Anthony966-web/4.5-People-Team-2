@@ -7879,7 +7879,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   saveSlot: 
-  IsSaveingToJson: 0
+  IsSaveingToJson: 1
 --- !u!4 &907388471
 Transform:
   m_ObjectHideFlags: 0
