@@ -27,3 +27,9 @@ public class PlayerParry : MonoBehaviour
         canParry = true;
     }
 }
+
+
+
+
+
+//Sigma skibidi goon rizz gyatt
