@@ -32,10 +32,7 @@ public class TempPauseScript : MonoBehaviour
     #endregion
 
 
-    public void TempSaveGame()
-    {
-        SaveManager.Instance.SaveGame();
-    }
+   
 
 
 }
