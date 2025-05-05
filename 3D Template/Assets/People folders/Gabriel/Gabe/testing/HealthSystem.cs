@@ -11,17 +11,24 @@ public class HealthSystem : MonoBehaviour, IDamageable
     public int currentHealth;
     public PlayableDirector youdied;
     public GameObject gameover;
-    
+    public GameObject TreeItemPrefab;
+    public PlayableDirector treeAnin;
+    public int value;
+
 
     public float knockbackForce = 5f;
     private Rigidbody rb;
 
     public bool isPlayer = false;
+    public bool istree = false;
+    public bool isHoldingAxe = true; // fornow
 
     private void Start()
     {
+        gameover.SetActive(false);
         currentHealth = maxHealth;
         rb = GetComponent<Rigidbody>();
+
     }
 
     public void TakeDamage(int damage)
@@ -81,15 +88,30 @@ public class HealthSystem : MonoBehaviour, IDamageable
         {
             Debug.Log("Player died!");
              gameover.SetActive(true);
+            rb.gameObject.SetActive(false);
             Cursor.lockState = CursorLockMode.None;
            // Destroy(this.gameObject);
             youdied.Play();
             // Disable movement or show respawn screen
         }
+        else if (istree == true) /*isHoldingAxe == true*/
+        {
+         //   if (Random.Range(1, 4) == 1)
+           // {
+           // }
+            treeAnin.Play();
+            Instantiate(TreeItemPrefab, this.transform.position, this.transform.rotation);
+            StartCoroutine(TreeFall());
+        }
         else
         {
-            
+
             Destroy(this.gameObject);
         }
+    }
+    private System.Collections.IEnumerator TreeFall()
+    {
+        yield return new WaitForSeconds(1);
+        Destroy(this.gameObject );
     }
 }

@@ -58,7 +58,7 @@ public class SaveManager : MonoBehaviour
     #region || ----- Saving ----- ||
     public void TempSaveGame()
     {
-        SaveGame();
+      //  SaveGame();
     }
 
     public void SaveGame(int slotNumber)

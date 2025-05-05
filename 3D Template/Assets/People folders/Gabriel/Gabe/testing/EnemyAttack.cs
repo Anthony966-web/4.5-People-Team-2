@@ -25,7 +25,7 @@ public class EnemyAttack : MonoBehaviour
     //private float Tim1e;
     //private float MaxTime = 3f;
 
-    private float nextAttackTime = 1.5f;
+    private float nextAttackTime = 3;
 
     void Update()
     {

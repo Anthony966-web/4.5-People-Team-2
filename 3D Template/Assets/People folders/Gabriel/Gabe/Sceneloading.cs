@@ -11,6 +11,10 @@ public void Title()
     {
         SceneManager.LoadScene("Gabriel");
     }
+    public void Reset()
+    {
+        SceneManager.LoadScene("Gabriel");
+    }
     public void Update()
     {
         if (Input.GetKeyDown(KeyCode.J))
