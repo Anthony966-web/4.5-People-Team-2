@@ -126,7 +126,14 @@ public class InventoryItem : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
 
         if(ItemID)
         {
+            if (ItemID.ItemName == "Chest")
+            {
+                PlacementSystem.Instance.inventoryItemToDestory = gameObject;
+                PlacementSystem.Instance.ActivatePlacementMode(ItemID);
+                return;
+            }
             ConstructionManager.Instance.ActivateConstructionPlacement(ItemID);
+
         }
 
         //switch (ItemID.ItemName)
