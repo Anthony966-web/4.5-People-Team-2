@@ -8,8 +8,8 @@ using TMPro;
 
 public class SaveSlot : MonoBehaviour
 {
-   public Button button;
-    public TextMeshProUGUI buttonText;
+    private Button button;
+    private TextMeshProUGUI buttonText;
 
     public int slotNumber;
 
@@ -30,7 +30,11 @@ public class SaveSlot : MonoBehaviour
                 DateTime dt = DateTime.Now;
                 string time = dt.ToString("yyyy-mm-dd HH:mm");
 
-                buttonText.text = "Saved Game " + slotNumber + " | " + time;
+                string description = "Saved Game " + slotNumber + " | " + time;
+
+                buttonText.text = description;
+
+                PlayerPrefs.SetString("Slot" + slotNumber + "Description",description);
 
                 DeselectButton();
             }
@@ -52,7 +56,7 @@ public class SaveSlot : MonoBehaviour
         }
         else
         {
-            buttonText.text = PlayerPrefs.GetString("Slot" + slotNumber + "Description"); // 25:40
+            buttonText.text = PlayerPrefs.GetString("Slot" + slotNumber + "Description");
         }
     }
 
