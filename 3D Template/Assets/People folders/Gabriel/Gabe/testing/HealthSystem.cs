@@ -13,7 +13,7 @@ public class HealthSystem : MonoBehaviour, IDamageable
     public GameObject gameover;
     public GameObject TreeItemPrefab;
     public PlayableDirector treeAnin;
-    public int value;
+    public float value;
 
 
     public float knockbackForce = 5f;
@@ -99,8 +99,11 @@ public class HealthSystem : MonoBehaviour, IDamageable
          //   if (Random.Range(1, 4) == 1)
            // {
            // }
+
             treeAnin.Play();
-            Instantiate(TreeItemPrefab, this.transform.position, this.transform.rotation);
+            float randomX = Random.Range(2, 5);
+            Vector3 v = new Vector3(Random.Range(-3, 5), Random.Range(2, 4), Random.Range(-3, 5));
+            Instantiate(TreeItemPrefab, this.transform.position + v, this.transform.rotation);
             StartCoroutine(TreeFall());
         }
         else
