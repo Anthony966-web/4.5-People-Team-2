@@ -241,7 +241,7 @@ public class ConstructionManager : MonoBehaviour
         }
 
         // Right Mouse Click to Cancel                      //TODO - don't destroy the ui item until you actually placed it.
-        if (Input.GetKeyDown(KeyCode.X))
+        if (Input.GetKeyDown(KeyCode.X) && inConstructionMode)
         {     // Left Mouse Button
             if(itemToBeDestroyed != null)
             {
