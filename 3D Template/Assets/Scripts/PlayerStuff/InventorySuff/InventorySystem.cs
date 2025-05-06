@@ -67,9 +67,9 @@ public class InventorySystem : MonoBehaviour
 
     private void PopulateSlotList()
     {
-        foreach(Transform child in inventoryScreenUI.transform.Find("Contents").transform)
+        foreach (Transform child in inventoryScreenUI.transform.Find("Contents").transform)
         {
-            if(child.CompareTag("Slot"))
+            if (child.CompareTag("Slot"))
             {
                 slotList.Add(child.gameObject);
             }
@@ -79,21 +79,9 @@ public class InventorySystem : MonoBehaviour
 
     void Update()
     {
-        //if(isOpen == true)
-        //{
-        //    itemToAdd = null;
-        //}
-
-        if (Input.GetKeyDown(KeyCode.Tab) && !ConstructionManager.Instance.inConstructionMode)
+        if (Input.GetKeyDown(KeyCode.Tab) && !ConstructionManager.Instance.inConstructionMode && !StorageManager.Instance.IsOpen)
         {
-            if (isOpen)
-            {
-                isOpen = false;
-            }
-            else
-            {
-                isOpen = true;
-            }
+            isOpen = !isOpen;
         }
 
         if (isOpen)
@@ -101,16 +89,19 @@ public class InventorySystem : MonoBehaviour
             inventoryScreenUI.SetActive(true);
             Cursor.lockState = CursorLockMode.None;
             Cursor.visible = true;
-            isOpen = true;
-
         }
-        else if (!isOpen)
+        else
         {
             inventoryScreenUI.SetActive(false);
-            Cursor.lockState = CursorLockMode.Locked;
-            Cursor.visible = false;
-            isOpen = false;
+
+            // Only hide cursor if storage is also closed
+            if (!StorageManager.Instance.IsOpen)
+            {
+                Cursor.lockState = CursorLockMode.Locked;
+                Cursor.visible = false;
+            }
         }
+
     }
 
     public void AddToInventory(ItemAssets itemName, int Amount)

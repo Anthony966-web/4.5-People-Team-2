@@ -7,10 +7,12 @@ public class StorageManager : MonoBehaviour
 {
     public static StorageManager Instance { get; set; }
 
-    [SerializeField] GameObject StorageUnitSmallUI;
+    [SerializeField] public GameObject StorageUnitSmallUI;
     [SerializeField] StorageUnit selectedStorage;
     public bool storageUIOpen;
     public GameObject ItemSlotPrefab;
+
+    public bool IsOpen;
 
     private void Awake()
     {
@@ -27,17 +29,11 @@ public class StorageManager : MonoBehaviour
     public void OpenBox(StorageUnit storage)
     {
         SetSelectedStorage(storage);
-
         PopulateStorage(GetRelevantUI(selectedStorage));
-
         GetRelevantUI(selectedStorage).SetActive(true);
+
         storageUIOpen = true;
-
-        Cursor.lockState = CursorLockMode.None;
-        Cursor.visible = true;
-
-        //SelectionManager.Instance.DisableSelection();
-        //SelectionManager.Instance.GetComponent<SelectionManager>().enabled = false;
+        IsOpen = true;
     }
 
     private void PopulateStorage(GameObject storageUI)
@@ -69,14 +65,39 @@ public class StorageManager : MonoBehaviour
 
     public void CloseBox()
     {
+        RecalculateStorage(GetRelevantUI(selectedStorage));
         GetRelevantUI(selectedStorage).SetActive(false);
+
         storageUIOpen = false;
+        IsOpen = false;
+    }
 
-        Cursor.lockState = CursorLockMode.Locked;
-        Cursor.visible = false;
+    private void RecalculateStorage(GameObject storageUI)
+    {
+        List<GameObject> uiSlots = new List<GameObject>();
+        foreach(Transform child in storageUI.transform)
+        {
+            uiSlots.Add(child.gameObject);
+        }
 
-        //SelectionManager.Instance.EnableSelection();
-        //SelectionManager.Instance.GetComponent<SelectionManager>().enabled = true;
+        selectedStorage.Items.Clear();
+
+        List<GameObject> toBeDeleted = new List<GameObject>();
+
+        foreach(GameObject slot in uiSlots)
+        {
+            if(slot.transform.childCount > 0)
+            {
+                selectedStorage.Items.Add(slot.transform.GetChild(0).GetComponent<InventoryItem>().ItemID);
+                toBeDeleted.Add(slot.transform.GetChild(0).gameObject);
+            }
+        }
+
+        foreach(GameObject obj in toBeDeleted)
+        {
+            Destroy(obj);
+        }
+
     }
 
     public void SetSelectedStorage(StorageUnit storage)

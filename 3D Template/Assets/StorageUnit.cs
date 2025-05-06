@@ -11,6 +11,10 @@ public class StorageUnit : MonoBehaviour
 
     private GameObject Text;
 
+    //public bool IsOpen;
+
+    public float OriMoveSpeed;
+
     public enum UnitSize
     {
         Small,
@@ -18,6 +22,11 @@ public class StorageUnit : MonoBehaviour
         Large,
         ExtraLarge,
         GodSize
+    }
+
+    public void Start()
+    {
+        OriMoveSpeed = PlayerState.Instance.playerBody.GetComponent<CharacterMovement>().moveSpeed;
     }
 
     public UnitSize ThisUnitSize;
@@ -31,11 +40,11 @@ public class StorageUnit : MonoBehaviour
 
         float distance = Vector3.Distance(PlayerState.Instance.playerBody.transform.position, transform.position);
 
-        if (distance < 5f && PlacementSystem.Instance.inPlacementMode)
+        if (distance < 5f && !PlacementSystem.Instance.inPlacementMode)
         {
             PlayerInRange = true;
             Text.gameObject.SetActive(true);
-            Text.GetComponent<TMP_Text>().text = "Open " + ThisUnitSize + " [E]";
+            Text.GetComponent<TMP_Text>().text = "Open " + ThisUnitSize + "Chest [E]";
         }
         else
         {
@@ -43,9 +52,52 @@ public class StorageUnit : MonoBehaviour
             Text.gameObject.SetActive(false);
         }
 
-        if(PlayerInRange && Input.GetKeyDown(KeyCode.E))
+        //if (!PlayerInRange && !StorageManager.Instance.IsOpen)
+        //{
+        //    StorageManager.Instance.StorageUnitSmallUI.SetActive(false);
+        //    Cursor.lockState = CursorLockMode.Locked;
+        //    Cursor.visible = false;
+        //    StorageManager.Instance.IsOpen = false;
+        //    return;
+        //}
+
+        if (PlayerInRange && Input.GetKeyDown(KeyCode.E))
         {
-            print("Works");
+            Check();
+        }
+
+        if(StorageManager.Instance.IsOpen)
+        {
+            PlayerState.Instance.playerBody.GetComponent<CharacterMovement>().moveSpeed = 0;
+            PlayerState.Instance.playerBody.GetComponent<CharacterMovement>().enabled = false;
+        }
+        else
+        {
+            PlayerState.Instance.playerBody.GetComponent<CharacterMovement>().enabled = true;
+            PlayerState.Instance.playerBody.GetComponent<CharacterMovement>().moveSpeed = OriMoveSpeed;
+        }
+    }
+
+    public void Check()
+    {
+        if (!StorageManager.Instance.IsOpen)
+        {
+            //print("Works");
+            //Cursor.lockState = CursorLockMode.None;
+            //Cursor.visible = true;
+            StorageManager.Instance.OpenBox(this);
+            InventorySystem.Instance.isOpen = true;
+            StorageManager.Instance.IsOpen = true;
+            return;
+        }
+        else if (StorageManager.Instance.IsOpen)
+        {
+            StorageManager.Instance.CloseBox();
+            InventorySystem.Instance.isOpen = false;
+            //Cursor.lockState = CursorLockMode.Locked;
+            //Cursor.visible = false;
+            StorageManager.Instance.IsOpen = false;
+            return;
         }
     }
 }

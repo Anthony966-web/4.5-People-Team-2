@@ -5,13 +5,15 @@ using TMPro;
 public class LoadSlot : MonoBehaviour
 {
     public Button button;
-    //public TMPro.TextMeshProUFUI buttonText;
+    public TMP_Text buttonText;
 
     public int slotNumber;
 
     public void Awake()
     {
         button = GetComponent<Button>();
-        buttonText = transform.Find("Text(TMP)").GetComponent<TextMeshProUGUI>();
+        buttonText = transform.GetChild(0).GetComponent<TMP_Text>();
     }
 }
+
+// Make Sure Your Code Has No Error's Before Pushing!!!!!!!!!!!!!!!!! // Anthony
