@@ -16,8 +16,8 @@ MonoBehaviour:
   TeamRole: Scripter
   VGD: 1
   AMI: 0
-  Image1: {fileID: 21300000, guid: 28d2c2677149d45e290e8fa042b1b80f, type: 3}
-  Image2: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
-  Image3: {fileID: 10915, guid: 0000000000000000f000000000000000, type: 0}
+  Image1: {fileID: 21300000, guid: 3ca818bcdff34164a88e7a848eba7341, type: 3}
+  Image2: {fileID: 21300000, guid: c72ea606141e0484b8d7b0dc8a6e82ff, type: 3}
+  Image3: {fileID: 21300000, guid: d433d6a8749a5d044807d5092dc579b9, type: 3}
   Image4: {fileID: 0}
   Image5: {fileID: 0}

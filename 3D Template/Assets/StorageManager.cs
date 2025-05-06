@@ -12,7 +12,9 @@ public class StorageManager : MonoBehaviour
     public bool storageUIOpen;
     public GameObject ItemSlotPrefab;
 
-    public bool IsOpen;
+    public float OriMoveSpeed;
+
+    //public bool IsOpen;
 
     private void Awake()
     {
@@ -26,23 +28,38 @@ public class StorageManager : MonoBehaviour
         }
     }
 
+    private void Start()
+    {
+        OriMoveSpeed = PlayerState.Instance.playerBody.GetComponent<CharacterMovement>().moveSpeed;
+    }
+
     public void OpenBox(StorageUnit storage)
     {
         SetSelectedStorage(storage);
-        PopulateStorage(GetRelevantUI(selectedStorage));
+        PopulateStorage(GetRelevantUI(selectedStorage).transform.GetChild(1).gameObject);
         GetRelevantUI(selectedStorage).SetActive(true);
 
         storageUIOpen = true;
-        IsOpen = true;
+        InventorySystem.Instance.isOpen = true;
+
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
+
+        print(selectedStorage);
+
+        PlayerState.Instance.playerBody.GetComponent<CharacterMovement>().moveSpeed = 0;
+        PlayerState.Instance.playerBody.GetComponent<CharacterMovement>().enabled = false;
     }
 
     private void PopulateStorage(GameObject storageUI)
     {
+        print(selectedStorage);
         // Get all slots of the ui
         List<GameObject> uiSlots = new List<GameObject>();
 
         foreach (Transform child in storageUI.transform)
         {
+            
             uiSlots.Add(child.gameObject);
         }
 
@@ -51,6 +68,7 @@ public class StorageManager : MonoBehaviour
         {
             foreach (GameObject slot in uiSlots)
             {
+                print(slot.transform.childCount);
                 if (slot.transform.childCount < 1)
                 {
                     //Instantiate(name.ItemModel.GetComponent<InventoryItem>()
@@ -65,15 +83,24 @@ public class StorageManager : MonoBehaviour
 
     public void CloseBox()
     {
-        RecalculateStorage(GetRelevantUI(selectedStorage));
+        print(selectedStorage);
+        RecalculateStorage(GetRelevantUI(selectedStorage).transform.GetChild(1).gameObject);
         GetRelevantUI(selectedStorage).SetActive(false);
 
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
+
         storageUIOpen = false;
-        IsOpen = false;
+        InventorySystem.Instance.isOpen = false;
+
+        PlayerState.Instance.playerBody.GetComponent<CharacterMovement>().enabled = true;
+        PlayerState.Instance.playerBody.GetComponent<CharacterMovement>().moveSpeed = OriMoveSpeed;
     }
 
     private void RecalculateStorage(GameObject storageUI)
     {
+        print(selectedStorage);
+        print(storageUI);
         List<GameObject> uiSlots = new List<GameObject>();
         foreach(Transform child in storageUI.transform)
         {
@@ -88,6 +115,7 @@ public class StorageManager : MonoBehaviour
         {
             if(slot.transform.childCount > 0)
             {
+                print(slot.transform.GetChild(0).GetComponent<InventoryItem>().ItemID.name);
                 selectedStorage.Items.Add(slot.transform.GetChild(0).GetComponent<InventoryItem>().ItemID);
                 toBeDeleted.Add(slot.transform.GetChild(0).gameObject);
             }

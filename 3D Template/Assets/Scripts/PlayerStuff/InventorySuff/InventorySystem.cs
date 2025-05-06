@@ -79,7 +79,7 @@ public class InventorySystem : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Tab) && !ConstructionManager.Instance.inConstructionMode && !StorageManager.Instance.IsOpen)
+        if (Input.GetKeyDown(KeyCode.Tab) && !ConstructionManager.Instance.inConstructionMode && !StorageManager.Instance.storageUIOpen)
         {
             isOpen = !isOpen;
         }
@@ -95,7 +95,7 @@ public class InventorySystem : MonoBehaviour
             inventoryScreenUI.SetActive(false);
 
             // Only hide cursor if storage is also closed
-            if (!StorageManager.Instance.IsOpen)
+            if (!StorageManager.Instance.storageUIOpen)
             {
                 Cursor.lockState = CursorLockMode.Locked;
                 Cursor.visible = false;
