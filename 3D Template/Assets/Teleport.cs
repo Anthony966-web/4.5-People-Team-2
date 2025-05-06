@@ -7,12 +7,13 @@ using UnityEngine.SceneManagement;
 public class Teleport : MonoBehaviour
 {
     public bool player_detection = false;
+    public string Scene;
 
     private void Update()
     {
         if (player_detection == true)
         {
-            SceneManager.LoadScene("Game1");
+            SceneManager.LoadScene(Scene);
         }
     }
     private void OnTriggerEnter(Collider other)
