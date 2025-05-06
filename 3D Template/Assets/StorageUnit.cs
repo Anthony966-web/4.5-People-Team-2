@@ -11,9 +11,6 @@ public class StorageUnit : MonoBehaviour
 
     private GameObject Text;
 
-    //public bool IsOpen;
-
-    public float OriMoveSpeed;
 
     public enum UnitSize
     {
@@ -22,11 +19,6 @@ public class StorageUnit : MonoBehaviour
         Large,
         ExtraLarge,
         GodSize
-    }
-
-    public void Start()
-    {
-        OriMoveSpeed = PlayerState.Instance.playerBody.GetComponent<CharacterMovement>().moveSpeed;
     }
 
     public UnitSize ThisUnitSize;
@@ -44,7 +36,7 @@ public class StorageUnit : MonoBehaviour
         {
             PlayerInRange = true;
             Text.gameObject.SetActive(true);
-            Text.GetComponent<TMP_Text>().text = "Open " + ThisUnitSize + "Chest [E]";
+            Text.GetComponent<TMP_Text>().text = "Open " + ThisUnitSize + " Chest [E]";
         }
         else
         {
@@ -65,39 +57,20 @@ public class StorageUnit : MonoBehaviour
         {
             Check();
         }
-
-        if(StorageManager.Instance.IsOpen)
-        {
-            PlayerState.Instance.playerBody.GetComponent<CharacterMovement>().moveSpeed = 0;
-            PlayerState.Instance.playerBody.GetComponent<CharacterMovement>().enabled = false;
-        }
-        else
-        {
-            PlayerState.Instance.playerBody.GetComponent<CharacterMovement>().enabled = true;
-            PlayerState.Instance.playerBody.GetComponent<CharacterMovement>().moveSpeed = OriMoveSpeed;
-        }
     }
 
     public void Check()
     {
-        if (!StorageManager.Instance.IsOpen)
+        if (!StorageManager.Instance.storageUIOpen)
         {
-            //print("Works");
-            //Cursor.lockState = CursorLockMode.None;
-            //Cursor.visible = true;
+            print("Works");
+
             StorageManager.Instance.OpenBox(this);
-            InventorySystem.Instance.isOpen = true;
-            StorageManager.Instance.IsOpen = true;
-            return;
         }
-        else if (StorageManager.Instance.IsOpen)
+        else if (StorageManager.Instance.storageUIOpen)
         {
             StorageManager.Instance.CloseBox();
-            InventorySystem.Instance.isOpen = false;
-            //Cursor.lockState = CursorLockMode.Locked;
-            //Cursor.visible = false;
-            StorageManager.Instance.IsOpen = false;
-            return;
+
         }
     }
 }
