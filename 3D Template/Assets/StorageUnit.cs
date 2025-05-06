@@ -36,12 +36,13 @@ public class StorageUnit : MonoBehaviour
         {
             PlayerInRange = true;
             Text.gameObject.SetActive(true);
-            Text.GetComponent<TMP_Text>().text = "Open " + ThisUnitSize + " Chest [E]";
+            Text.GetComponent<TMP_Text>().text = "Open " + ThisUnitSize + " Chest[E]";
         }
         else
         {
             PlayerInRange = false;
             Text.gameObject.SetActive(false);
+            StorageManager.Instance.CloseBox();
         }
 
         //if (!PlayerInRange && !StorageManager.Instance.IsOpen)
