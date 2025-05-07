@@ -23,7 +23,7 @@ public class SaveSlot : MonoBehaviour
     {
         button.onClick.AddListener(() =>
         {
-            if (IsSlotEmpty(slotNumber))
+            if (SaveManager.Instance.IsSlotEmpty(slotNumber))
             {
                  SaveManager.Instance.SaveGame(slotNumber);
 
@@ -36,7 +36,7 @@ public class SaveSlot : MonoBehaviour
 
                 PlayerPrefs.SetString("Slot" + slotNumber + "Description",description);
 
-                DeselectButton();
+                SaveManager.Instance.DeselectButton();
             }
             else
             {
@@ -50,7 +50,7 @@ public class SaveSlot : MonoBehaviour
 
     private void Update()
     {
-        if (IsSlotEmpty(slotNumber))
+        if (SaveManager.Instance.IsSlotEmpty(slotNumber))
         {
             buttonText.text = "Empty";
         }
@@ -58,24 +58,5 @@ public class SaveSlot : MonoBehaviour
         {
             buttonText.text = PlayerPrefs.GetString("Slot" + slotNumber + "Description");
         }
-    }
-
-
-    private bool IsSlotEmpty(int slotNumber)
-    {
-        if (SaveManager.Instance.DoesFileExists(slotNumber))
-        {
-            return false;
-        }
-        else
-        {
-            return true;
-        }
-    }
-
-    private void DeselectButton()
-    {
-        GameObject myEventSystem = GameObject.Find("EventSystem");
-        myEventSystem.GetComponent<UnityEngine.EventSystems.EventSystem>().SetSelectedGameObject(null);
     }
 }

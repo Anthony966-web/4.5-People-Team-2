@@ -12,8 +12,36 @@ public class LoadSlot : MonoBehaviour
     public void Awake()
     {
         button = GetComponent<Button>();
-        buttonText = transform.GetChild(0).GetComponent<TMP_Text>();
+        buttonText = transform.Find("Text (TMP)").GetComponent<TextMeshProUGUI>();
+    }
+
+    private void Update()
+    {
+        if (SaveManager.Instance.IsSlotEmpty(slotNumber))
+        {
+            buttonText.text = "";
+        }
+        else
+        {
+            buttonText.text = PlayerPrefs.GetString("slot" + slotNumber + "Description");
+        }
+
+    }
+
+    private void Start()
+    {
+        button.onClick.AddListener(() =>
+        {
+            if (SaveManager.Instance.IsSlotEmpty(slotNumber) == false)
+            {
+                SaveManager.Instance.StartLoadedGame(slotNumber);
+                SaveManager.Instance.DeselectButton();
+            }
+            else
+            {
+                // if empty do nothing
+            }
+        });
     }
 }
 
-// Make Sure Your Code Has No Error's Before Pushing!!!!!!!!!!!!!!!!! // Anthony

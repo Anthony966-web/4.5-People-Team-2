@@ -295,6 +295,26 @@ public class SaveManager : MonoBehaviour
                 return false;
             }
         }
+
+
+    }
+
+    public bool IsSlotEmpty(int slotNumber)
+    {
+        if (DoesFileExists(slotNumber))
+        {
+            return false;
+        }
+        else
+        {
+            return true;
+        }
+    }
+
+    public void DeselectButton()
+    {
+        GameObject myEventSystem = GameObject.Find("EventSystem");
+        myEventSystem.GetComponent<UnityEngine.EventSystems.EventSystem>().SetSelectedGameObject(null);
     }
 
     #endregion
