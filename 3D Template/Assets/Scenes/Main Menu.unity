@@ -1632,7 +1632,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b7f22aed81c04dc40936fbef2bddc7c3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  people: {fileID: 0}
+  people: {fileID: 11400000, guid: c86ce82ccbea60b43aa2fbf108a6a33a, type: 2}
   CreditView: {fileID: 1650969744}
 --- !u!1 &169733807
 GameObject:
@@ -8258,7 +8258,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b7f22aed81c04dc40936fbef2bddc7c3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  people: {fileID: 0}
+  people: {fileID: 11400000, guid: 5729add95e1c6f349b800e69b1eb39b4, type: 2}
   CreditView: {fileID: 1650969744}
 --- !u!1 &907388469
 GameObject:
@@ -9663,7 +9663,7 @@ MonoBehaviour:
   qualityDropdown: {fileID: 623134579}
   fullScreenToggle: {fileID: 39332406}
   comfirmationPrompt: {fileID: 176193087}
-  _newGameWorld: Game1
+  _newGameWorld: Tutorial
   noSavedGameDialog: {fileID: 340601780}
   resolutionDropdown: {fileID: 591281111}
 --- !u!4 &1072189674
@@ -13022,7 +13022,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b7f22aed81c04dc40936fbef2bddc7c3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  people: {fileID: 0}
+  people: {fileID: 11400000, guid: e9c25bb3f1aa92c4a8f15332991654d5, type: 2}
   CreditView: {fileID: 1650969744}
 --- !u!1 &1479016370
 GameObject:
@@ -15906,6 +15906,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3760548501166726943, guid: bf743115f703c6c47b22cc2298499be7,
+        type: 3}
+      propertyPath: transitionTime
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 4625233680290579165, guid: bf743115f703c6c47b22cc2298499be7,
         type: 3}
       propertyPath: m_LocalPosition.x

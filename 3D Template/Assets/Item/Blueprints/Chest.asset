@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a0992862b31a1de4d9545ca3960ed79e, type: 3}
-  m_Name: ItemBlueprint
+  m_Name: Chest
   m_EditorClassIdentifier: 
   itemname: {fileID: 11400000, guid: 7da98fbf6266c93498ce8238a3c880f2, type: 2}
   ProduceAmount: 1
