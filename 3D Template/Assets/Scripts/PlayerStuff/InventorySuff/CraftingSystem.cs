@@ -28,6 +28,7 @@ public class CraftingSystem : MonoBehaviour
 
     // All Blueprints
     public ItemBlueprint AxeBLP;
+    public ItemBlueprint AxeBLP;
 
 
     public static CraftingSystem Instance { get; set; }
