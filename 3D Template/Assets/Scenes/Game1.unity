@@ -48874,6 +48874,10 @@ MonoBehaviour:
   ConstructionScreenUI: {fileID: 978155170}
   InventoryItemList: []
   AxeBLP: {fileID: 11400000, guid: 523dd21b5bc7b624885f8aeca62f6736, type: 2}
+  FoundationBLP: {fileID: 11400000, guid: a5a12062a48987b41b239dbef4727144, type: 2}
+  WallBLP: {fileID: 0}
+  RoofBLP: {fileID: 0}
+  ChestBLP: {fileID: 0}
 --- !u!4 &359480780
 Transform:
   m_ObjectHideFlags: 0

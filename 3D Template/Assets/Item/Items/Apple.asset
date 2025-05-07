@@ -19,7 +19,7 @@ MonoBehaviour:
   ItemObject: {fileID: 9036496930164661480, guid: 716e49131793cf44cab2365d59e8329e,
     type: 3}
   Quantity: 1
-  ItemDescription: Apple
+  ItemDescription: Food (Right Click To Eat)
   IsDroppable: 1
   IsEquippable: 1
   IsPickaxe: 0
