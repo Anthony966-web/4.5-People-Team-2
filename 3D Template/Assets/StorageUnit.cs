@@ -27,7 +27,7 @@ public class StorageUnit : MonoBehaviour
     {
         if (PlayerInRange || Text == null)
         {
-            Text = GameObject.Find("Canvas").transform.Find("CrossHair").transform.Find("ItemFile").gameObject;
+            Text = GameObject.Find("Canvas").transform.Find("CrossHair").transform.Find("ChestFile").gameObject;
         }
 
         float distance = Vector3.Distance(PlayerState.Instance.playerBody.transform.position, transform.position);
@@ -37,12 +37,21 @@ public class StorageUnit : MonoBehaviour
             PlayerInRange = true;
             Text.gameObject.SetActive(true);
             Text.GetComponent<TMP_Text>().text = "Open " + ThisUnitSize + " Chest[E]";
+
+            if(StorageManager.Instance.storageUIOpen)
+            {
+                Text.GetComponent<TMP_Text>().text = "Close " + ThisUnitSize + " Chest[E]";
+            }
         }
         else
         {
             PlayerInRange = false;
             Text.gameObject.SetActive(false);
-            StorageManager.Instance.CloseBox();
+
+            if (StorageManager.Instance.storageUIOpen && !PlacementSystem.Instance.inPlacementMode)
+            {
+                StorageManager.Instance.CloseBox();
+            }
         }
 
         //if (!PlayerInRange && !StorageManager.Instance.IsOpen)
@@ -66,7 +75,7 @@ public class StorageUnit : MonoBehaviour
         {
             print("Works");
 
-            StorageManager.Instance.OpenBox(this);
+            StorageManager.Instance.OpenBox(this.transform.GetComponent<StorageUnit>());
         }
         else if (StorageManager.Instance.storageUIOpen)
         {
