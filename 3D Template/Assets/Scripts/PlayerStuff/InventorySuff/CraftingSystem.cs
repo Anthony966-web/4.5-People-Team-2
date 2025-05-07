@@ -20,14 +20,26 @@ public class CraftingSystem : MonoBehaviour
 
     // Craft Buttons
     Button CraftAxeBTN;
+    Button CraftFoundationBTN;
+    Button CraftWallBTN;
+    Button CraftRoofBTN;
+    Button CraftChestBTN;
 
     // Requirement Text
     TMP_Text AxeReq1, AxeReq2;
+    TMP_Text FoundationReq1, FoundationReq2;
+    TMP_Text WallReq1, WallReq2;
+    TMP_Text RoofReq1, RoofReq2;
+    TMP_Text ChestReq1, ChestReq2;
 
     bool isOpen;
 
     // All Blueprints
     public ItemBlueprint AxeBLP;
+    public ItemBlueprint FoundationBLP;
+    public ItemBlueprint WallBLP;
+    public ItemBlueprint RoofBLP;
+    public ItemBlueprint ChestBLP;
 
 
     public static CraftingSystem Instance { get; set; }
@@ -54,12 +66,44 @@ public class CraftingSystem : MonoBehaviour
         CunstructionBTN = CraftingScreenUI.transform.Find("Contents").Find("ConstructionButton").GetComponent<Button>();
         CunstructionBTN.onClick.AddListener(delegate { OpenConstructionCategory(); });
 
+        // ToolsCategoryScreen
+
         // Axe
         AxeReq1 = ToolsScreenUI.transform.Find("Contents").transform.Find("Axe").transform.Find("req1").GetComponent<TMP_Text>();
         AxeReq2 = ToolsScreenUI.transform.Find("Contents").transform.Find("Axe").transform.Find("req2").GetComponent<TMP_Text>();
 
         CraftAxeBTN = ToolsScreenUI.transform.Find("Contents").transform.Find("Axe").transform.Find("CraftButton").GetComponent<Button>();
         CraftAxeBTN.onClick.AddListener(delegate { CraftAnyItem(AxeBLP); });
+
+        // ConstructionCategoryScreen
+
+        // Foundation
+        FoundationReq1 = ConstructionScreenUI.transform.Find("Contents").transform.Find("Foundation").transform.Find("req1").GetComponent<TMP_Text>();
+        FoundationReq2 = ConstructionScreenUI.transform.Find("Contents").transform.Find("Foundation").transform.Find("req2").GetComponent<TMP_Text>();
+
+        CraftFoundationBTN = ConstructionScreenUI.transform.Find("Contents").transform.Find("Foundation").transform.Find("CraftButton").GetComponent<Button>();
+        CraftFoundationBTN.onClick.AddListener(delegate { CraftAnyItem(FoundationBLP); });
+
+        // Wall
+        WallReq1 = ConstructionScreenUI.transform.Find("Contents").transform.Find("Wall").transform.Find("req1").GetComponent<TMP_Text>();
+        WallReq2 = ConstructionScreenUI.transform.Find("Contents").transform.Find("Wall").transform.Find("req2").GetComponent<TMP_Text>();
+
+        CraftWallBTN = ConstructionScreenUI.transform.Find("Contents").transform.Find("Wall").transform.Find("CraftButton").GetComponent<Button>();
+        CraftWallBTN.onClick.AddListener(delegate { CraftAnyItem(WallBLP); });
+
+        // Roof
+        RoofReq1 = ConstructionScreenUI.transform.Find("Contents").transform.Find("Roof").transform.Find("req1").GetComponent<TMP_Text>();
+        RoofReq2 = ConstructionScreenUI.transform.Find("Contents").transform.Find("Roof").transform.Find("req2").GetComponent<TMP_Text>();
+
+        CraftRoofBTN = ConstructionScreenUI.transform.Find("Contents").transform.Find("Roof").transform.Find("CraftButton").GetComponent<Button>();
+        CraftRoofBTN.onClick.AddListener(delegate { CraftAnyItem(RoofBLP); });
+
+        // Chest
+        ChestReq1 = ConstructionScreenUI.transform.Find("Contents").transform.Find("Chest").transform.Find("req1").GetComponent<TMP_Text>();
+        ChestReq2 = ConstructionScreenUI.transform.Find("Contents").transform.Find("Chest").transform.Find("req2").GetComponent<TMP_Text>();
+
+        CraftChestBTN = ConstructionScreenUI.transform.Find("Contents").transform.Find("Chest").transform.Find("CraftButton").GetComponent<Button>();
+        CraftChestBTN.onClick.AddListener(delegate { CraftAnyItem(ChestBLP); });
 
 
         CraftingScreenUI.SetActive(false);
@@ -186,16 +230,45 @@ public class CraftingSystem : MonoBehaviour
         }
 
         // Get counts safely
-        int stoneCount = itemCounts.ContainsKey("Orange") ? itemCounts["Orange"] : 0;
-        int stickCount = itemCounts.ContainsKey("Apple") ? itemCounts["Apple"] : 0;
+        int stoneCount = itemCounts.ContainsKey("Stone") ? itemCounts["Stone"] : 0;
+        int woodCount = itemCounts.ContainsKey("Wood") ? itemCounts["Wood"] : 0;
 
         // ---- AXE ---- //
         AxeReq1.text = $"{AxeBLP.ReqAmount[0]} {AxeBLP.Req[0].name} [{stoneCount}]";
-        AxeReq2.text = $"{AxeBLP.ReqAmount[1]} {AxeBLP.Req[1].name} [{stickCount}]";
+        AxeReq2.text = $"{AxeBLP.ReqAmount[1]} {AxeBLP.Req[1].name} [{woodCount}]";
 
-        bool canCraftAxe = stoneCount >= AxeBLP.ReqAmount[0] && stickCount >= AxeBLP.ReqAmount[1] && InventorySystem.Instance.CheckSlotIsAvailable(1);
+        // ---- Foundation ---- //
+        FoundationReq1.text = $"{FoundationBLP.ReqAmount[0]} {FoundationBLP.Req[0].name} [{woodCount}]";
+        FoundationReq2.text = $"";
+        
+
+        // ---- Wall ---- //
+        WallReq1.text = $"{WallBLP.ReqAmount[0]} {WallBLP.Req[0].name} [{woodCount}]";
+        WallReq2.text = $"";
+        
+
+        // ---- Roof ---- //
+        RoofReq1.text = $"{RoofBLP.ReqAmount[0]} {RoofBLP.Req[0].name} [{woodCount}]";
+        RoofReq2.text = $"";
+        
+
+        // ---- Chest ---- //
+        ChestReq1.text = $"{ChestBLP.ReqAmount[0]} {ChestBLP.Req[0].name} [{woodCount}]";
+        ChestReq2.text = $"";
+        
+
+        bool canCraftAxe = stoneCount >= AxeBLP.ReqAmount[0] && woodCount >= AxeBLP.ReqAmount[1] && InventorySystem.Instance.CheckSlotIsAvailable(AxeBLP.ProduceAmount);
+        bool canCraftFoundation = woodCount >= FoundationBLP.ReqAmount[0] && InventorySystem.Instance.CheckSlotIsAvailable(FoundationBLP.ProduceAmount);
+        bool canCraftWall = woodCount >= WallBLP.ReqAmount[0] && InventorySystem.Instance.CheckSlotIsAvailable(WallBLP.ProduceAmount);
+        bool canCraftRoof = woodCount >= RoofBLP.ReqAmount[0] && InventorySystem.Instance.CheckSlotIsAvailable(RoofBLP.ProduceAmount);
+        bool canCraftChest = woodCount >= ChestBLP.ReqAmount[0] && InventorySystem.Instance.CheckSlotIsAvailable(ChestBLP.ProduceAmount);
+        
 
         CraftAxeBTN.gameObject.SetActive(canCraftAxe);
+        CraftFoundationBTN.gameObject.SetActive(canCraftFoundation);
+        CraftWallBTN.gameObject.SetActive(canCraftWall);
+        CraftRoofBTN.gameObject.SetActive(canCraftRoof);
+        CraftChestBTN.gameObject.SetActive(canCraftChest);
     }
 }
 
