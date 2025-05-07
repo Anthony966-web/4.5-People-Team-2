@@ -70,6 +70,7 @@ public class EnemyAiTutorial : MonoBehaviour
     }
     private void ChasePlayer()
     {
+        Agent.speed = 10;
         Agent.SetDestination(Player.position);
     }
 
@@ -119,8 +120,9 @@ public class EnemyAiTutorial : MonoBehaviour
         float randomX = Random.Range(-walkpointRange, walkpointRange);
         
         walkpoint = new Vector3(transform.position.x + randomX, transform.position.y, transform.position.z + randomZ);
-        if (Physics.Raycast(walkpoint, -transform.up, 2f, WhatIsGround))
+        if (Physics.Raycast(walkpoint, -transform.up, 5f, WhatIsGround))
         {
+            Agent.speed = 3.5f;
             walkPointset = true;
 
         }

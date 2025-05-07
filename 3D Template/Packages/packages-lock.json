@@ -61,6 +61,16 @@
       "dependencies": {},
       "url": "https://packages.unity.com"
     },
+    "com.unity.feature.gameplay-storytelling": {
+      "version": "1.0.0",
+      "depth": 0,
+      "source": "builtin",
+      "dependencies": {
+        "com.unity.cinemachine": "2.10.2",
+        "com.unity.timeline": "1.8.7",
+        "com.unity.visualscripting": "1.9.4"
+      }
+    },
     "com.unity.ide.rider": {
       "version": "3.0.35",
       "depth": 0,
@@ -253,8 +263,8 @@
       "url": "https://packages.unity.com"
     },
     "com.unity.xr.legacyinputhelpers": {
-      "version": "2.1.11",
-      "depth": 1,
+      "version": "2.1.12",
+      "depth": 0,
       "source": "registry",
       "dependencies": {
         "com.unity.modules.vr": "1.0.0",
@@ -282,6 +292,12 @@
       "dependencies": {}
     },
     "com.unity.modules.ai": {
+      "version": "1.0.0",
+      "depth": 0,
+      "source": "builtin",
+      "dependencies": {}
+    },
+    "com.unity.modules.amd": {
       "version": "1.0.0",
       "depth": 0,
       "source": "builtin",
@@ -347,6 +363,12 @@
       "dependencies": {}
     },
     "com.unity.modules.jsonserialize": {
+      "version": "1.0.0",
+      "depth": 0,
+      "source": "builtin",
+      "dependencies": {}
+    },
+    "com.unity.modules.nvidia": {
       "version": "1.0.0",
       "depth": 0,
       "source": "builtin",
