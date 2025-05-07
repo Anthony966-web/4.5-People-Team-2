@@ -240,18 +240,22 @@ public class CraftingSystem : MonoBehaviour
         // ---- Foundation ---- //
         FoundationReq1.text = $"{FoundationBLP.ReqAmount[0]} {FoundationBLP.Req[0].name} [{woodCount}]";
         FoundationReq2.text = $"";
+        
 
         // ---- Wall ---- //
         WallReq1.text = $"{WallBLP.ReqAmount[0]} {WallBLP.Req[0].name} [{woodCount}]";
-        WallReq2.text = $"{WallBLP.ReqAmount[0]} {WallBLP.Req[0].name} [{stoneCount}]";
+        WallReq2.text = $"";
+        
 
         // ---- Roof ---- //
         RoofReq1.text = $"{RoofBLP.ReqAmount[0]} {RoofBLP.Req[0].name} [{woodCount}]";
         RoofReq2.text = $"";
+        
 
         // ---- Chest ---- //
         ChestReq1.text = $"{ChestBLP.ReqAmount[0]} {ChestBLP.Req[0].name} [{woodCount}]";
         ChestReq2.text = $"";
+        
 
         bool canCraftAxe = stoneCount >= AxeBLP.ReqAmount[0] && woodCount >= AxeBLP.ReqAmount[1] && InventorySystem.Instance.CheckSlotIsAvailable(AxeBLP.ProduceAmount);
         bool canCraftFoundation = woodCount >= FoundationBLP.ReqAmount[0] && InventorySystem.Instance.CheckSlotIsAvailable(FoundationBLP.ProduceAmount);
