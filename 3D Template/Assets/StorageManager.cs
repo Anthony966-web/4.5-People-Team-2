@@ -36,7 +36,8 @@ public class StorageManager : MonoBehaviour
     public void OpenBox(StorageUnit storage)
     {
         SetSelectedStorage(storage);
-        PopulateStorage(GetRelevantUI(selectedStorage).transform.GetChild(1).gameObject);
+        print(selectedStorage);
+        PopulateStorage(GetRelevantUI(selectedStorage).transform.GetChild(0).gameObject);
         GetRelevantUI(selectedStorage).SetActive(true);
 
         storageUIOpen = true;
@@ -84,7 +85,7 @@ public class StorageManager : MonoBehaviour
     public void CloseBox()
     {
         print(selectedStorage);
-        RecalculateStorage(GetRelevantUI(selectedStorage).transform.GetChild(1).gameObject);
+        RecalculateStorage(GetRelevantUI(selectedStorage).transform.GetChild(0).gameObject);
         GetRelevantUI(selectedStorage).SetActive(false);
 
         Cursor.lockState = CursorLockMode.Locked;

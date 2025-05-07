@@ -71,11 +71,11 @@ public class InventoryItem : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
 
         if(ItemID.IsConsumable)
         {
-            itemInfoUI_itemDescription.text = ItemID.ItemDescription + ", +" + ItemID.healthEffect + " Health, +" + ItemID.hungerEffect + " Hunger.";
+            itemInfoUI_itemDescription.text = ItemID.ItemDescription + ", +" + ItemID.healthEffect + " Health, +" + ItemID.hungerEffect + " Hunger."  + "Can Drop = " + ItemID.IsDroppable;
         }
         else
         {
-            itemInfoUI_itemDescription.text = ItemID.ItemDescription;
+            itemInfoUI_itemDescription.text = ItemID.ItemDescription + "Can Drop = " + ItemID.IsDroppable;
         }
     }
 
