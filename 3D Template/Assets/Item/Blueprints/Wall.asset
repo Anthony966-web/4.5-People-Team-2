@@ -12,8 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a0992862b31a1de4d9545ca3960ed79e, type: 3}
   m_Name: Wall
   m_EditorClassIdentifier: 
-  itemname: {fileID: 11400000, guid: 288b9b18bc583044f8e7ba9e8f5797a8, type: 2}
+  itemname: {fileID: 11400000, guid: 7da98fbf6266c93498ce8238a3c880f2, type: 2}
   ProduceAmount: 2
   Req:
-  - {fileID: 11400000, guid: 7da98fbf6266c93498ce8238a3c880f2, type: 2}
-  ReqAmount: 02000000
+  - {fileID: 11400000, guid: b0956e6287f04414f9984e82bde5ca16, type: 2}
+  - {fileID: 11400000, guid: 805645120a73baa419def8ab5e8fbce4, type: 2}
+  ReqAmount: 0200000004000000

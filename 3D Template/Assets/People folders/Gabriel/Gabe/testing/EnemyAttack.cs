@@ -15,9 +15,7 @@ public class EnemyAttack : MonoBehaviour
     public float knockbackForce = 10f;
     public GameObject explosion;
     public Camera cam;
-    public Animator animator;
-    public bool IsAtking;
-    
+
     private void Start()
     {
     }
@@ -31,63 +29,12 @@ public class EnemyAttack : MonoBehaviour
 
     void Update()
     {
-        StartCoroutine(atk());
 
-        //if (Time.time >= nextAttackTime)
-        //{
-        //    Collider[] hitPlayer = Physics.OverlapSphere(attackPoint.position, attackRange, playerLayer);
-        //    IsAtking = false;
-        //    foreach (Collider player in hitPlayer)
-        //    {
-        //        IDamageable target = player.GetComponent<IDamageable>();
-        //        if (target != null)
-        //        {
 
-        //            nextAttackTime = Time.time + attackCooldown;
-        //            Debug.Log(nextAttackTime);
-        //            Debug.Log(Time.time);
-        //            PlayerParry parry = player.GetComponent<PlayerParry>();
-        //            if (parry != null && parry.IsParrying)
-        //            {
-        //                Debug.Log("Enemy stunned by parry!");
-        //                StartCoroutine(StunRoutine()); 
-        //                return;
-        //            }
-        //            if (isStunned == true)
-        //            {
-        //                return;
-        //            }
-        //            IsAtking = true;
-        //            target.TakeDamage(damage);
-        //            animator.SetBool("IsAtking", IsAtking);
-        //            while (knobackvelocity != Vector3.zero)
-        //            {
-        //                knobackvelocity = Vector3.Lerp(knobackvelocity, Vector3.zero, 1 * Time.deltaTime);
-        //                if (knobackvelocity.magnitude < 0.1f)
-        //                    knobackvelocity = Vector3.zero;
-        //                return;
-        //            }
-
-        //            HealthSystem hs = player.GetComponent<HealthSystem>();
-
-        //            if (hs != null)
-        //            {
-        //                Vector3 dir = player.transform.position - transform.position;
-        //                hs.ApplyKnockback(dir);
-        //                CharacterMovement.Instance.Knockback();
-        //            }
-        //        }
-        //    }
-        //}
-        animator.SetBool("IsAtking", IsAtking);
-    }
-    private System.Collections.IEnumerator atk()
-    {
-        IsAtking = false;
         if (Time.time >= nextAttackTime)
         {
             Collider[] hitPlayer = Physics.OverlapSphere(attackPoint.position, attackRange, playerLayer);
-          //  IsAtking = false;
+
             foreach (Collider player in hitPlayer)
             {
                 IDamageable target = player.GetComponent<IDamageable>();
@@ -101,24 +48,20 @@ public class EnemyAttack : MonoBehaviour
                     if (parry != null && parry.IsParrying)
                     {
                         Debug.Log("Enemy stunned by parry!");
-                        StartCoroutine(StunRoutine());
-                        yield break;
+                        StartCoroutine(StunRoutine()); 
+                        return;
                     }
-                   
-                    IsAtking = true;
-                    yield return new WaitForSeconds(1f); 
                     if (isStunned == true)
                     {
-                        yield break;
+                        return;
                     }
                     target.TakeDamage(damage);
-                    
                     while (knobackvelocity != Vector3.zero)
                     {
                         knobackvelocity = Vector3.Lerp(knobackvelocity, Vector3.zero, 1 * Time.deltaTime);
                         if (knobackvelocity.magnitude < 0.1f)
                             knobackvelocity = Vector3.zero;
-                        yield break; 
+                        return;
                     }
 
                     HealthSystem hs = player.GetComponent<HealthSystem>();
@@ -135,7 +78,6 @@ public class EnemyAttack : MonoBehaviour
     }
     private System.Collections.IEnumerator StunRoutine()
     {
-        IsAtking = false;
         test();
         Vector3 dir = this.gameObject.transform.position - transform.position;
         isStunned = true;
