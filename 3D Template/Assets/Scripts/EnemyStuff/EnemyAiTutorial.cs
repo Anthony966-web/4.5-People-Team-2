@@ -12,6 +12,8 @@ public class EnemyAiTutorial : MonoBehaviour
     public LayerMask WhatIsGround, WhatIsPlayer;
     public GameObject Projectile;
     public float health;
+    public Animator animator;
+    public bool IsRunning;
 
     //patrol
     public Vector3 walkpoint;
@@ -28,6 +30,7 @@ public class EnemyAiTutorial : MonoBehaviour
 
     private void Update()
     {
+        animator.SetBool("IsRunning", IsRunning);
         ////check for sight and attack range
         PlayerInSightRange = Physics.CheckSphere(transform.position, sightRange, WhatIsPlayer);
         PlayerInAttackRange = Physics.CheckSphere(transform.position, attackRange, WhatIsPlayer);
@@ -53,6 +56,8 @@ public class EnemyAiTutorial : MonoBehaviour
 
     private IEnumerator Patroling()
     {
+        IsRunning = false;
+        Agent.isStopped = false;
         if (!walkPointset)
         { SearchWalkPoint(); }
         if (walkPointset)
@@ -61,23 +66,38 @@ public class EnemyAiTutorial : MonoBehaviour
 
             Vector3 distanceToWalkPoint = transform.position - walkpoint;
 
-            if (distanceToWalkPoint.magnitude < 2f)
+            if (distanceToWalkPoint.magnitude < 1f)
             {
-                yield return new WaitForSeconds(3);
+                yield return new WaitForSeconds(1);
+                walkPointset = false;
+            }
+            if (distanceToWalkPoint.magnitude > 1f)
+            {
+                yield return new WaitForSeconds(10);
                 walkPointset = false;
             }
         }
     }
     private void ChasePlayer()
     {
+        IsRunning = true;
+        Agent.isStopped = false;
         Agent.speed = 10;
         Agent.SetDestination(Player.position);
     }
 
     private void AttackPlayer()
     {
+        IsRunning = false;
+        if (Agent.isActiveAndEnabled)
+        {
+            Agent.isStopped = true;
+        }
         Agent.SetDestination(transform.position);
-        transform.LookAt(Player);
+        Vector3 lookPosition = Player.position;
+        lookPosition.y = transform.position.y; // Keep the AI's y-axis unchanged
+        transform.LookAt(lookPosition);
+        //transform.forward = GetComponent<Rigidbody>().linearVelocity;
 
         if (!alreadyAttacked)
         {
@@ -120,7 +140,7 @@ public class EnemyAiTutorial : MonoBehaviour
         float randomX = Random.Range(-walkpointRange, walkpointRange);
         
         walkpoint = new Vector3(transform.position.x + randomX, transform.position.y, transform.position.z + randomZ);
-        if (Physics.Raycast(walkpoint, -transform.up, 5f, WhatIsGround))
+        if (Physics.Raycast(walkpoint, -transform.up, 2f, WhatIsGround))
         {
             Agent.speed = 3.5f;
             walkPointset = true;
