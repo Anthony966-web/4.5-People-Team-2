@@ -42,7 +42,10 @@ public class ImmunityChecker : MonoBehaviour
         }
         else
         {
-            PlayerState.Instance.ToxicImmunity = false;
+            if(PlayerState.Instance != null)
+            {
+                PlayerState.Instance.ToxicImmunity = false;
+            }
         }
     }
 }

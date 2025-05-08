@@ -506,10 +506,22 @@ public class CharacterMovement : MonoBehaviour
 
     void CameraControl()
     {
-        if (GameObject.Find("InventorySystem").GetComponent<InventorySystem>().isOpen == true || GameObject.Find("NPC [Shop]").GetComponent<NPCSystem>().IsOpen == true)
+        if(GameObject.Find("NPC [Shop]").GetComponent<NPCSystem>() != null)
         {
-            return;
+            if (GameObject.Find("NPC [Shop]").GetComponent<NPCSystem>().IsOpen == true)
+            {
+                return;
+            }
         }
+
+        if(GameObject.Find("InventorySystem").GetComponent<InventorySystem>() != null)
+        {
+            if (GameObject.Find("InventorySystem").GetComponent<InventorySystem>().isOpen == true)
+            {
+                return;
+            }
+        }
+       
 
         float mouseX = Input.GetAxis("Mouse X") * lookSensitivity;
         float mouseY = Input.GetAxis("Mouse Y") * lookSensitivity;
