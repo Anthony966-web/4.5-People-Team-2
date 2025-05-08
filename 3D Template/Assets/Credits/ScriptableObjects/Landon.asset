@@ -12,12 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c61c90c8e8f5bdc43933e13451ed8564, type: 3}
   m_Name: Landon
   m_EditorClassIdentifier: 
-  FullName: 
-  TeamRole: 
+  FullName: Landon Almond
+  TeamRole: Producer / Scripter / Artist
   VGD: 0
   AMI: 1
-  Image1: {fileID: 0}
-  Image2: {fileID: 0}
-  Image3: {fileID: 0}
-  Image4: {fileID: 0}
-  Image5: {fileID: 0}
+  Image1: {fileID: 21300000, guid: e72a68e54d12a694c8de98d121a5721b, type: 3}
+  Image2: {fileID: 21300000, guid: dafde27f0e593e74e97e76156d33f5ee, type: 3}
+  Image3: {fileID: 21300000, guid: 84a87672a118dea4fa75d7456bf6ab14, type: 3}
+  Image4: {fileID: 21300000, guid: 22c5fd5fe60b76c41a09dc8085181f78, type: 3}
+  Image5: {fileID: 21300000, guid: 4a61ae813a05ee940933f749329d7f1f, type: 3}
