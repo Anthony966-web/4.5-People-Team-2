@@ -75,7 +75,7 @@ public class EnemyAiTutorial : MonoBehaviour
             }
             if (distanceToWalkPoint.magnitude > 1f)
             {
-                yield return new WaitForSeconds(5f);
+                yield return new WaitForSeconds(10f);
                 walkPointset = false;
             }
         }
@@ -150,8 +150,8 @@ public class EnemyAiTutorial : MonoBehaviour
         }
         
     }
-    private void OnCollisionEnter(Collision collision)
-    {
-        SearchWalkPoint();
-    }
+//    private void OnCollisionEnter(Collision collision)
+//    {
+//        SearchWalkPoint();
+//    }
 }
