@@ -65,17 +65,22 @@ public class SaveManager : MonoBehaviour
     public void SaveGame(int slotNumber)
     {
         AllGameData data = new AllGameData();
+
         data.playerData = GetPlayerData();
+
         data.enviromentData = GetEnviromentData();
+
         SavingTypeSwitch(data, slotNumber);
     }
 
     private EnviromentData GetEnviromentData()
     {
-        //List<ItemAssets> itemPickedup = InventorySystem.Instance.itemsPickedup;
+        //List<string> itemPickedup = InventorySystem.Instance.itemsPickedup;
 
-        //return new EnviromentData();
+        //return new EnviromentData(itemsPickedup);
+
         return null;
+
     }
 
     private PlayerData GetPlayerData()

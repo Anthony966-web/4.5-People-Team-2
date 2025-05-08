@@ -32,6 +32,9 @@ public class PlayerState : MonoBehaviour
 
     public bool ToxicImmunity;
 
+
+    public GameObject GameOverUI;
+
     // ---- Player Currancy ---- //
 
     public float Money = 100;
@@ -103,7 +106,11 @@ public class PlayerState : MonoBehaviour
             
         }
 
-
+        if(currentHealth <= 0)
+        {
+            GameOverUI.SetActive(true);
+            Time.timeScale = 0f;
+        }
     }
 
     IEnumerator DecreaseToxicImmunity()
