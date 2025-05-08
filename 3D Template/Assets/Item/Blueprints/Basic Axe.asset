@@ -10,10 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a0992862b31a1de4d9545ca3960ed79e, type: 3}
-  m_Name: Chest
+  m_Name: Basic Axe
   m_EditorClassIdentifier: 
-  itemname: {fileID: 11400000, guid: 6e814a4096f64424bbd7c69afd736377, type: 2}
+  itemname: {fileID: 11400000, guid: bbd60cd65c2b6a441bde90d097e70be8, type: 2}
   ProduceAmount: 1
   Req:
   - {fileID: 11400000, guid: b0956e6287f04414f9984e82bde5ca16, type: 2}
-  ReqAmount: 05000000
+  - {fileID: 11400000, guid: 7da98fbf6266c93498ce8238a3c880f2, type: 2}
+  ReqAmount: 0200000004000000

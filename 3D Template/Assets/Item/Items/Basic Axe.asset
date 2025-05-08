@@ -16,7 +16,7 @@ MonoBehaviour:
   ItemName: Basic Axe
   ItemModel: {fileID: 6957771218144326143, guid: 395ac953136c8074399619360691c421,
     type: 3}
-  ItemObject: {fileID: 919132149155446097, guid: c522e201f65d1d5448f33c165084bad9,
+  ItemObject: {fileID: 6957771218144326143, guid: 1e4a2fac36aa3af45a36d617ddae5ab9,
     type: 3}
   Quantity: 1
   ItemDescription: Basic Axe
@@ -26,6 +26,8 @@ MonoBehaviour:
   IsSword: 0
   IsAxe: 1
   Damage: 12.5
+  Cost: 0
+  Value: 0
   IsConsumable: 0
   IsUseable: 0
   itemPendingToBeUsed: {fileID: 0}
