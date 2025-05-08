@@ -932,6 +932,11 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 10
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 8e0c3b7eac38cd844bcacb92466a22b2,
+        type: 3}
+      propertyPath: m_TagString
+      value: Ground
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1025,6 +1030,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   slotNumber: 0
+  AlertUI: {fileID: 0}
 --- !u!114 &194965623
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14689,6 +14695,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   slotNumber: 1
+  AlertUI: {fileID: 0}
 --- !u!114 &1782868551
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16412,6 +16419,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   slotNumber: 2
+  AlertUI: {fileID: 0}
 --- !u!114 &1997746620
 MonoBehaviour:
   m_ObjectHideFlags: 0
