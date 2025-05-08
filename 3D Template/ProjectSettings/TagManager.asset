@@ -19,6 +19,8 @@ TagManager:
   - PlacedWall
   - PlacedRoof
   - RoofGhost
+  - Mine
+  - Rock
   layers:
   - Default
   - TransparentFX

@@ -72,12 +72,6 @@ public class MenuController : MonoBehaviour
         resolutionDropdown.AddOptions(options);
         resolutionDropdown.value = currentResolutionIndex;
         resolutionDropdown.RefreshShownValue();
-
-        LoadGameDialog_YesBtn.onClick.AddListener(() =>
-        {
-            SaveManager.Instance.StartLoadedGame(1);
-        });
-
     }
 
     public void SetResolution(int resolutionIndex)

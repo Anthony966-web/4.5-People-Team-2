@@ -30,14 +30,9 @@ public class TempPauseScript : MonoBehaviour
         }
         else
         {
-            Cursor.lockState = CursorLockMode.Locked;
-            Cursor.visible = false;
+            //Cursor.lockState = CursorLockMode.Locked;
+            //Cursor.visible = false;
         }
     }
     #endregion
-
-
-   
-
-
 }

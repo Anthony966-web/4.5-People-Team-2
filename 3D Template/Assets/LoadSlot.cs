@@ -4,26 +4,26 @@ using TMPro;
 
 public class LoadSlot : MonoBehaviour
 {
-    public Button button;
-    public TMP_Text buttonText;
+    private Button button;
+    private TMP_Text buttonText;
 
     public int slotNumber;
 
     public void Awake()
     {
         button = GetComponent<Button>();
-        buttonText = transform.Find("Text (TMP)").GetComponent<TextMeshProUGUI>();
+        buttonText = transform.GetChild(0).GetComponent<TMP_Text>();
     }
 
     private void Update()
     {
         if (SaveManager.Instance.IsSlotEmpty(slotNumber))
         {
-            buttonText.text = "";
+            buttonText.text = "No Data";
         }
         else
         {
-            buttonText.text = PlayerPrefs.GetString("slot" + slotNumber + "Description");
+            buttonText.text = PlayerPrefs.GetString("Slot" + slotNumber + "Description");
         }
 
     }

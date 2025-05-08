@@ -9,14 +9,21 @@ using TMPro;
 public class SaveSlot : MonoBehaviour
 {
     private Button button;
-    private TextMeshProUGUI buttonText;
+    private TMP_Text buttonText;
 
     public int slotNumber;
+
+    public GameObject AlertUI;
+    Button yesButton;
+    Button noButton;
 
     private void Awake()
     {
         button = GetComponent<Button>();
-        buttonText = transform.Find("text (TMP)").GetComponent<TextMeshProUGUI>();
+        buttonText = transform.GetChild(0).GetComponent<TMP_Text>();
+
+        yesButton = AlertUI.transform.GetChild(1).GetComponent<Button>();
+        noButton = AlertUI.transform.GetChild(2).GetComponent<Button>();
     }
 
     public void Start()
@@ -25,24 +32,12 @@ public class SaveSlot : MonoBehaviour
         {
             if (SaveManager.Instance.IsSlotEmpty(slotNumber))
             {
-                 SaveManager.Instance.SaveGame(slotNumber);
-
-                DateTime dt = DateTime.Now;
-                string time = dt.ToString("yyyy-mm-dd HH:mm");
-
-                string description = "Saved Game " + slotNumber + " | " + time;
-
-                buttonText.text = description;
-
-                PlayerPrefs.SetString("Slot" + slotNumber + "Description",description);
-
-                SaveManager.Instance.DeselectButton();
+                SaveGameConfirm();
             }
             else
             {
-                // DisplayOverrideWarning
+                DisplayOverrideWarning();
             }
-
         }
         );
     }
@@ -58,5 +53,38 @@ public class SaveSlot : MonoBehaviour
         {
             buttonText.text = PlayerPrefs.GetString("Slot" + slotNumber + "Description");
         }
+    }
+
+    public void DisplayOverrideWarning()
+    {
+        AlertUI.SetActive(true);
+
+        yesButton.onClick.AddListener(() =>
+        {
+            SaveGameConfirm();
+
+            AlertUI.SetActive(false);
+        });
+
+        noButton.onClick.AddListener(() =>
+        {
+            AlertUI.SetActive(false);
+        });
+    }
+
+    private void SaveGameConfirm()
+    {
+        SaveManager.Instance.SaveGame(slotNumber);
+
+        DateTime dt = DateTime.Now;
+        string time = dt.ToString("yyyy-mm-dd HH:mm");
+
+        string description = "Saved Game " + slotNumber + " | " + time;
+
+        buttonText.text = description;
+
+        PlayerPrefs.SetString("Slot" + slotNumber + "Description", description);
+
+        SaveManager.Instance.DeselectButton();
     }
 }

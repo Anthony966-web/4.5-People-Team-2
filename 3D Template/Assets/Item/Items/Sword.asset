@@ -14,9 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ItemIcon: {fileID: 10915, guid: 0000000000000000f000000000000000, type: 0}
   ItemName: Sword
-  ItemModel: {fileID: 1516766278553270060, guid: e334530ae0b09254da6cfab54015cc29,
+  ItemModel: {fileID: 7424802454414806531, guid: 524d08c422f2b3e4eb85402b53e26745,
     type: 3}
-  ItemObject: {fileID: 3740448695760099256, guid: f3d46bd2832392f49a36b6fbcd2ed5c6,
+  ItemObject: {fileID: 712421512595755607, guid: 3ee427236e0265944aa7852743d00fc7,
     type: 3}
   Quantity: 1
   ItemDescription: Sword

@@ -25,6 +25,8 @@ public class SaveManager : MonoBehaviour
     // Binary Save Path
     string binaryPath;
 
+    public bool isLoading;
+
     #endregion
 
     string fileName = "SaveGame";
@@ -64,7 +66,16 @@ public class SaveManager : MonoBehaviour
     {
         AllGameData data = new AllGameData();
         data.playerData = GetPlayerData();
+        data.enviromentData = GetEnviromentData();
         SavingTypeSwitch(data, slotNumber);
+    }
+
+    private EnviromentData GetEnviromentData()
+    {
+        //List<ItemAssets> itemPickedup = InventorySystem.Instance.itemsPickedup;
+
+        //return new EnviromentData();
+        return null;
     }
 
     private PlayerData GetPlayerData()
@@ -84,7 +95,28 @@ public class SaveManager : MonoBehaviour
         playerPosAndRot[5] = PlayerState.Instance.playerBody.transform.rotation.z;
         playerPosAndRot[6] = PlayerState.Instance.playerBody.transform.rotation.w;
 
-        return new PlayerData(playerStats, playerPosAndRot);
+        ItemAssets[] inventory = InventorySystem.Instance.itemList.ToArray();
+
+        ItemAssets[] quickSlots = GetQuickSlotsContent();
+
+        return new PlayerData(playerStats, playerPosAndRot, inventory, quickSlots);
+    }
+
+    private ItemAssets[] GetQuickSlotsContent()
+    {
+        List<ItemAssets> temp = new List<ItemAssets>();
+
+        foreach (GameObject slot in EquipSystem.Instance.quickSlotsList)
+        {
+            if(slot.transform.childCount != 0)
+            {
+                //GameObject item = Instantiate(InventorySystem.Instance.ItemSlotPrefab);
+                //item.GetComponent<InventoryItem>().ItemID = item.GetComponent<InventoryItem>().ItemID;
+                temp.Add(slot.transform.GetChild(0).GetComponent<InventoryItem>().ItemID);
+                print(slot.transform.GetChild(0).GetComponent<InventoryItem>().ItemID);
+            }
+        }
+        return temp.ToArray();
     }
 
     public void SavingTypeSwitch(AllGameData gameData, int slotNumber)
@@ -123,7 +155,14 @@ public class SaveManager : MonoBehaviour
         SetPlayerData(LoadingTypeSwitch(slotNumber).playerData);
 
         // Enviroment Data
+        SetEnviromentData(LoadingTypeSwitch(slotNumber).playerData);
 
+        isLoading = false;
+    }
+
+    private void SetEnviromentData(PlayerData playerData)
+    {
+        
     }
 
     private void SetPlayerData(PlayerData playerData)
@@ -152,6 +191,23 @@ public class SaveManager : MonoBehaviour
         loadedRotation.w = playerData.playerPositionAndRotation[6];
 
         PlayerState.Instance.playerBody.transform.rotation = Quaternion.Euler(loadedRotation);
+
+        // Setting the inventory content
+        foreach(ItemAssets item in playerData.inventoryContent)
+        {
+            InventorySystem.Instance.AddToInventory(item, 1);
+        }
+
+        foreach(ItemAssets item in playerData.quickSlotsContent)
+        {
+            GameObject availableSlot = EquipSystem.Instance.FindNextEmptySlot();
+
+            var itemToAdd = Instantiate(InventorySystem.Instance.ItemSlotPrefab);
+
+            itemToAdd.GetComponent<InventoryItem>().ItemID = item;
+
+            itemToAdd.transform.SetParent(availableSlot.transform);
+        }
     }
 
     public void StartLoadedGame(int slotNumber)
@@ -221,12 +277,12 @@ public class SaveManager : MonoBehaviour
     {
         string json = JsonUtility.ToJson(gameData);
 
-        string encrypted = EncryptionDecryption(json);
+        //string encrypted = EncryptionDecryption(json);
 
         //                                            change to PathPersistant for release 
         using (StreamWriter writer = new StreamWriter(jsonPathProject + fileName + slotNumber + ".json"))
         {
-            writer.Write(encrypted);
+            writer.Write(json);
             print("Saved Game to Json File at :" + jsonPathProject + fileName + slotNumber + ".json");
         };
 
@@ -238,9 +294,9 @@ public class SaveManager : MonoBehaviour
         {
             string json = reader.ReadToEnd();
 
-            string decrypted = EncryptionDecryption(json);
+            //string decrypted = EncryptionDecryption(json);
 
-            AllGameData data = JsonUtility.FromJson<AllGameData>(decrypted);
+            AllGameData data = JsonUtility.FromJson<AllGameData>(json);
             return data; 
         }
     }

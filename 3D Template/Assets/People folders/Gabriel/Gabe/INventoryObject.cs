@@ -44,6 +44,7 @@ public class INventoryObject : MonoBehaviour
                     if (InventorySystem.Instance.CheckSlotIsAvailable(1))
                     {
                         InventorySystem.Instance.AddToInventory(inventoryItem, inventoryItem.Quantity);
+                        InventorySystem.Instance.itemsPickedup.Add(inventoryItem);
                         DestroyImmediate(this.gameObject);
                     }
                     else

@@ -81,6 +81,11 @@ public class PlayerState : MonoBehaviour
 
     void Update()
     {
+        if(SaveManager.Instance.isLoading == true)
+        {
+            return;
+        }
+
         distanceTravelled += Vector3.Distance(playerBody.transform.position, lastPosition);
         lastPosition = playerBody.transform.position;
 
