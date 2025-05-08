@@ -16,6 +16,8 @@ public class NPCSystem : MonoBehaviour
 
     public bool IsOpen;
 
+    public bool KeepActive;
+
     private void Awake()
     {
         if (Instance != null && Instance != this)
@@ -30,6 +32,11 @@ public class NPCSystem : MonoBehaviour
 
     private void Update()
     {
+        if(KeepActive)
+        {
+            return;
+        }
+
         if (Input.GetKeyDown(KeyCode.E))
         {
             if(player_detection && !Shop.activeSelf)

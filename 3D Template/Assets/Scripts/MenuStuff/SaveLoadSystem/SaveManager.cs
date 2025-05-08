@@ -12,7 +12,6 @@ public class SaveManager : MonoBehaviour
     #region || ---- Variables ---- ||
     public static SaveManager Instance { get; set; }
 
-    public string saveSlot;
     private string FileType = ".bin";
 
     public bool isSavingToJson;
@@ -182,7 +181,7 @@ public class SaveManager : MonoBehaviour
     {
         BinaryFormatter formatter = new BinaryFormatter();
 
-        string path = binaryPath + saveSlot + FileType;
+        string path = binaryPath + FileType;
         FileStream stream = new FileStream(path + fileName + slotNumber + ".bin", FileMode.Create);
 
         formatter.Serialize(stream, gameData);
@@ -193,7 +192,7 @@ public class SaveManager : MonoBehaviour
 
     public AllGameData LoadGameDataFromBinaryFile(int slotNumber)
     {
-        string path = binaryPath + saveSlot + FileType;
+        string path = binaryPath + FileType;
         if (File.Exists(path + fileName + slotNumber + ".bin"))
         {
             BinaryFormatter formatter = new BinaryFormatter();
