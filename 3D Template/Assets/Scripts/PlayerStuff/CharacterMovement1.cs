@@ -263,6 +263,8 @@ public class CharacterMovement : MonoBehaviour
 
     public bool Water;
 
+    public bool PlayGame;
+
     private void Awake()
     {
         if (Instance != null && Instance != this)
@@ -506,22 +508,25 @@ public class CharacterMovement : MonoBehaviour
 
     void CameraControl()
     {
-        //if(GameObject.Find("NPC [Shop]").GetComponent<NPCSystem>() != null)
-        //{
-        //    if (GameObject.Find("NPC [Shop]").GetComponent<NPCSystem>().IsOpen == true)
-        //    {
-        //        return;
-        //    }
-        //}
+        if(PlayGame)
+        {
+            if (GameObject.Find("NPC [Shop]").GetComponent<NPCSystem>() != null)
+            {
+                if (GameObject.Find("NPC [Shop]").GetComponent<NPCSystem>().IsOpen == true)
+                {
+                    return;
+                }
+            }
 
-        //if(GameObject.Find("InventorySystem").GetComponent<InventorySystem>() != null)
-        //{
-        //    if (GameObject.Find("InventorySystem").GetComponent<InventorySystem>().isOpen == true)
-        //    {
-        //        return;
-        //    }
-        //}
-       
+            if (GameObject.Find("InventorySystem").GetComponent<InventorySystem>() != null)
+            {
+                if (GameObject.Find("InventorySystem").GetComponent<InventorySystem>().isOpen == true)
+                {
+                    return;
+                }
+            }
+        }
+
 
         float mouseX = Input.GetAxis("Mouse X") * lookSensitivity;
         float mouseY = Input.GetAxis("Mouse Y") * lookSensitivity;
