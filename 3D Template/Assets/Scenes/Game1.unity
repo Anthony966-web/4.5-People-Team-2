@@ -41362,9 +41362,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8d0e311ce71b70d418c928f7c0dc0fda, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CraftingScreenUI: {fileID: 0}
-  ToolsScreenUI: {fileID: 0}
-  ConstructionScreenUI: {fileID: 0}
+  CraftingScreenUI: {fileID: 749305913}
+  ToolsScreenUI: {fileID: 2018536830}
+  ConstructionScreenUI: {fileID: 978155170}
   InventoryItemList: []
   AxeBLP: {fileID: 11400000, guid: 523dd21b5bc7b624885f8aeca62f6736, type: 2}
   FoundationBLP: {fileID: 11400000, guid: 7d2027bd672c77c45acc6c71b37ad9f4, type: 2}
@@ -49679,17 +49679,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a76a64a6b784304792f2287a39b0336, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inventoryScreenUI: {fileID: 0}
-  ItemInfoUI: {fileID: 0}
+  inventoryScreenUI: {fileID: 72938735}
+  ItemInfoUI: {fileID: 645855857}
   slotList: []
   itemList: []
   ItemSlotPrefab: {fileID: 2217343548316700775, guid: 23aab66244918eb40b72083fbd3e16c6,
     type: 3}
   isOpen: 0
   IsDraggingItem: 0
-  pickupAlert: {fileID: 0}
-  pickupName: {fileID: 0}
-  pickupIcon: {fileID: 0}
+  pickupAlert: {fileID: 707816252}
+  pickupName: {fileID: 448404299}
+  pickupIcon: {fileID: 2046743439}
 --- !u!4 &420305415
 Transform:
   m_ObjectHideFlags: 0
@@ -92296,7 +92296,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 899ed728e57e7ec428403a56bd734404, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  StorageUnitSmallUI: {fileID: 0}
+  StorageUnitSmallUI: {fileID: 1312618456}
   selectedStorage: {fileID: 0}
   storageUIOpen: 0
   ItemSlotPrefab: {fileID: 2217343548316700775, guid: 23aab66244918eb40b72083fbd3e16c6,
@@ -122907,9 +122907,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0a950f7503805ec4eb3ecb277bc7d9ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  quickSlotsPanel: {fileID: 0}
+  quickSlotsPanel: {fileID: 1797134001}
   quickSlotsList: []
-  numbersHolder: {fileID: 0}
+  numbersHolder: {fileID: 1179620183}
   selectedNumber: -1
   selectedItem: {fileID: 0}
   ToolHolder: {fileID: 1025364351}
@@ -141630,6 +141630,7 @@ MonoBehaviour:
   Ymeasure: 0
   knobackvelocity: {x: 0, y: 0, z: 0}
   Water: 0
+  PlayGame: 1
 --- !u!23 &1232417783
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -175231,7 +175232,7 @@ MonoBehaviour:
   isValidPlacement: 0
   itemToBePlaced: {fileID: 0}
   inventoryItemToDestory: {fileID: 0}
-  PlacementModeUI: {fileID: 0}
+  PlacementModeUI: {fileID: 837286629}
 --- !u!1 &1532636064 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 06fdfe4e71c0f1640aeedc9c886f3353,
@@ -224584,7 +224585,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 805645120a73baa419def8ab5e8fbce4, type: 2}
   shopUIPrefab: {fileID: 5542389470867229654, guid: d96b5bfbc6aa5e3439af40669aa933cf,
     type: 3}
-  shopUIParent: {fileID: 0}
+  shopUIParent: {fileID: 239919208}
   buyButton: {fileID: 0}
   sellButton: {fileID: 0}
 --- !u!1001 &1943695655
