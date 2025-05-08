@@ -106,7 +106,7 @@ public class EnemyAttack : MonoBehaviour
                     }
                    
                     IsAtking = true;
-                    yield return new WaitForSeconds(1f); 
+                    yield return new WaitForSeconds(0.5f); 
                     if (isStunned == true)
                     {
                         yield break;

@@ -14,6 +14,8 @@ public class EnemyAiTutorial : MonoBehaviour
     public float health;
     public Animator animator;
     public bool IsRunning;
+    public float FullSpeed;
+    public float WalkSpeed;
 
     //patrol
     public Vector3 walkpoint;
@@ -73,7 +75,7 @@ public class EnemyAiTutorial : MonoBehaviour
             }
             if (distanceToWalkPoint.magnitude > 1f)
             {
-                yield return new WaitForSeconds(10);
+                yield return new WaitForSeconds(5f);
                 walkPointset = false;
             }
         }
@@ -82,7 +84,7 @@ public class EnemyAiTutorial : MonoBehaviour
     {
         IsRunning = true;
         Agent.isStopped = false;
-        Agent.speed = 10;
+        Agent.speed = FullSpeed;
         Agent.SetDestination(Player.position);
     }
 
@@ -142,7 +144,7 @@ public class EnemyAiTutorial : MonoBehaviour
         walkpoint = new Vector3(transform.position.x + randomX, transform.position.y, transform.position.z + randomZ);
         if (Physics.Raycast(walkpoint, -transform.up, 2f, WhatIsGround))
         {
-            Agent.speed = 3.5f;
+            Agent.speed = WalkSpeed;
             walkPointset = true;
 
         }
