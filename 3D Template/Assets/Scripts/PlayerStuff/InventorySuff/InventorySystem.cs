@@ -37,7 +37,7 @@ public class InventorySystem : MonoBehaviour
     public TMP_Text pickupName;
     public Image pickupIcon;
 
-    public List<ItemAssets> itemsPickedup;
+    public List<string> itemsPickedup;
 
     private void Awake()
     {
