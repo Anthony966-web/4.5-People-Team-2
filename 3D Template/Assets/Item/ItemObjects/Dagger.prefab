@@ -81,7 +81,7 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 8b6dcbf2b934e984f9cff52084fc7fb2,
         type: 3}
       propertyPath: m_Name
-      value: Stone knife
+      value: Dagger
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -194,7 +194,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 613848b91520d69468ed36583d0c01f7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inventoryItem: {fileID: 0}
+  inventoryItem: {fileID: 11400000, guid: da3ea4e9726e58c4d8b111b4bb163f0b, type: 2}
 --- !u!65 &8764983483564158150
 BoxCollider:
   m_ObjectHideFlags: 0
