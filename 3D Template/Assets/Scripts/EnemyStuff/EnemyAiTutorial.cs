@@ -12,6 +12,10 @@ public class EnemyAiTutorial : MonoBehaviour
     public LayerMask WhatIsGround, WhatIsPlayer;
     public GameObject Projectile;
     public float health;
+    public Animator animator;
+    public bool IsRunning;
+    public float fullSpeed;
+    public float walkSpeed;
 
     //patrol
     public Vector3 walkpoint;
@@ -28,6 +32,7 @@ public class EnemyAiTutorial : MonoBehaviour
 
     private void Update()
     {
+        animator.SetBool("IsRunning", IsRunning);
         ////check for sight and attack range
         PlayerInSightRange = Physics.CheckSphere(transform.position, sightRange, WhatIsPlayer);
         PlayerInAttackRange = Physics.CheckSphere(transform.position, attackRange, WhatIsPlayer);
@@ -53,6 +58,7 @@ public class EnemyAiTutorial : MonoBehaviour
 
     private IEnumerator Patroling()
     {
+        IsRunning = false;
         if (!walkPointset)
         { SearchWalkPoint(); }
         if (walkPointset)
@@ -70,15 +76,17 @@ public class EnemyAiTutorial : MonoBehaviour
     }
     private void ChasePlayer()
     {
-        Agent.speed = 10;
+        IsRunning = true;
+        Agent.speed = fullSpeed;
         Agent.SetDestination(Player.position);
     }
 
     private void AttackPlayer()
     {
         Agent.SetDestination(transform.position);
-        transform.LookAt(Player);
-
+        Vector3 lookPosition = Player.position;
+        lookPosition.y = transform.position.y; // Keep the AI's y-axis unchanged
+        transform.LookAt(lookPosition);
         if (!alreadyAttacked)
         {
             //Rigidbody rb = Instantiate(Projectile, transform.position, Quaternion.identity).GetComponent<Rigidbody>();
@@ -120,9 +128,9 @@ public class EnemyAiTutorial : MonoBehaviour
         float randomX = Random.Range(-walkpointRange, walkpointRange);
         
         walkpoint = new Vector3(transform.position.x + randomX, transform.position.y, transform.position.z + randomZ);
-        if (Physics.Raycast(walkpoint, -transform.up, 5f, WhatIsGround))
+        if (Physics.Raycast(walkpoint, -transform.up, 2f, WhatIsGround))
         {
-            Agent.speed = 3.5f;
+            Agent.speed = walkSpeed;
             walkPointset = true;
 
         }
