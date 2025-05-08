@@ -23460,9 +23460,9 @@ Camera:
     y: 0
     width: 1
     height: 1
-  near clip plane: 0.3
+  near clip plane: 0.01
   far clip plane: 1000
-  field of view: 60.000004
+  field of view: 72.3
   orthographic: 0
   orthographic size: 5
   m_Depth: -1
@@ -23488,8 +23488,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 740190857}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1191.18, y: 214.05, z: -944.798}
+  m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
+  m_LocalPosition: {x: 1191.18, y: 264.05, z: -942.90796}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -37769,11 +37769,14 @@ MonoBehaviour:
   fovChangeSpeed: 5
   leanAngle: 5
   leanSpeed: 5
+  originalMoveSpeed: 0
   slideForce: 10
   slideDuration: 0.8
   slideCooldown: 1
   slideCameraTilt: 15
   Ymeasure: 0
+  knobackvelocity: {x: 0, y: 0, z: 0}
+  Water: 0
 --- !u!23 &1144378180
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -46089,8 +46092,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   CraftingScreenUI: {fileID: 1484001041}
   ToolsScreenUI: {fileID: 9468636}
+  ConstructionScreenUI: {fileID: 0}
   InventoryItemList: []
   AxeBLP: {fileID: 11400000, guid: 523dd21b5bc7b624885f8aeca62f6736, type: 2}
+  FoundationBLP: {fileID: 0}
+  WallBLP: {fileID: 0}
+  RoofBLP: {fileID: 0}
+  ChestBLP: {fileID: 0}
 --- !u!4 &1374217891
 Transform:
   m_ObjectHideFlags: 0
@@ -47083,6 +47091,7 @@ MonoBehaviour:
   ToxicRate: 0.35
   ToxicTick: 1.1
   ToxicImmunity: 0
+  Money: 100
 --- !u!4 &1397542095
 Transform:
   m_ObjectHideFlags: 0
