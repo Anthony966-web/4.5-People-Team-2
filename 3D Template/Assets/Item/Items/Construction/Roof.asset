@@ -15,10 +15,17 @@ MonoBehaviour:
   ItemIcon: {fileID: 21300000, guid: 5f27b2d79faa3a14a99b89718a75e7af, type: 3}
   ItemName: Roof
   ItemModel: {fileID: 0}
+  ItemObject: {fileID: 0}
   Quantity: 1
-  ItemDescription: Wall
+  ItemDescription: Roof
   IsDroppable: 0
   IsEquippable: 0
+  IsPickaxe: 0
+  IsSword: 0
+  IsAxe: 0
+  Damage: 0
+  Cost: 0
+  Value: 0
   IsConsumable: 0
   IsUseable: 1
   itemPendingToBeUsed: {fileID: 4499590417200216038, guid: 0ef8e60472df40641aea5019012b5e5e,

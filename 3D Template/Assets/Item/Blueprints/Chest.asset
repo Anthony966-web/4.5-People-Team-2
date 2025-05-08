@@ -15,5 +15,5 @@ MonoBehaviour:
   itemname: {fileID: 11400000, guid: 6e814a4096f64424bbd7c69afd736377, type: 2}
   ProduceAmount: 1
   Req:
-  - {fileID: 11400000, guid: 7da98fbf6266c93498ce8238a3c880f2, type: 2}
+  - {fileID: 11400000, guid: b0956e6287f04414f9984e82bde5ca16, type: 2}
   ReqAmount: 05000000

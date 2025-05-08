@@ -12,12 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bc6d2c3b67905674e9bb08da5fc2cb8e, type: 3}
   m_Name: Stone
   m_EditorClassIdentifier: 
-  ItemIcon: {fileID: 10915, guid: 0000000000000000f000000000000000, type: 0}
+  ItemIcon: {fileID: 21300000, guid: 5f27b2d79faa3a14a99b89718a75e7af, type: 3}
   ItemName: Stone
   ItemModel: {fileID: 0}
   ItemObject: {fileID: 0}
   Quantity: 1
-  ItemDescription: Stone, Used To Craft
+  ItemDescription: Stone, Used For Crafting
   IsDroppable: 1
   IsEquippable: 0
   IsPickaxe: 0

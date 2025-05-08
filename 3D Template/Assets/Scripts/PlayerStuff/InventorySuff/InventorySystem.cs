@@ -94,12 +94,12 @@ public class InventorySystem : MonoBehaviour
         {
             inventoryScreenUI.SetActive(false);
 
-            // Only hide cursor if storage is also closed
-            if (!StorageManager.Instance.storageUIOpen)
-            {
-                Cursor.lockState = CursorLockMode.Locked;
-                Cursor.visible = false;
-            }
+            //// Only hide cursor if storage is also closed
+            //if (!StorageManager.Instance.storageUIOpen)
+            //{
+            //    Cursor.lockState = CursorLockMode.Locked;
+            //    Cursor.visible = false;
+            //}
         }
 
     }

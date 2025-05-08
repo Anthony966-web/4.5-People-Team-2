@@ -25,7 +25,6 @@ public class Animationforwolfie : MonoBehaviour
     }
     private void Animate()
     {
-        
         if (newposition != oldposition) //|| input.magnitude < -0.1f)
         {
             IsMoving = true;

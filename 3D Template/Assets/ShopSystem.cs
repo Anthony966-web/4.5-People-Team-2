@@ -8,33 +8,42 @@ public class ShopSystem : MonoBehaviour
     public GameObject shopUIPrefab;
     public Transform shopUIParent;
 
+    public Button buyButton;
+    public Button sellButton;
+
     void Start()
-    {  
+    {
         foreach (var item in availableItems)
         {
             GameObject uiItem = Instantiate(shopUIPrefab, shopUIParent);
 
-            item.Value = item.Cost * 0.8f;
+            float value = item.Cost * 0.8f;
 
             uiItem.transform.Find("Name").GetComponent<TMP_Text>().text = item.ItemName;
             uiItem.GetComponent<Image>().sprite = item.ItemIcon;
-            uiItem.transform.Find("Cost").GetComponent<TMP_Text>().text = "Cost: $" + item.Cost.ToString();
-            uiItem.transform.Find("Value").GetComponent<TMP_Text>().text = "Value: $" + item.Value.ToString();
+            uiItem.transform.Find("Cost").GetComponent<TMP_Text>().text = $"Cost: ${item.Cost}";
+            uiItem.transform.Find("Value").GetComponent<TMP_Text>().text = $"Value: ${value}";
 
-            Button buyButton = uiItem.transform.Find("BuyButton").GetComponent<Button>();
+            var buyButton = uiItem.transform.GetChild(3).GetComponent<Button>();
             buyButton.onClick.AddListener(() => BuyItem(item));
 
-            Button sellButton = uiItem.transform.Find("SellButton").GetComponent<Button>();
+            var sellButton = uiItem.transform.GetChild(4).GetComponent<Button>();
             sellButton.onClick.AddListener(() => SellItem(item));
+
+            if (buyButton == null) Debug.LogError("Buy button not found!");
+            if (sellButton == null) Debug.LogError("Sell button not found!");
+
         }
+
     }
 
 
     void BuyItem(ItemAssets item)
     {
+        print("Works");
         if (PlayerState.Instance.SpendMoney(item.Cost))
         {
-            InventorySystem.Instance.AddToInventory(item, item.Quantity);
+            InventorySystem.Instance.AddToInventory(item, 1);
             InventorySystem.Instance.ReCalculateList();
             CraftingSystem.Instance.RefreshNeededItems();
         }
@@ -49,7 +58,7 @@ public class ShopSystem : MonoBehaviour
         if(item != null)
         {
             PlayerState.Instance.AddMoney(item.Value);
-            DestroyImmediate(item);
+            InventorySystem.Instance.RemoveItem(item, 1);
             InventorySystem.Instance.ReCalculateList();
             CraftingSystem.Instance.RefreshNeededItems();
         }

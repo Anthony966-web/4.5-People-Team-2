@@ -214,6 +214,9 @@ public class MenuController : MonoBehaviour
         }
     }
 
+    public Button LoadGameBtn; 
+    
+
     public IEnumerator ConfirmationBox()
     {
         comfirmationPrompt.SetActive(true);
