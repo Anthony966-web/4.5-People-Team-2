@@ -12032,6 +12032,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: Taller fat tree
       objectReference: {fileID: 0}
+    - target: {fileID: 302974588746208823, guid: 0340d4b21c7e590499cf2528410fcc1c,
+        type: 3}
+      propertyPath: m_Layer
+      value: 14
+      objectReference: {fileID: 0}
+    - target: {fileID: 302974588746208823, guid: 0340d4b21c7e590499cf2528410fcc1c,
+        type: 3}
+      propertyPath: m_TagString
+      value: Tree
+      objectReference: {fileID: 0}
     - target: {fileID: 1116806276077079693, guid: 0340d4b21c7e590499cf2528410fcc1c,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -12081,6 +12091,21 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1116806276077079693, guid: 0340d4b21c7e590499cf2528410fcc1c,
+        type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4067762630333428048, guid: 0340d4b21c7e590499cf2528410fcc1c,
+        type: 3}
+      propertyPath: m_Layer
+      value: 14
+      objectReference: {fileID: 0}
+    - target: {fileID: 6325927202252976384, guid: 0340d4b21c7e590499cf2528410fcc1c,
+        type: 3}
+      propertyPath: istree
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6325927202252976384, guid: 0340d4b21c7e590499cf2528410fcc1c,
         type: 3}
