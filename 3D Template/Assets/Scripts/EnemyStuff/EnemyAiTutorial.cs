@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.AI;
 using System.Collections;
 using Unity.VisualScripting;
+using UnityEngine.UIElements;
 
 public class EnemyAiTutorial : MonoBehaviour
 {
@@ -19,6 +20,8 @@ public class EnemyAiTutorial : MonoBehaviour
     public Vector3 walkpoint;
     bool walkPointset;
     public float walkpointRange;
+    public float FullsSpeed;
+    public float walkSpeed;
 
     //attacking
     public float timeBetweenAttacks;
@@ -82,7 +85,7 @@ public class EnemyAiTutorial : MonoBehaviour
     {
         IsRunning = true;
         Agent.isStopped = false;
-        Agent.speed = 10;
+        Agent.speed = FullsSpeed;
         Agent.SetDestination(Player.position);
     }
 
@@ -142,7 +145,7 @@ public class EnemyAiTutorial : MonoBehaviour
         walkpoint = new Vector3(transform.position.x + randomX, transform.position.y, transform.position.z + randomZ);
         if (Physics.Raycast(walkpoint, -transform.up, 2f, WhatIsGround))
         {
-            Agent.speed = 3.5f;
+            Agent.speed = walkSpeed;
             walkPointset = true;
 
         }
