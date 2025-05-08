@@ -506,7 +506,16 @@ public class CharacterMovement : MonoBehaviour
 
     void CameraControl()
     {
-        if (GameObject.Find("InventorySystem").GetComponent<InventorySystem>().isOpen == true || GameObject.Find("NPC [Shop]").GetComponent<NPCSystem>().IsOpen == true)
+        if(GameObject.Find("NPC [Shop]").GetComponent<NPCSystem>() != null)
+        {
+
+        }
+
+        if(GameObject.Find("InventorySystem").GetComponent<InventorySystem>() != null)
+        {
+
+        }
+        if (GameObject.Find("NPC [Shop]").GetComponent<NPCSystem>().IsOpen == true || GameObject.Find("InventorySystem").GetComponent<InventorySystem>().isOpen == true)
         {
             return;
         }
