@@ -3,7 +3,7 @@ using UnityEngine.SceneManagement;
 
 public class TeleportToboss : MonoBehaviour
 {
-    [SerializeField] private string bossfightSceneName = "Bossfight";
+    [SerializeField] private string bossfightSceneName = "Boss Room";
 
     private void OnTriggerEnter(Collider other)
     {
