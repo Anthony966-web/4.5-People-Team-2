@@ -32300,6 +32300,7 @@ GameObject:
   - component: {fileID: 1282524313}
   - component: {fileID: 1282524315}
   - component: {fileID: 1282524314}
+  - component: {fileID: 1282524316}
   m_Layer: 0
   m_Name: GameObject (1)
   m_TagString: Untagged
@@ -32336,7 +32337,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemPrefab: {fileID: 5570618239904237503, guid: c10dfb31c29982a41b2f7cfb4cbcac28,
     type: 3}
-  itemCount: 10
+  itemCount: 3
   spawnAreaSize: {x: 1000, y: 1000}
   spawnHeight: 1
   groundLayer:
@@ -32359,8 +32360,30 @@ MonoBehaviour:
   itemPrefab: {fileID: 7547794760675053884, guid: 3ef19d86055034f41a8bc9dd5613ff52,
     type: 3}
   itemCount: 100
-  spawnAreaSize: {x: 1000, y: 1000}
+  spawnAreaSize: {x: 1009, y: 1009}
   spawnHeight: 4
+  groundLayer:
+    serializedVersion: 2
+    m_Bits: 1024
+  raycastHeight: 10
+  raycastRange: 20
+--- !u!114 &1282524316
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1282524312}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0634a34c22dc10748aca739de8cfed2e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemPrefab: {fileID: 488804070324549984, guid: a9785745666ba0d48b0b94da8c81d31b,
+    type: 3}
+  itemCount: 10
+  spawnAreaSize: {x: 1000, y: 0}
+  spawnHeight: 1
   groundLayer:
     serializedVersion: 2
     m_Bits: 1024
@@ -35842,7 +35865,7 @@ MonoBehaviour:
   m_OverrideVoxelSize: 0
   m_VoxelSize: 0.16666667
   m_MinRegionArea: 1
-  m_NavMeshData: {fileID: 23800000, guid: 13bf02a5f3e372c4882a44d0414cbf10, type: 2}
+  m_NavMeshData: {fileID: 23800000, guid: 7ef4dca621d596246931741d77c47fb0, type: 2}
   m_BuildHeightMesh: 0
 --- !u!114 &1412443941
 MonoBehaviour:
