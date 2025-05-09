@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bc6d2c3b67905674e9bb08da5fc2cb8e, type: 3}
   m_Name: Basic Axe
   m_EditorClassIdentifier: 
-  ItemIcon: {fileID: 10915, guid: 0000000000000000f000000000000000, type: 0}
+  ItemIcon: {fileID: 21300000, guid: 5155332af0a407d4cbfc54ffb9fe33ed, type: 3}
   ItemName: Basic Axe
   ItemModel: {fileID: 6957771218144326143, guid: 395ac953136c8074399619360691c421,
     type: 3}
