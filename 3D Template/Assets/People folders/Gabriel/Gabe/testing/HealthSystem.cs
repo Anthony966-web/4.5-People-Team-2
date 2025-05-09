@@ -26,7 +26,7 @@ public class HealthSystem : MonoBehaviour, IDamageable
     private void Start()
     {
         gameover = GameObject.Find("Game over");
-        gameover.SetActive(false);
+       //gameover.SetActive(false);
         currentHealth = maxHealth;
         rb = GetComponent<Rigidbody>();
 
