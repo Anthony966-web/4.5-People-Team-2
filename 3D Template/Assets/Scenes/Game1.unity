@@ -2271,7 +2271,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sun: {fileID: 134622973}
-  dayDuration: 300
+  dayDuration: 600
   skyColor:
     serializedVersion: 2
     key0: {r: 0.13260946, g: 0.1367143, b: 0.18867922, a: 1}
@@ -15564,7 +15564,7 @@ Light:
   m_Type: 2
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Intensity: 0.39788735
-  m_Range: 10
+  m_Range: 20
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
   m_CookieSize: 10
@@ -17318,7 +17318,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sun: {fileID: 868120231}
-  dayDuration: 300
+  dayDuration: 600
   skyColor:
     serializedVersion: 2
     key0: {r: 1, g: 1, b: 1, a: 1}
@@ -23787,10 +23787,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cam: {fileID: 0}
   tiltSpeed: 5
-  moveSpeed: 10
-  sprintSpeed: 15
+  moveSpeed: 6
+  sprintSpeed: 10
   crouchSpeed: 2.5
-  jumpForce: 7
+  jumpForce: 5
   slideDistance: 15
   sprintCooldown: 2
   teleportCooldown: 2
