@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c61c90c8e8f5bdc43933e13451ed8564, type: 3}
   m_Name: Aurbry
   m_EditorClassIdentifier: 
-  FullName: 
-  TeamRole: 
+  FullName: Audrey  Wickham
+  TeamRole: Artist
   VGD: 0
   AMI: 1
   Image1: {fileID: 0}

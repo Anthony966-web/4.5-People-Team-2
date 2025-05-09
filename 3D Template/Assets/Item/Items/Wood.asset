@@ -14,8 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ItemIcon: {fileID: 10915, guid: 0000000000000000f000000000000000, type: 0}
   ItemName: Wood
-  ItemModel: {fileID: 0}
-  ItemObject: {fileID: 0}
+  ItemModel: {fileID: 4153237889455415122, guid: 5225745880ccb694da35aae53666f370,
+    type: 3}
+  ItemObject: {fileID: 5755197559899948698, guid: 09fa98abd32f79d43a26885158505a8d,
+    type: 3}
   Quantity: 1
   ItemDescription: Wood, Used For Crafting
   IsDroppable: 1

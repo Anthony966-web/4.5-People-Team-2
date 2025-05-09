@@ -100,11 +100,12 @@ public class HealthSystem : MonoBehaviour, IDamageable
            // {
            // }
 
-            treeAnin.Play();
+            //treeAnin.Play();
             float randomX = Random.Range(2, 5);
             Vector3 v = new Vector3(Random.Range(-3, 5), Random.Range(2, 4), Random.Range(-3, 5));
             Instantiate(TreeItemPrefab, this.transform.position + v, this.transform.rotation);
-            StartCoroutine(TreeFall());
+            Destroy(this.gameObject);
+            //StartCoroutine(TreeFall());
         }
         else
         {
