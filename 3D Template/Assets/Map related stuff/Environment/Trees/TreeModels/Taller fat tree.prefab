@@ -11,17 +11,17 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 06fdfe4e71c0f1640aeedc9c886f3353,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 2.4614258
+      value: 1173.607
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 06fdfe4e71c0f1640aeedc9c886f3353,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -9.961487
+      value: 213.03821
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 06fdfe4e71c0f1640aeedc9c886f3353,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -11.038208
+      value: -938.4961
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 06fdfe4e71c0f1640aeedc9c886f3353,
         type: 3}
@@ -58,6 +58,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 06fdfe4e71c0f1640aeedc9c886f3353,
+        type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 06fdfe4e71c0f1640aeedc9c886f3353,
         type: 3}
       propertyPath: m_Name
@@ -65,8 +70,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 06fdfe4e71c0f1640aeedc9c886f3353,
         type: 3}
+      propertyPath: m_Layer
+      value: 14
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 06fdfe4e71c0f1640aeedc9c886f3353,
+        type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 06fdfe4e71c0f1640aeedc9c886f3353,
+        type: 3}
+      propertyPath: m_TagString
+      value: Tree
+      objectReference: {fileID: 0}
+    - target: {fileID: 3496641134981863990, guid: 06fdfe4e71c0f1640aeedc9c886f3353,
+        type: 3}
+      propertyPath: m_Layer
+      value: 14
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -168,10 +188,11 @@ MonoBehaviour:
   currentHealth: 0
   youdied: {fileID: 0}
   gameover: {fileID: 0}
-  TreeItemPrefab: {fileID: 0}
+  TreeItemPrefab: {fileID: 5755197559899948698, guid: 09fa98abd32f79d43a26885158505a8d,
+    type: 3}
   treeAnin: {fileID: 0}
   value: 0
   knockbackForce: 5
   isPlayer: 0
   istree: 1
-  isHoldingAxe: 1
+  isHoldingAxe: 0
