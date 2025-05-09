@@ -11,22 +11,32 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 7704fe1ea9ba01d4789560930e47d6bd,
         type: 3}
       propertyPath: m_LocalScale.x
-      value: 100
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 7704fe1ea9ba01d4789560930e47d6bd,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 7704fe1ea9ba01d4789560930e47d6bd,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 50
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 7704fe1ea9ba01d4789560930e47d6bd,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 173.79004
+      value: -38.908813
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 7704fe1ea9ba01d4789560930e47d6bd,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -89.43001
+      value: 1.0276947
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 7704fe1ea9ba01d4789560930e47d6bd,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 438.03003
+      value: 16.448914
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 7704fe1ea9ba01d4789560930e47d6bd,
         type: 3}
@@ -63,10 +73,20 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 7704fe1ea9ba01d4789560930e47d6bd,
+        type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 7704fe1ea9ba01d4789560930e47d6bd,
         type: 3}
       propertyPath: m_Name
       value: Regular Rock
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 7704fe1ea9ba01d4789560930e47d6bd,
+        type: 3}
+      propertyPath: m_Layer
+      value: 14
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 7704fe1ea9ba01d4789560930e47d6bd,
         type: 3}
@@ -92,7 +112,7 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 7704fe1ea9ba01d4789560930e47d6bd,
         type: 3}
       insertIndex: -1
-      addedObject: {fileID: -4705080978894322362}
+      addedObject: {fileID: -2586972232956866879}
   m_SourcePrefab: {fileID: 100100000, guid: 7704fe1ea9ba01d4789560930e47d6bd, type: 3}
 --- !u!1 &3657060853182789337 stripped
 GameObject:
@@ -161,7 +181,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &-4705080978894322362
+--- !u!114 &-2586972232956866879
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -170,7 +190,18 @@ MonoBehaviour:
   m_GameObject: {fileID: 3657060853182789337}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 613848b91520d69468ed36583d0c01f7, type: 3}
+  m_Script: {fileID: 11500000, guid: d9cabb391ca41bf4e8f267ce753b26c6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inventoryItem: {fileID: 11400000, guid: 7da98fbf6266c93498ce8238a3c880f2, type: 2}
+  maxHealth: 150
+  currentHealth: 150
+  youdied: {fileID: 0}
+  gameover: {fileID: 0}
+  TreeItemPrefab: {fileID: 6568188102469419548, guid: 85d51fc4c4b8c544d8534f97e6e0a56e,
+    type: 3}
+  treeAnin: {fileID: 0}
+  value: 0
+  knockbackForce: 5
+  isPlayer: 0
+  istree: 1
+  isHoldingAxe: 0
