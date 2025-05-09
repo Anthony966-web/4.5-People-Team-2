@@ -12,13 +12,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bc6d2c3b67905674e9bb08da5fc2cb8e, type: 3}
   m_Name: Wall
   m_EditorClassIdentifier: 
-  ItemIcon: {fileID: 21300000, guid: 5f27b2d79faa3a14a99b89718a75e7af, type: 3}
+  ItemIcon: {fileID: 21300000, guid: 1ffc9b26d61bcfb478974f07a31f202d, type: 3}
   ItemName: Wall
   ItemModel: {fileID: 0}
+  ItemObject: {fileID: 0}
   Quantity: 1
   ItemDescription: Wall
   IsDroppable: 0
   IsEquippable: 0
+  IsPickaxe: 0
+  IsSword: 0
+  IsAxe: 0
+  Damage: 0
+  Cost: 0
+  Value: 0
   IsConsumable: 0
   IsUseable: 1
   itemPendingToBeUsed: {fileID: 9181541187100603645, guid: 12028bc1fdbadd44dbe31aca408a6b67,

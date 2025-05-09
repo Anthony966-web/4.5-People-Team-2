@@ -84,6 +84,10 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 7580161313830673055}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 65c26e954ecf6094699c276b0fbd869c,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: -5942164926167180233}
   m_SourcePrefab: {fileID: 100100000, guid: 65c26e954ecf6094699c276b0fbd869c, type: 3}
 --- !u!1 &6004391800052363495 stripped
 GameObject:
@@ -148,3 +152,27 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.015360105, y: 0.021337133, z: 0.37676352}
   m_Center: {x: 0.0021514904, y: -0.0018784512, z: 0.18838172}
+--- !u!114 &-5942164926167180233
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6004391800052363495}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d9cabb391ca41bf4e8f267ce753b26c6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 100
+  currentHealth: 100
+  youdied: {fileID: 0}
+  gameover: {fileID: 0}
+  TreeItemPrefab: {fileID: 5755197559899948698, guid: 09fa98abd32f79d43a26885158505a8d,
+    type: 3}
+  treeAnin: {fileID: 0}
+  value: 0
+  knockbackForce: 5
+  isPlayer: 0
+  istree: 1
+  isHoldingAxe: 0
