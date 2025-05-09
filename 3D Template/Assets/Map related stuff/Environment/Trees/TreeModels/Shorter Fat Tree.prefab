@@ -165,7 +165,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 100
-  currentHealth: 0
+  currentHealth: 100
   youdied: {fileID: 0}
   gameover: {fileID: 0}
   TreeItemPrefab: {fileID: 5755197559899948698, guid: 09fa98abd32f79d43a26885158505a8d,
