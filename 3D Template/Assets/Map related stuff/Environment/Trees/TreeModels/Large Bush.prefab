@@ -65,8 +65,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 18b13ad08bbc62146bd9c2994b96976d,
         type: 3}
+      propertyPath: m_Layer
+      value: 14
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 18b13ad08bbc62146bd9c2994b96976d,
+        type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 18b13ad08bbc62146bd9c2994b96976d,
+        type: 3}
+      propertyPath: m_TagString
+      value: Tree
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
