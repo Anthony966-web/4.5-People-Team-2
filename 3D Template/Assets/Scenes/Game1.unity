@@ -2269,7 +2269,7 @@ Transform:
   m_GameObject: {fileID: 96055784}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -1.8900146}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -9295,11 +9295,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: -3268691567353878208, guid: b5f32c1f12591c14a9065891fe33a6a1,
-        type: 3}
-      propertyPath: youdied
-      value: 
-      objectReference: {fileID: 133279713}
     - target: {fileID: -3268691567353878208, guid: b5f32c1f12591c14a9065891fe33a6a1,
         type: 3}
       propertyPath: gameover
@@ -38358,7 +38353,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemPrefab: {fileID: 5570618239904237503, guid: c10dfb31c29982a41b2f7cfb4cbcac28,
     type: 3}
-  itemCount: 1
+  itemCount: 4
   spawnAreaSize: {x: 100, y: 100}
   spawnHeight: 1
   groundLayer:
@@ -38380,7 +38375,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemPrefab: {fileID: 7547794760675053884, guid: 3ef19d86055034f41a8bc9dd5613ff52,
     type: 3}
-  itemCount: 1
+  itemCount: 2
   spawnAreaSize: {x: 100, y: 100}
   spawnHeight: 4
   groundLayer:
@@ -38402,7 +38397,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemPrefab: {fileID: 488804070324549984, guid: a9785745666ba0d48b0b94da8c81d31b,
     type: 3}
-  itemCount: 1
+  itemCount: 2
   spawnAreaSize: {x: 100, y: 100}
   spawnHeight: 1
   groundLayer:
