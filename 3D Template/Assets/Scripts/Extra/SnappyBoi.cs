@@ -3,11 +3,7 @@ using UnityEngine;
 
 public class SnappyBoi : MonoBehaviour
 {
-    
-
     [ContextMenu("Snap")]
-
-    
 
     public void SnapTree()
     {
@@ -16,11 +12,4 @@ public class SnappyBoi : MonoBehaviour
             transform.position = hit.point;
         }
     }
-
-    //public void Start()
-    //{
-          //BoxCollider collider;
-    //    collider = Instantiate(gameObject.AddComponent<BoxCollider>());
-    //    collider.size = new Vector3(1, 1, 1);
-    //}
 }
